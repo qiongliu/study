@@ -1,0 +1,18 @@
+ //ÅÐ¶Ïä¯ÀÀÆ÷liu
+    browser_liu:function(){
+        var ua = window.navigator.userAgent.toLowerCase(),
+        bs = {},
+        b;
+        (b = ua.match(/rv:([\d.]+)\) like gecko/)) ? bs.ie = b[1] :
+        (b = ua.match(/msie ([\d.]+)/)) ? bs.ie = b[1] :
+        (b = ua.match(/firefox\/([\d.]+)/)) ? bs.firefox = b[1] :
+        (b = ua.match(/chrome\/([\d.]+)/)) ? bs.chrome = b[1] :
+        (b = ua.match(/opera.([\d.]+)/)) ? bs.opera = b[1] :
+        (b = ua.match(/version\/([\d.]+).*safari/)) ? bs.safari = b[1] : 0;
+
+        if (bs.opera) return('Opera: ' + bs.opera);
+        if (bs.safari) return('Safari: ' + bs.safari);
+        if (bs.ie) return('IE: ' + bs.ie);
+        if (bs.firefox) return('Firefox: ' + bs.firefox);
+        if (bs.chrome) return('Chrome: ' + bs.chrome);
+    }

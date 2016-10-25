@@ -1,0 +1,28 @@
+//获取地址栏参数
+var getQueryString = function(name) {
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+    var r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
+
+// 追加URL参数
+var addQueryParams = function (url, obj) {
+    var index = url.indexOf('?');
+    if (index > 0) {
+        url = url.substring(0, index)
+    }
+    var key,
+         joinChar = (url.indexOf('?') === -1) ? '?' : '&',
+         arrParams = [],
+         strParams = '';
+    for (key in obj) {
+        if (obj[key] != '')
+            arrParams[arrParams.length] = '&' + key + '=' + obj[key];
+    }
+
+    strParams = arrParams.join('').substring(1);
+    if (strParams != '') {
+        strParams = joinChar + strParams;
+    }
+    return url + strParams;
+}

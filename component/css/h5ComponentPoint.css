@@ -1,0 +1,16 @@
+.h5_component .point{
+	position: absolute;
+	border-radius: 50%;
+}
+.h5_component .point .project{
+	height: 30px;
+	text-align: center;
+	top: 50%;
+	margin-top: -15px;
+	position: absolute;
+	font-size: 20px;
+	width: 100%;
+}
+.h5_component .point .scale{
+	font-size: 16px;
+}

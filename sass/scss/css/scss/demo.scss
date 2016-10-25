@@ -1,0 +1,180 @@
+/* 这是标准的注释方式，单行、多行都可以；
+会显示在生成的css文件中；
+scss文件常以下划线开始命名：如"_name.scss"；
+通过@impprt引入的scss文件，会显示在生成的css文件中，
+通过@import引入的css文件，则会以@import url()方式出现在生成的css文件中。 
+*/
+
+//编译方式：nested，后大括号不另提一行；expanded，后大括号另提一行；compact，样式写在一行；compressed，压缩
+
+//这是单行注释，不会显示在生成的css文件中。
+
+//出现Syntax error: Invalid GBK character报错的解决办法：
+//找到安装目录里面sass-3.3.7模块下面的engine.rb文件，例如下面路径：
+//C:\Program Files (x86)\Koala\rubygems\gems\sass-3.3.7\lib\sass
+//在这个文件里面engine.rb，添加一行代码
+//Encoding.default_external = Encoding.find('utf-8')
+//放在所有的require XXXX 之后即可。
+@import '_reset.scss';
+@import 'import.css'; 
+@import 'tools';
+
+//变量-属性值
+$fontSize: 16px;
+$lineHeight: 1.5;
+$fontFamily: "Microsoft YaHei";
+$fontSize: 12px !default; //!default 可设置默认变量，多用在在组件化开发的时候。在默认变量之前重新声明变量即可覆盖。
+$color: #ccc;
+$aHref: #50641F #7F1010 #0F8437 #153085; //一维数组。:link未访问，:visited已访问，:hover浮动在上面，:active访问中
+
+//变量
+$bg: background; //如果变量不是做为属性值的时候，要通过#{$bg}的形式使用。
+
+//@mixin使用,定义代码段,通过@include name 调用
+//没有参数
+@mixin border{
+	border: 1px solid #000;
+}
+//一个参数，可以给定默认值。如果不需要默认值，只写参数名即可。@mixin opacity($opacity){opacity:$opacity}
+@mixin opacity($opacity:1){
+	opacity: $opacity;
+	filter: alpha(opacity = $opacity * 100);
+}
+//两个参数
+@mixin bg($url:'../1.jpg',$align:0,$vertical:0){
+	background: url($url) $align $vertical no-repeat;
+}
+
+//媒体查询的使用 代码从@content开始
+@mixin min-screen($width){
+	@media only screen and (min-screen: #{$width}px)
+		{
+			p{
+				@include border;
+			}
+
+			@content;
+		}
+}
+//占位选择器
+
+
+//条件判断
+$flag: true;
+$type: red;
+.if{
+	@if $flag && $type == red{
+		color: #f00;
+	}
+	
+}
+
+
+
+
+body{
+	font: $fontSize/#{$lineHeight} $fontFamily;  //如果不使用#{$fontHeight},“/”将会以除号的方式处理。
+	#{$bg}-color: $color;
+}
+
+//数组使用
+a{
+	&:link{  //&指代父标签
+	color: nth($aHref,1); //nth：从第几个开始。
+	}
+	&:visited{
+		color: nth($aHref,2);
+	}
+	&:hover{
+		color: nth($aHref,3);
+	}
+	&:active{
+		color: nth($aHref,4);
+	}
+}
+
+.comWidth{
+	width: 1000px;
+	margin: 0 auto;
+}
+//选择器嵌套
+//默认@at-root只会跳出选择器嵌套.默认的@at-root其实就是@at-root (without:rule)
+//all（表示所有），rule（表示常规css），media（表示media），support（表示support)
+.nav{
+	height: 34px;
+	line-height: 34px;
+	@at-root .logo{  //@at-root 跳出最外层嵌套。如果是多个选择器、标签跳出嵌套，写@at-root{}中。
+		float: left;
+		width: 100px;
+		padding-left: 20px;
+		img{
+			vertical-align: middle;
+			width: 30%;
+		}
+	}
+	ul{
+		list-style:none;
+		text-align: right;
+		overflow: hidden;
+		li{
+			display: inline-block;
+		}
+		a{
+			display: inline-block;
+			padding: 0 20px;
+			text-align: center;
+			span{
+				color:#603516;
+				&:hover{
+					color: #E512E3;
+				}
+			}
+		}
+	}
+}
+
+//属性嵌套，不实用。
+.container{
+	font:{
+		size: 12px;
+		weight: 800;
+		family: "SimSun",Sans-serif;
+	}
+	border:{
+		left:{
+			width: 2px;
+		}
+	}
+}
+//@minin定义的代码段，通过@include调用
+.container{
+	margin-top: 50px;
+	@at-root .left{
+		width: 320px;
+		height: 200px;
+		background-color: #ff0000;
+		float: left;
+		@include border;
+		@include opacity(.5);
+		@include bg('../1.jpg',50%,50%); //如果要传入指定的参数，写明'参数名：值'即可。@include bg($align:30%)
+	}
+	@at-root .right{
+		width: 200px + 120px;  //计算，允许带单位进行计算。
+		height: (400px / 2); //放在括号里。
+		float: right;
+		background-color: darken(#f00,20%); // 颜色函数
+		// background-color: lighten(#f00,20%);
+	}
+}
+
+//媒体查询的使用.
+@include min-screen(320){
+	body{
+		font-size: 12px;
+	}
+}
+
+//继承 @extend，会继承.logo下的所有样式，包括后代的样式。这样不好。
+.movie{
+	@extend .logo;
+}

@@ -1,0 +1,212 @@
+html,
+body,
+ul,
+li {
+    padding: 0;
+    margin: 0
+}
+
+ul,
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.clearfix:after {
+    content: " ";
+    display: table;
+    clear: both;
+}
+
+.top {
+    background-color: #555;
+    font-size: 12px;
+    color: #fff;
+    line-height: 36px;
+}
+
+.top .tel {
+    float: left;
+    padding: 0 20px;
+}
+
+.top ul {
+    margin-right: 20px;
+    text-align: right;
+}
+.top li{
+	display: inline-block;
+}
+.top li a{
+    display: inline-block;
+    padding: 0 14px;
+    border-right: 1px solid #ccc;
+}
+.logo{
+	display: inline-block;
+	margin: 16px 0;
+}
+.logo img{
+	border: none;
+}
+.nav{
+	float: right;
+}
+.nav li{
+	display: inline-block;
+}
+.nav a{
+	display: inline-block;
+	line-height: 68px;
+	color: #7c7a65;	
+	font-weight: bolder;
+	font-size: 18px;
+	padding: 0 28px;
+	border-right: 1px solid #f0ede9;
+}
+.nav a:hover{
+	color: #fba400;
+}
+
+.transaction{
+	background-color: #7c7365;
+	line-height: 44px;
+	color: #fff;
+	font-size: 16px;
+	padding: 0 20px;
+}
+.transaction span{
+	margin-right: 10px;
+}
+.transaction em{
+	background-color: #fff;
+	padding: 4px 10px;
+	margin: 6px 10px;
+	color: #fba400;
+	letter-spacing: 4px;
+	font-weight: bold;
+}
+.transaction a{
+	float: right;
+}
+@media only screen and (max-width: 800px) {
+	.logo,.nav{
+    	width: 100%;
+    	text-align: center;
+    }
+    .top li a{
+		padding: 0 10px;
+	}
+    .nav a{
+    	line-height: 28px;
+    	padding: 0 26px 10px 0;
+    	font-size: 16px;
+    }
+    .transaction em{
+    	padding: 0;
+    	margin: 0;
+    	margin-right: 4px;
+    	background-color: transparent;
+    	font-size: 20px;
+    	vertical-align: top;
+    	letter-spacing: 2px;
+    }
+    .transaction span{
+    	margin-right: 4px;
+    }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 800px) {
+
+    .transaction{
+    	padding: 0 8px;
+    	font-size: 12px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .tel,.top .media,.nav .media {
+        display: none;
+    }
+    .nav a{
+    	padding-right: 0;
+    }
+     .transaction{
+    	padding: 0 8px;
+    	font-size: 12px;
+    	line-height: 32px;
+    	text-align: center;
+    }
+    .transaction span,.transaction a{
+    	display: block;
+    }
+    .transaction a{
+    	float: none;
+    }
+}
+.banner{
+    display: none;
+}
+.feature{
+    width: 90%;
+    margin: 20px auto;
+}
+.feature-item{
+    width: 31%;
+    border: 1px solid #ccc;
+    margin-right: 20px;
+    display: inline-table;
+    text-align: center;
+}
+.feature-item h2{
+    float: left;
+    line-height: 84px;
+    margin-left: 20px;
+    color: #ff9900;
+    font-size: 20px;
+    font-weight: bold;
+}
+.feature-item div{
+    display: table-cell;
+    vertical-align: middle;
+}
+.feature-item p{
+    font-size: 16px;
+    line-height: 4px;
+    color: #999;
+}
+.notice{
+    width: 90%;
+    margin: 20px auto;
+    line-height: 38px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+.news{
+    float: left;
+    padding-left: 20px;
+}
+.news span{
+    color: #999;
+}
+.time{
+    font-size: 12px;
+    margin: 0 10px 0 20px;
+}
+.news p{
+    color: #000;
+    display: inline-block;
+    margin: 0;
+}
+.more{
+    text-align: right;
+    color: #ff9900;
+    padding-right: 20px;
+}
+
+
+

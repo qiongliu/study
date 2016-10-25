@@ -1,0 +1,31 @@
+//截取字符串
+String.prototype.cut = function (len) {
+    var position = 0;
+    var result = [];
+    var tale = '';
+    for (var i = 0; i < this.length; i++) {
+        if (position >= len) {
+            tale = '..';
+            break;
+        }
+        if (this.charCodeAt(i) > 255) {
+            position += 2;
+            result.push(this.substr(i, 1));
+        }
+        else {
+            position++;
+            result.push(this.substr(i, 1));
+        }
+    }
+    return result.join("") + tale;
+};
+//截取字符串
+String.prototype.cut_liu = function(len){
+    var tale = '..';
+    return this.substr(0,len) + tale;
+}
+//获取字符长度，区别中英文
+String.prototype.getLength = function () {
+    var cArr = this.match(/[^\x00-\xff]/ig);
+    return this.length + (cArr == null ? 0 : cArr.length);
+};

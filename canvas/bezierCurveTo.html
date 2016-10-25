@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bezierCurveTo</title>
+	<style>
+	#canvas{
+		display: block;
+		border: 1px solid #ccc;
+		margin: 20px auto;
+	}
+	</style>
+</head>
+<body>
+	<canvas id="canvas">
+		浏览器不支持
+	</canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		canvas.width = 1024;
+		canvas.height = 600;
+
+		var ctx = canvas.getContext('2d');
+
+		var grd = ctx.createLinearGradient(0,0,0,canvas.height);
+		grd.addColorStop(0,'black');
+		grd.addColorStop(1,'#035');
+		ctx.fillStyle = grd;
+		ctx.fillRect(0,0,canvas.width,canvas.height);
+		
+		(function drawfooter(){
+
+			ctx.save();
+
+			ctx.beginPath();
+
+			ctx.moveTo(0, 470);
+			ctx.bezierCurveTo(300,390,800,550,1024,420);
+			ctx.lineTo(1024, 600);
+			ctx.lineTo(0, 600);
+
+			ctx.closePath();
+
+			var lgrd = ctx.createLinearGradient(0,600,0,0);
+			lgrd.addColorStop(0.0,'#030');
+			lgrd.addColorStop(1.0,'#580');
+
+			ctx.fillStyle = lgrd;
+
+			ctx.fill();
+
+			ctx.restore();
+		})()
+
+
+
+		for(var i = 0;i < 200;i++){
+			var r = Math.random() * 5 + 5;
+			var x = Math.random() * canvas.width;
+			var y = Math.random() * canvas.height * 0.65;
+			var rotate = Math.random() * 360;
+				if(x < r){
+					x = r;
+				}else if(x > canvas.width -r){
+					x = canvas.width - r;
+				}
+				if(y < r){
+					y = r;
+				}else if(y > canvas.height -r){
+					y = canvas.height - r;
+				}
+				m = x;
+				n = y;
+				drawShape(ctx,r,x,y,rotate);	
+		}
+		
+		function drawShape(ctx,r,x,y,rotate){
+
+			ctx.save();
+
+			ctx.translate(x,y);
+			ctx.rotate(rotate/180 * Math.PI);
+			//scale 会将图形的位置、大小、边框都进行缩放，故，取掉绘制边框
+			ctx.scale(r,r);
+
+			ctx.fillStyle = '#fb3';
+			ctx.strokeStyle = '#fd5';
+			// ctx.lineWidth = 2;
+			// ctx.lineJoin = 'round';
+
+			drawStar(ctx);
+
+			ctx.fill();
+			// ctx.stroke();
+
+			ctx.restore();
+		}
+
+		function drawStar(ctx){
+			ctx.beginPath();
+			for(var i = 0;i < 5;i++){
+				ctx.lineTo(Math.cos((18+i*72)/180*Math.PI) ,-Math.sin((18+i*72)/180*Math.PI) );
+				ctx.lineTo(Math.cos((54+i*72)/180*Math.PI) * 0.5,-Math.sin((54+i*72)/180*Math.PI) * 0.5);
+			}
+			ctx.closePath();
+		}
+	</script>
+</body>
+</html>

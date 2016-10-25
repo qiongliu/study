@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimun-scale=1,maximun-scale=1">
+	<title>base</title>
+	<link rel="stylesheet" href="../css/h5ComponentBase.css">
+</head>
+<body>
+	<div class="iphone">
+		
+	</div>
+	<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+	<script src="../js/h5ComponentBase.js"></script>
+	<script>
+		var cfg = {
+			type: "base",
+			text: "",
+			width: 514,
+			height: 306,
+			bg: "../img/p1_people.png",
+			css: {
+				bottom: 0,
+				opacity: 0
+			},
+			animateIn: {
+				bottom: 30,
+				opacity: 1
+			},
+			animateOut: {
+				bottom: 0,
+				opacity: 0
+			},
+			center: true
+		};
+		var h5 = new h5ComponentBase("name",cfg);
+		h5.appendTo('.iphone');
+
+		var judge = true;
+		// $("body").on('click',function(){
+		// 	debugger;
+		// 	judge = !judge;
+		// 	h5.trigger(judge?'onLeave':'onLoad');
+		// });
+	</script>
+</body>
+</html>

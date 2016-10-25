@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>scroll</title>
+	<style>
+		*{margin: 0;padding: 0}
+		ul,li{list-style: none;}
+		a{text-decoration: none;}
+		body{background-color: #ccc;font-family: "Microsoft YaHei"}
+		.scroll-demo{background-color: #6EAD23;width: 500px;margin:30px auto;}
+		.scroll-nav{font-size: 14px;background-color: #649231}
+		.scroll-nav li{display: inline-block;}
+		.scroll-nav a{display: inline-block;color: #fff;line-height: 30px;padding: 0 10px;}
+		.scroll-nav a:hover,.scroll-nav .active{border-bottom: 2px solid #1BC817}
+		.scroll-wrap{height: 280px;position: relative;}
+		.scroll-content{height: 100%;overflow: hidden;width: 99%;}
+		.scroll-content h3{text-align: center;}
+		.scroll-content p{text-indent: 30px;}
+		.scroll-bar{position: absolute;right: 0px;top: 0;width: 8px;background-color: #10130E;height: 100%;}
+		.scroll-sidebar{position:absolute;width: 8px;background-color: #1BC817; height: 50px;}
+	</style>
+</head>
+<body>
+	<div class="scroll-demo">
+		<div class="scroll-nav">
+			<ul>
+				<li><a href="#item1" class="active">第一篇</a></li>
+				<li><a href="#item2">第二篇</a></li>
+				<li><a href="#item3">第三篇</a></li>
+				<li><a href="#item4">第四篇</a></li>
+			</ul>
+		</div>
+		<div class="scroll-wrap">
+			<div class="scroll-content">
+				<h3 id="item1">春天来了</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique mollitia libero nostrum in explicabo, neque, ex deleniti autem aspernatur. Enim aperiam quis est magni possimus eveniet. In quod deserunt libero.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique mollitia libero nostrum in explicabo, neque, ex deleniti autem aspernatur. Enim aperiam quis est magni possimus eveniet. In quod deserunt libero.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique mollitia libero nostrum in explicabo, neque, ex deleniti autem aspernatur. Enim aperiam quis est magni possimus eveniet. In quod deserunt libero.</p>
+				<h3 id="item2">夏天来了</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, officiis autem. Fugiat, incidunt, eligendi! Delectus soluta eaque laudantium nulla enim ratione iste in reprehenderit assumenda, ab, dolore ducimus pariatur mollitia.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique mollitia libero nostrum in explicabo, neque, ex deleniti autem aspernatur. Enim aperiam quis est magni possimus eveniet. In quod deserunt libero.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique mollitia libero nostrum in explicabo, neque, ex deleniti autem aspernatur. Enim aperiam quis est magni possimus eveniet. In quod deserunt libero.</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Delectus, officiis autem. Fugiat, incidunt, eligendi! Delectus soluta eaque laudantium nulla enim ratione iste in reprehenderit assumenda, ab, dolore ducimus pariatur mollitia.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique mollitia libero nostrum in explicabo, neque, ex deleniti autem aspernatur. Enim aperiam quis est magni possimus eveniet. In quod deserunt libero.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique mollitia libero nostrum in explicabo, neque, ex deleniti autem aspernatur. Enim aperiam quis est magni possimus eveniet. In quod deserunt libero.</p>
+				<h3 id="item3">秋天来了</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quaerat nihil error quis earum nesciunt, assumenda obcaecati in quam cupiditate dolorum delectus exercitationem incidunt, tempore ut saepe quae, sequi dolorem ea.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique mollitia libero nostrum in explicabo, neque, ex deleniti autem aspernatur. Enim aperiam quis est magni possimus eveniet. In quod deserunt libero.</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique mollitia libero nostrum in explicabo, neque, ex deleniti autem aspernatur. Enim aperiam quis est magni possimus eveniet. In quod deserunt libero.</p>
+				<h3 id="item4">冬天来了</h3>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt fugiat repellat corporis, dolorum velit, fugit tempora optio, eligendi obcaecati incidunt autem nulla. Nostrum ipsum magnam maxime sint impedit ipsam officiis.</p>
+
+			</div>
+			<div class="scroll-bar">
+				<div class="scroll-sidebar"></div>
+			</div>
+		</div>
+	</div>
+	<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<script>
+		var Scroll = {};
+		(function(w,d,$){
+			var ScrollBar = function(opts){
+				if(!$.isPlainObject(opts)){
+					alert("参数不对！");
+					return false;
+				}
+				this.init(opts);
+			};
+			$.extend(ScrollBar.prototype,{
+				init:function(opts){
+					var self = this;
+					self.opts = {
+						scrollDir: 'y',
+						contSelect: '',
+						barSelect: '',
+						sidebarSelect: '',
+						wheelStep: 30
+					};
+					$.extend(true,self.opts,opts || {});
+
+					self.initDom();
+				},
+				initDom:function(){
+					var opts = this.opts;
+					this.$cont = $(opts.contSelect);
+					this.$side = $(opts.sidebarSelect);
+					this.$bar = opts.barSelect?$(opts.barSelect):this.$side.parent();
+					this.$doc = $(d);
+					this.initDragEvent()
+						.listenContScroll()
+						.listenMouseScroll();
+				},
+				getMaxScrollOffset:function(){
+					return this.$bar.height() - this.$side.height();
+				},
+				getMaxContOffset:function(){
+					return Math.max((this.$cont[0].scrollHeight - this.$cont.height()),this.$cont.height());
+				},
+				contTo:function(oft){
+					this.$cont.scrollTop(oft);
+				},
+				scrollTo:function(){
+					var maxContOffset = this.getMaxContOffset(),
+					contOffset = this.$cont[0].scrollTop,
+					maxScrollOffset = this.getMaxScrollOffset();
+					return Math.min(maxScrollOffset,maxScrollOffset * contOffset / maxContOffset); 
+
+				},
+				//e.originalEvent,鼠标滚轮事件对象，浏览器差异，分为firefox和非firefox，火狐下向上滚动为正，每滚动一次
+				//的距离detail:3，非火狐下，向下为正，每滚动一次的距离wheelDelta为120，为了各浏览器统一，需要重新计算。
+				listenMouseScroll:function(){
+					var self = this;
+					self.$cont.on('mousewheel DOMMouseScroll',function(e){
+						e.preventDefault();
+						var oEv = e.originalEvent,
+							wheelRange = oEv.wheelDelta ? -oEv.wheelDelta/120 : (oEv.detail || 0)/3;
+						self.contTo(self.$cont[0].scrollTop + wheelRange * self.opts.wheelStep);
+					});
+					return self;
+				},
+				listenContScroll:function(){
+					var self = this;
+					self.$cont.on('scroll',function(){
+						var sideEl = self.$side && self.$side[0];
+						if(sideEl){
+							sideEl.style.top = self.scrollTo() + 'px';
+						}
+					});
+					return self;
+				},
+				initDragEvent:function(){
+					var self = this,
+					side = self.$side,
+					sideEl = side.eq(0);
+					if(sideEl){
+						var drapStartScrollPosition = 0,
+						drapStartContPosition = 0,
+						drapContScrollRate = 0;
+						var docmove = function(e){
+							e.preventDefault();
+							if(drapStartScrollPosition){
+								var scrollOffset = e.pageY - drapStartScrollPosition,
+								contOffset = drapStartContPosition + scrollOffset * drapContScrollRate;
+								self.contTo(contOffset);
+							}
+						};
+						sideEl.on('mousedown',function(e){
+							e.preventDefault();
+							drapStartScrollPosition = e.pageY;
+							drapStartContPosition = self.$cont[0].scrollTop;
+							drapContScrollRate = self.getMaxContOffset() / self.getMaxScrollOffset();
+							self.$doc.on('mousemove.scroll',docmove).on('mouseup.scroll',function(){
+								self.$doc.off('.scroll');
+							});
+						});
+					}
+					return self;
+				}
+			});
+
+			Scroll.ScrollBar = ScrollBar;
+
+		})(window,document,jQuery);
+
+		new Scroll.ScrollBar({
+			contSelect: '.scroll-content',
+			barSelect: '.scroll-bar',
+			sidebarSelect: '.scroll-sidebar'
+		});
+		$(".scroll-nav a").on('click',function(){
+			$(this).addClass('active').parent().siblings().children().removeClass('active');
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,1 @@
+ie chrome不会阻塞图片加载，firefox safari会阻塞图片加载

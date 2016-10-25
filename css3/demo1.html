@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compation" content="IE-edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<title>css3</title>
+	<style>
+		body,ul{margin: 0;padding: 0}
+		ul{list-style-type: none;}
+		a{text-decoration: none;}
+		/*font : font-style || font-variant || font-weight || font-size/line-height || font-family */
+		body{font: 800 24px 'microsoft yahei'}
+		.clearfix:after{content: '';display: block;clear: both;}
+		.clearfix{zoom:1;}
+
+		.nav-bar{position: fixed;left: -1px;bottom: 0;width: 100%}
+		.nav-bar li{float: left;width: 20%;position: relative;}
+		.nav-bar a{width: 100%;background-color: #F15453;height: 50px;line-height: 50px;display: inline-block;text-align: center;color: #fff;border-left: 1px solid #fff;}
+	    .nav-bar span{content: '';display: inline-block;width: 0;height: 0;position: absolute;left: 50%;margin-left: -40px;top: 0px;margin-top: -80px;border:40px solid #fff;border-bottom: 40px solid #F15453;opacity:0;transition: opacity 0.4s ease;}
+		.nav-bar a:hover span{opacity: 1;}
+
+		.content li{position: fixed;left: 0;top: 100%;background-color: blue;transition: transform 1s ease}
+
+	</style>
+</head>
+<body>
+	<div class="nav-bar">
+		<ul class="clearfix">
+			<li><a href="#">html<span></span></a></li>
+			<li><a href="#">css<span></span></a></li>
+			<li><a href="#">javascript<span></span></a></li>
+			<li><a href="#">jquery<span></span></a></li>
+			<li><a href="#">nodejs<span></span></a></li>
+		</ul>
+	</div>
+	<div class="content">
+		<ul>
+			<li>
+				<h2>html</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia numquam quam quos doloremque. Fugiat laboriosam alias maxime velit temporibus corporis nesciunt tempora pariatur. Recusandae omnis nisi ducimus quae! Laborum, vel.</p>
+			</li>
+			<li>
+				<h2>css</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam fuga voluptate ipsam, debitis earum impedit sapiente? Voluptas odio accusamus provident blanditiis, sint, voluptate magni. Fugiat labore, fuga natus esse impedit.</p>
+			</li>
+			<li>
+				<h2>javascript</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt in repellendus odit sed, laborum voluptatibus quo reiciendis possimus similique totam cupiditate id quisquam! Qui, earum, excepturi cumque sunt tempora accusamus.</p>
+			</li>
+			<li>
+				<h2>jquery</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae libero voluptatem quam asperiores eius magni modi aspernatur repudiandae, natus eaque, velit dolore dolorem totam. Iste, numquam architecto obcaecati accusantium omnis!</p>
+			</li>
+			<li>
+				<h2>nodejs</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laborum earum eaque eius eligendi omnis temporibus quaerat placeat dolore totam commodi itaque, rerum nobis neque fugiat. Aspernatur aliquam rem aut commodi!</p>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>

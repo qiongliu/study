@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bees</title>
+	<style>
+		*{margin: 0;padding: 0}
+		#div1{width: 800px;height: 600px;margin: 10px auto;background-color: #000;position: relative;overflow: hidden;}
+		#gameBtn{width: 100px;height: 30px;position: absolute;top: 50%;left: 50%;margin: -15px 0 0 -50px;color: #fff;font-size: 20px;cursor: pointer;border: 1px solid #fff;line-height: 30px;text-align: center;}
+		#score{color: #fff;font-size: 20px;}
+		#bee{position: relative;}
+		.enemy1{float:left;width: 40px;height: 30px;background: url(images/e1.jpg) no-repeat;}
+		.enemy2{float:left;width: 40px;height: 30px;background: url(images/e2.jpg) no-repeat;}
+		.enmey3{float:left;width: 40px;height: 30px;background: url(images/e3.jpg) no-repeat;}
+		.air1{position:absolute;width: 50px;height: 60px;background: url(images/air1.jpg) no-repeat;}
+		.bullet{width: 1px;height:10px;background-color:#fff;position:absolute;overflow: hidden;}
+	</style>
+	<script src="js/bees.js"></script>
+</head>
+<body>
+	<div id="div1">
+		<div id="gameBtn">开始游戏</div>
+	</div>
+</body>
+</html>

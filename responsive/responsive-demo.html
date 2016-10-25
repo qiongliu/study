@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
+	<link href="css/demo.css" rel="stylesheet">
+	<link rel="stylesheet" href="js/vendor/owl.carousel.2.0.0-beta.2.4/assets/owl.carousel.min.css">
+	<link rel="stylesheet" href="js/vendor/owl.carousel.2.0.0-beta.2.4/assets/owl.theme.default.min.css">
+	<title>responsive</title>
+	<!--[if lte IE 8]> 
+		<script src="js/vendor/respond.js"></script>
+    <![endif]-->
+</head>
+<body>
+	<div class="header">
+		<div class="top">
+			<a class="tel" href="#">理财热线：400-888-8888</a>
+			<ul>
+				<li><a href="#">登录</a></li>
+				<li class="media"><a href="#">快速注册</a></li>
+				<li class="media"><a href="#">关于</a></li>
+				<li><a href="#">帮助</a></li>
+				<li><a href="#" style="border-right: none;">APP下载</a></li>
+			</ul>
+		</div>
+		<div class="main clearfix">
+			<a class="logo" href="#"><img src="img/logo@1x.png" alt="回到首页"></a>
+			<ul class="nav">
+				<li><a class="media" href="#">首页</a></li>
+				<li><a href="#">理财频道</a></li>
+				<li><a href="#">投资频道</a></li>
+				<li><a href="#">新手专区</a></li>
+				<li><a href="#" style="border-right: none;">安全保障</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container">
+		<div class="transaction">
+			<span>平台累计成交金额<em>19888</em>万元</span>
+			<span>过去7日成交金额<em>588</em>万元</span>
+			<a href="#">查看平台运营报告</a>
+		</div>
+		<div class="banner">
+			<div class="owl-carousel owl-theme">
+				<div class="banner-item">
+					<img src="img/ad001-l.png" alt="2015年度报告">
+				</div>
+				<div class="banner-item">
+					<img src="img/ad002-l.png" alt="2015年度报告">
+				</div>
+				<div class="banner-item">
+					<img src="img/ad003-l.png" alt="2015年度报告">
+				</div>
+			</div>
+		</div>
+		<div class="feature clearfix">
+			<div class="feature-item">
+				<h3>安全</h3>
+				<div>
+					<p>国家AAAA信用平台</p>
+					<p>银行资金托管</p>
+					<p>上市公司背景保证</p>
+				</div>
+			</div>
+			<div class="feature-item">
+				<h3>权威</h3>
+				<div>
+					<p>国家AAAA信用平台</p>
+					<p>银行资金托管</p>
+					<p>上市公司背景保证</p>
+				</div>
+			</div>
+			<div class="feature-item" style="margin-right:0;">
+				<h3>省心</h3>
+				<div>
+					<p>国家AAAA信用平台</p>
+					<p>银行资金托管</p>
+					<p>上市公司背景保证</p>
+				</div>
+			</div>
+		</div>
+		<div class="notice">
+			<div class="news">
+				<span>最新公告</span><span class="time">2016-7-1</span><p>元旦期间业务受理及值班公告</p>
+			</div>
+			<div class="more">更多公告</div>
+		</div>
+	</div>
+	
+	<script src="js/vendor/jquery-1.11.3.min.js"></script>
+    <script src="js/vendor/owl.carousel.2.0.0-beta.2.4/owl.carousel.min.js"></script>
+    <script>
+    	$(function(){
+    		var getImg = [
+    			{"device":"480","suffix":"-s"},
+    			{"device":"800","suffix":"-m"},
+    			{"device":"1440","suffix":"-l"}
+    		];
+    		var img = $(".banner").find("img"),
+    		judge = true,
+    		str = "";
+
+    		$(window).on('load resize',function(){
+    			var viewWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth; 
+    			for(var i = 0,j = getImg.length;judge && i < j;i++){
+    				if(viewWidth <= parseInt(getImg[i].device)){
+    					for(var x = 0,y = img.length;x < y;x++){
+    						str = img.eq(x).attr("src");
+    						strL = str.substring(0,str.lastIndexOf("-"));
+    						strR = str.substring(str.lastIndexOf("."));
+    						str = strL + getImg[i].suffix + strR;
+    						img.eq(x).attr("src",str);
+    					}
+    					judge = false;
+    				}
+    			}
+    			judge = true;
+    		});
+    		$(".owl-carousel").owlCarousel({
+    			items: 1,
+				loop: true,
+				autoplay: true,
+				autoplayTimeout: 3000,
+				autoplayHoverPause: true,
+    		});
+    	});
+    </script>
+</body>
+</html>

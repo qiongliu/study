@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>seajs</title>
+</head>
+<body>
+	<p>seajs,begin</p>
+	<script type="text/javascript" src="js/lib/sea.js"></script>
+	<script>
+	//js代码是区分大小写的！
+		var webPath = 'e:/note/seaJsDemo';
+		seajs.config({
+			base: "",
+			paths: {
+				"JS": webPath + "/js"
+			},
+			alias: {
+				"jquery": "JS/lib/jquery-1.8.3.min.js"
+			}
+		});
+		seajs.use("JS/main.js",function(m){
+			alert("已经进入了seajs.use方法，下一步将要调用main.init()");
+			m.init();
+		});
+	</script>
+</body>
+</html>

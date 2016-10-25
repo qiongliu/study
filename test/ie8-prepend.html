@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+
+<div style="background:#FFC; width:400px;">
+     <div id="a">aaaaaaaaaa</div>
+     <div id="b">bbbbbbbbbb</div>
+</div>
+<script language="javascript" type="text/javascript">
+var b=document.getElementById("b");
+
+var div=document.createElement("div");
+div.className="c";
+
+var text=document.createTextNode("ccccccccccc");
+div.appendChild(text);
+b.onclick=function(){
+    b.parentNode.insertBefore(div,b);
+}
+</script>
+</body>
+</html>

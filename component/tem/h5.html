@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimum-scale=1,maximum-scale=1">
+	<link rel="stylesheet" href="../css/h5.css">
+	<link rel="stylesheet" href="../css/h5ComponentBase.css">
+	<title>h5</title>
+	<style>
+		body{margin: 0;padding: 0;}
+	</style>
+</head>
+<body>
+	<script src="http://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/jqueryui/1.12.0/jquery-ui.js"></script>
+	<script src="http://cdn.bootcss.com/fullPage.js/2.8.5/jquery.fullPage.min.js"></script>
+	<script src="../js/h5ComponentBase.js"></script>
+	<script src="../js/h5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var h5 = new H5();
+			h5.addPage("face")
+				.addComponent("logo",{
+					type: 'base',
+					text: 'logo',
+					width: 100,
+					height: 100,
+					css:{
+						top: 100,
+						backgroundColor: "#611313",
+						opacity: 0
+					},
+					animateIn:{
+						opacity: 1
+					},
+					animateOut:{
+						opacity: 0
+					},
+					center: true
+				})
+				.addComponent("slogan",{
+					type: 'base',
+					text: 'slogan',
+					width: 100,
+					height: 100,
+					css:{
+						top: 200,
+						backgroundColor: "#787426"
+					},
+					center: true
+				})
+			.addPage("desc")
+				.addComponent("desc1",{
+					type: 'base',
+					text: 'desc',
+					width: 100,
+					height: 100,
+					css:{
+						top: 200,
+						backgroundColor: "#787426"
+					},
+					center: true
+				})
+			.addPage("page-3")
+				.addComponent("page-31",{
+					type: 'base',
+					text: 'page-3',
+					width: 100,
+					height: 100,
+					css:{
+						top: 200,
+						backgroundColor: "#787426"
+					},
+					center: true
+				})
+			.loader();
+		});
+	</script>
+</body>
+</html>

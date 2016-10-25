@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ie常见bug</title>
+	<style>
+	*{margin: 0;padding: 0;}
+	.clearfix:after{content: '';display: block;clear: both;}
+	.clearfix{zoom:1;}
+	.bug-1 .one{width: 100px;height: 100px;background-color: #00cc00}
+	.bug-1 .two{display:inline;float: left;margin-left: 10px;width:100px;height:100px;background-color: #cc0000}
+	.bug-2 .one{width: 100px;height: 100px;background-color: #00cc00;float: left;margin-right: -3px}
+	.bug-2 .two{width:100px;height:100px;background-color: #cc0000;}
+
+	</style>
+</head>
+<body>
+	<div class="bug-1 clearfix">
+		<div class="one">111</div>
+		<div class="two">222</div>
+	</div>
+	<div class="bug-2">
+		<div class="one">111</div>
+		<div class="two">222</div>
+	</div>
+</body>
+</html>

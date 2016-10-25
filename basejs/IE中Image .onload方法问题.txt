@@ -1,0 +1,29 @@
+在web开发在获取图片宽高是很正常的事情，图片在加载完成前是获取不到图片的宽高的，在加载完成后才可以获取图片本身的宽高，例如：
+[code=”javascript”]
+var img = new Image();
+img.src = “loading.gif”;
+img.onload = function(){
+alert ( img.width );
+};
+[/code]
+
+OK?这段代码看着没什么问题，但在ie中会有一个bug，就是ie第一次打开的时候没问题，第二次使用这个方法就悲剧了，ie没反应了，即使刷新页面也是一样。因为IE会缓存图片，第2次加载的图片，不是从服务器上传过来的，而是从缓冲区里加载的。
+先写onload方法，再指定这张图片的URL，这样就正常了。所以，不是IE没有触发onload事件，而是因为加载缓冲区的速度太快，以至于没有运行到img.onload的时候，onload事件已经触发了。这样就OK了。
+[code=”javascript”]
+var img = new Image();
+img.onload = function(){
+alert ( img.width );
+};
+img.src = “loading.gif”;
+[/code]
+
+
+可以使用img.complete判断是否图片加载过，如果加载过就直接去宽高就行了
+
+var img = new Image();
+img.src = “loading.gif”;
+if(img.complete){
+alert ( img.width );
+}else img.onload = function(){
+alert ( img.width );
+};

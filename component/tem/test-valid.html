@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,minimun-scale=1,maximun-scale=1">
+	<title>test</title>
+	<script src="//cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/jqueryui/1.12.0/jquery-ui.js"></script>
+	<script src="//cdn.bootcss.com/fullPage.js/2.8.5/jquery.fullPage.min.js"></script>
+	<style>
+		body{
+			padding: 0;
+			margin: 0;
+		}
+		.component{
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<div id="h5">
+		<div class="page section" id="page-1">
+			<div class="component log">log</div>
+			<div class="component slogan">slogan</div>
+		</div>
+		<div class="page section" id="page-2">
+			<div class="component desc">描述</div>
+		</div>
+		<div class="page section" id="page-3">
+			<div class="component bar">导航</div>
+		</div>
+	</div>
+	<script>
+		$(function(){
+			$("#h5").fullpage({
+				"sectionsColor": ["#8DA83D","#2D5372","#530909"],
+				onLeave: function(index,nextIndex,direction){
+					$("#h5").find(".page").eq(index-1).trigger('onLeave');
+				},
+				afterLoad: function(anchorLink,index){
+					$("#h5").find(".page").eq(index-1).trigger('onLoad');
+				}
+			});
+
+			$(".page").on("onLeave",function(){
+				$(this).find(".component").trigger('onLeave');
+			});
+			$(".page").on("onLoad",function(){
+				$(this).find(".component").trigger('onLoad');
+			});
+			$(".component").on("onLoad",function(){
+				$(this).fadeIn();
+				return false;
+			});
+			$(".component").on("onLeave",function(){
+				$(this).fadeOut();
+				return false;
+			});
+		});
+	</script>
+</body>
+</html>
