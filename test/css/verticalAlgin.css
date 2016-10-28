@@ -13,7 +13,7 @@ body,
 button, input, select, textarea {
   /*font : font-style || font-variant || font-weight || font-size/line-height || font-family */
   font: 12px/1 "Microsoft Yahei",Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
-  /* 用 ascii 字符表示，在任何编码下都无问题 */
+  /* 用 ascii 字符表示，使得在任何编码下都无问题 */
   outline: none;
   background: none;
 }

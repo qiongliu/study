@@ -40,6 +40,8 @@
 							@include arrow(bottom,4px,#fff)
 						}
 						@at-root .nav-ul-two {
+							//只设置了绝对定位属性，没有设置top、left值，该元素脱离文档流，位置保持不动。
+							// 父元素如果也没有设置定位属性，字体保持在一行。奇怪。
 							position: absolute;
 							background-color: #0786c7;
 							display: none;
