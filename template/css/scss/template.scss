@@ -304,6 +304,7 @@ $mainColor: #398801;
 							height: 34px;
 							top: 18px;
 							right: 36px;
+							cursor: pointer;
 						}
 						.identity {
 							text-align: center;
@@ -351,7 +352,7 @@ $mainColor: #398801;
 										a {
 											display: block;
 											line-height: 28px;
-											width: 142px;
+											width: 134px;
 											@include ellipsis;
 										}
 										@at-root {
@@ -436,7 +437,7 @@ $mainColor: #398801;
 											float: left;
 										}
 										.jCarouselLite-name {
-											margin-top: 12px;
+											margin-top: 6px;
 										}
 									}
 								}
@@ -452,6 +453,10 @@ $mainColor: #398801;
 				.resource-pie {
 					border-top: 1px solid #ddd;
 					border-left: 1px solid #ddd;
+					height: 308px;
+				}
+				#pie-charts {
+					width: 300px;
 					height: 308px;
 				}
 				.resource-table {
