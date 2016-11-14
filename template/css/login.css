@@ -1,0 +1,290 @@
+@charset "UTF-8";
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
+dl, dt, dd, ul, ol, li,
+pre,
+fieldset, lengend, button, input, textarea,
+th, td {
+  /* table elements 表格元素 */
+  margin: 0;
+  padding: 0;
+}
+
+body,
+button, input, select, textarea {
+  /*font : font-style || font-variant || font-weight || font-size/line-height || font-family */
+  font: 12px/1 "Microsoft Yahei",Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+  /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+  outline: none;
+  background: none;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 14px;
+}
+
+h4, h5, h6 {
+  font-size: 100%;
+}
+
+/* 重置列表元素 */
+ul, ol {
+  list-style: none;
+}
+
+/* 重置文本格式元素 */
+a {
+  text-decoration: none;
+}
+
+fieldset, img {
+  border: none;
+}
+
+/* 让链接里的 img 无边框 */
+button, input, select, textarea {
+  font-size: 100%;
+  /* 使得表单元素在 ie 下能继承字体大小 */
+}
+
+/* 重置表格元素 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* 重置 hr */
+hr {
+  border: none;
+  height: 1px;
+}
+
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+html {
+  overflow-y: scroll;
+}
+
+/*清空浮动*/
+.clearfix:after {
+  content: " ";
+  display: table;
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+/*公共样式*/
+/*左右浮动*/
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.comWidth {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.top {
+  height: 80px;
+  line-height: 80px;
+  font-size: 16px;
+}
+.logo {
+  float: left;
+}
+.logo img {
+  display: block;
+}
+
+.search-btn {
+  float: right;
+  margin-left: 4px;
+}
+.search-btn a {
+  display: inline-block;
+  width: 82px;
+  height: 44px;
+  background-color: #e5500b;
+  border-radius: 8px;
+  color: #fff;
+  text-align: center;
+  line-height: 44px;
+}
+.search-btn a:hover {
+  text-decoration: none;
+}
+
+.search {
+  float: right;
+  position: relative;
+}
+.search-area {
+  width: 110px;
+  height: 44px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  color: #bbc4d4;
+  text-align: right;
+  line-height: 44px;
+  padding: 0 77px;
+}
+
+.i-search {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: url("../images/search.png") center center no-repeat;
+  top: 30px;
+  left: 90px;
+}
+.banner {
+  position: relative;
+}
+.login-wrap {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 1000px;
+  height: 366px;
+  margin-left: -500px;
+}
+.login {
+  width: 350px;
+  height: 326px;
+  background-color: #fff;
+  position: absolute;
+  right: 0;
+  top: 20px;
+  z-index: 999;
+}
+.login form {
+  margin: 40px auto;
+  width: 268px;
+}
+.login form input {
+  display: inline-block;
+  width: 238px;
+  height: 54px;
+  border: 1px solid #a4b2c5;
+  color: #989898;
+  font-size: 18px;
+  padding: 0 14px;
+  vertical-align: middle;
+}
+.login-free {
+  width: 268px;
+  margin-top: 22px;
+  font-size: 12px;
+  color: #333;
+}
+.login-free .login-free-btn {
+  width: 14px;
+  height: 14px;
+  float: left;
+  margin-right: 8px;
+}
+.login-free label {
+  float: left;
+}
+.login-free a {
+  display: inline-block;
+  float: right;
+  color: #333;
+}
+
+.login-btn {
+  display: inline-block;
+  width: 268px;
+  height: 42px;
+  background-color: #e5500b;
+  color: #fff;
+  font-size: 20px;
+  border-radius: 8px;
+  font-weight: 400;
+  text-align: center;
+  line-height: 42px;
+  margin-top: 20px;
+}
+
+.login-zhuce {
+  margin-top: 10px;
+  height: 38px;
+  line-height: 38px;
+}
+.login-zhuce a {
+  margin-right: 4px;
+}
+.zhuce-type {
+  width: 92px;
+  height: 38px;
+  border: 1px solid #ddd;
+  font-size: 18px;
+  color: #333;
+  line-height: 38px;
+  text-align: center;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.qq, .sina {
+  display: inline-block;
+  width: 26px;
+  height: 30px;
+  vertical-align: middle;
+}
+
+.nav {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background-color: #000;
+  z-index: 999;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+}
+.nav li {
+  float: left;
+}
+.nav li a {
+  display: inline-block;
+  color: #fff;
+  height: 40px;
+  line-height: 40px;
+  width: 200px;
+  font-size: 20px;
+  text-align: center;
+}
+.index {
+  background: transparent url("../images/nav-1.png") 46px center no-repeat;
+}
+
+.news-center {
+  background: transparent url("../images/nav-2.png") 24px center no-repeat;
+}
+
+.app-center {
+  background: transparent url("../images/nav-3.png") 24px center no-repeat;
+}
+
+.source-center {
+  background: transparent url("../images/nav-4.png") 24px center no-repeat;
+}
+
+.vedio-center {
+  background: transparent url("../images/nav-5.png") 24px center no-repeat;
+}
+
+/*# sourceMappingURL=index-scss.css.map */
