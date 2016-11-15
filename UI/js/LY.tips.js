@@ -7,29 +7,56 @@ define(function(require,exports){
 			return false;
 		}
 		this.prefix = LY.reserverdKeywords;
+		// ie8 属性名使用default 报错
 		this.type = {
-			default: "default",
+			moren: "moren",
 			warning: "warning",
 			failing: "failing",
 			success: "success",
 			loading: "loading"
 		};
-
+		
+		/**
+		 * [opts description]
+		 * @type {
+		 * left: left位置；
+		 * top: top位置；
+		 * type: moren\warning\failing\success\loading；
+		 * content: 内容
+		 * times: 显示多少秒；
+		 * mask: 遮罩 {
+		 * 	backgroundColor: 背景色
+		 * 	opacity: 透明度
+		 * }
+		 * skin: 皮肤 {
+		 * 	height: 高，默认40px，不可设置
+		 * 	width: 根据内容宽度，自适应
+		 * 	border: 边框样式
+		 * 	backgroundColor: 背景色
+		 * 	borderRadiius: 边框四角弧度
+		 * }
+		 * font: 内容字体样式 {
+		 * 	color: 字体颜色；
+		 * 	fontSize : 字体大小；
+		 * 	fontWeight: 字体粗细；
+		 * 	}
+		 * }
+		 */		
 		this.opts = {
-			type: "default",
+			type: "moren",
 			content: "hello，这是默认内容。",
 			times: 3000,
 			mask: {
 				backgroundColor: "#000",
 				opacity: 0.5
 			},
-			tips: {
+			skin: {
 				height: "40px",
 				border: "1px solid #ddd",
 				backgroundColor: "#ddd",
 				borderRadius: "4px"	
 			},
-			fontType: {
+			font: {
 				color: "#000",
 				fontSize: "16px",
 				fontWeight: 400
@@ -72,8 +99,8 @@ define(function(require,exports){
 				"left": 0
 			});
 			this.$tips.css({
-				"border": this.opts.tips.border,
-				"borderRadius": this.opts.tips.borderRadius,
+				"border": this.opts.skin.border,
+				"borderRadius": this.opts.skin.borderRadius,
 				"height": "40px",
 				"lineHeight": "40px",
 				"minWidth": "74px",
@@ -94,36 +121,40 @@ define(function(require,exports){
 				"marginTop": tipsMarginT
 			});
 			this.$p.css({
-				"color": this.opts.fontType.color,
-				"fontSize": this.opts.fontType.fontSize,
-				"fontWeight": this.opts.fontType.fontWeight
+				"color": this.opts.font.color,
+				"fontSize": this.opts.font.fontSize,
+				"fontWeight": this.opts.font.fontWeight
 			});
 
 			switch(this.opts.type) {
-				case this.type.default:
-					this.$tips.css("background",this.opts.tips.backgroundColor + " url('images/tips/default.png') 16px 4px no-repeat");
+				case this.type.moren:
+					this.$tips.css("background",this.opts.skin.backgroundColor + " url('images/tips/default.png') 16px 4px no-repeat");
 					break;
 				case this.type.warning:
-					this.$tips.css("background",this.opts.tips.backgroundColor + " url('images/tips/warning.png') 16px 4px no-repeat");
+					this.$tips.css("background",this.opts.skin.backgroundColor + " url('images/tips/warning.png') 16px 4px no-repeat");
 					break;
 				case this.type.failing:
-					this.$tips.css("background",this.opts.tips.backgroundColor + " url('images/tips/failing.png') 16px 4px no-repeat");
+					this.$tips.css("background",this.opts.skin.backgroundColor + " url('images/tips/failing.png') 16px 4px no-repeat");
 					break;
 				case this.type.success:
-					this.$tips.css("background",this.opts.tips.backgroundColor + " url('images/tips/success.png') 16px 4px no-repeat");
+					this.$tips.css("background",this.opts.skin.backgroundColor + " url('images/tips/success.png') 16px 4px no-repeat");
 					break;
 				case this.type.loading:
-				 	this.$tips.css("background",this.opts.tips.backgroundColor + " url('images/tips/loading.gif') 16px 4px no-repeat");
+				 	this.$tips.css("background",this.opts.skin.backgroundColor + " url('images/tips/loading.gif') 16px 4px no-repeat");
 				 	break;
 				default:
 					break;
 			}
+
+			this.opts.renderAfter && this.opts.renderAfter(this);
 		},
 		bindEvent: function(){
 			var self = this;
-			this.$wrapBox.on('click',function(){
-				self.fireEvent("open","1");
-				self.destroy();
+			this.$wrapBox.on('click',this.$mask,function(){
+				// self.destroy();
+				self.fireEvent("mask",self);
+				self.fireEvent("click1",self);
+				self.fireEvent("click2",self);
 			});
 			setTimeout(function(){
 				self.destroy();
@@ -132,12 +163,6 @@ define(function(require,exports){
 		destructor: function(){
 			this.$mask && this.$mask.remove();
 			this.$tips && this.$tips.remove();
-		},
-		destroy: function(){
-			this.destructor();
-			this.$wrapBox.off();
-			this.$wrapBox.remove();
-
 		},
 		begin: function(){
 			this.render();

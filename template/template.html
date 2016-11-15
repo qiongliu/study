@@ -31,14 +31,16 @@
 					</ul>
 				</div>
 				<div class="login fr">
-					<input type="text" id="username" value="用户名/邮箱" />
-					<input type="text" id="password" />
-					<i class="i-password">密码</i>
-					<a class="login-btn fl" href="javascript:;">登录</a>
-					<div class="sign-active fl">
-						<a href="javascript:;">教师注册</a>
-						<a href="javascript:;">学校激活</a>
-					</div>
+					<form action="" name="login" id="login">
+						<input type="text" id="userName" class="userName" value="用户名/邮箱" tabindex="1" />
+						<input type="text" id="password" class="password" tabindex="2" />
+						<span id="span-password" class="span-password" tabindex="2">密码</span>
+						<input id="login-btn" class="login-btn fl" type="submit" tabindex="3" value="登录">
+						<div class="sign-active fl">
+							<a href="javascript:;">教师注册</a>
+							<a href="javascript:;">学校激活</a>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -191,7 +193,7 @@
 						<li><a href="javascript:;">家长</a></li>
 					</ul>
 				</div>
-				<div class="excellent-content">
+				<div id="zone-user-content-wrap" class="excellent-content">
 					<ul class="zone-user clearfix">
 						<li class="clearfix">
 							<div class="zone-user-img fl"><a href="javascript:;"><img src="images/zone-user.png" alt="" /></a></div>
@@ -914,12 +916,69 @@
 			</div>
 		</div>
 	</div>
-	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-	<script src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
-	<!-- <script src="//cdn.bootcss.com/highcharts/5.0.2/js/modules/exporting.js"></script> -->
-	<script src="js/lib/jCarouselLite.js"></script>
+	<script src="http://www.sneduyun.com/Js/jquery-1.8.3.min.js"></script>
+    <script src="http://www.sneduyun.com/Js/sea.js"></script>
+    <script src="http://www.sneduyun.com/Js/Scroll.js"></script>
+    <script src="http://www.sneduyun.com/plugIn/Highcharts-4.0.1/js/highcharts.js"></script>
 	<script>
 		$(function(){
+			window.globalParam={
+			    webPath:"",
+			    exName:".shtml",
+			    siteWWW:"www.sneduyun.com",
+			    siteImages:"images.sneduyun.com",
+			    siteUpload:"upload.sneduyun.com",
+			    siteApp:"app.sneduyun.com"
+			};
+
+			seajs.config({
+                "base": "",
+                "alias": {
+                    "HQ": "http://www.sneduyun.com/Js/HengQian/HQ.Ui_v1.0.js?ver=3.0_20150115"
+                }
+            });
+
+            seajs.use("HQ",function(ui){
+            	ui.plugIn.Load('tips',function(){
+            		$("#login").submit(function(){
+            			var userName = $.trim($("#userName").val());
+            			if(userName === "用户名/邮箱"){
+            				HQ.Tips.Warn("请输入用户名/邮箱");
+            				return false;
+            			}
+            			var password = $.trim($("#password").val());
+            			alert(password === "");
+            			if(password === ""){
+            				HQ.Tips.Warn("请输入密码");
+            				return false;
+            			}
+            		});
+            	});
+            });
+
+            var userName = $("#userName");
+	    	userName.on({
+	    		"focus": function(){
+	    			var usernameVal = userName.val();
+	    			if(usernameVal === "用户名/邮箱"){
+	    				userName.val("");
+	    			}
+	    		},
+	    		"blur": function(){
+	    			if(userName.val() === ""){
+	    			    userName.val("用户名/邮箱");
+	    			}
+	    		}
+	    	});
+	    	$("#span-password").on("click focus",function(){
+	    		$(this).hide().prev().show().focus();
+	    	});
+	    	$("#password").on("blur",function(){
+	    		if($(this).val() === ""){
+	    			$(this).hide().next().show();
+	    		}
+	    	});
+
 			$("#jCarouselLite").jCarouselLite({
 	            btnNext: "#jCarouselLite-prev-btn",
 	            btnPrev: "#jCarouselLite-next-btn",
@@ -943,7 +1002,9 @@
 	        		_this.addClass('active').parent().siblings().children().removeClass('active');
 	        		if(content.find(".app").length === 0){
 		        		content.find("ul").eq(index).show().siblings().hide();
-		        		$("#refresh-zone-user").trigger('click');
+		        		if(content[0].id === "zone-user-content-wrap"){
+			        		$("#refresh-zone-user").trigger('click');
+		        		}
 	        		}else {
 	        			content.find(".app").eq(index).show().siblings().hide();
 	        		}
@@ -1006,32 +1067,30 @@
 		                allowPointSelect: true,
 		                cursor: 'pointer',
 		                dataLabels: {
-		                    enabled: true,
-		                    format: '',
-		                    style: {
-		                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-		                    }
-		                }
+		                    enabled: false
+		                },
+		                showInLegend: true
 		            }
 		        },
 		        series: [{
 		            type: 'pie',
 		            name: 'Brow share',
 		            data: [
-		                ['Firefox',   45.0],
-		                ['IE',       26.8],
 		                {
 		                    name: 'Chrome',
-		                    y: 12.8,
+		                    y: 43.92,
 		                    sliced: true,
 		                    selected: true
 		                },
-		                ['Safari',    8.5],
-		                ['Opera',     6.2],
-		                ['Others',   0.7]
+		                ['IE',       32.54],
+		                ['Firefox',   7.69],
+		                ['Safari',    4.28],
+		                ['Opera',     1.14],
 		            ]
 		        }]
 		    });
+
+
 
 		});
 	</script>

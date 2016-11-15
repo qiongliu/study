@@ -11,60 +11,51 @@
 	<h4>success</h4>
 	<h5>failing</h5>
 	<h6>loading</h6>
-	<script type="text/javascript" src="lib/sea.js"></script>
+	<script src="js/lib/jquery-1.11.3.min.js"></script>
+	<script src="js/lib/sea.js"></script>
 	<script>
-		seajs.use("./LY.tips.js",function(t){
-			$("h2").click(function(){
-				t.tips({
-					left: 100,
-					top: 10,
-					type: 'success',
-					content: 'one',
-					times: 500000,
-					mask: {
-						backgroundColor: "#55D80A",
-						opacity: 0.3
-					},
-					tips: {
-						border: "3px solid #9F931B",
-						backgroundColor: "#2A72DC",
-						borderRadius: 8
-					},
-					fontType: {
-						color: "#A56C36",
-						fontSize: 24,
-						fontWeight: 800
-					}
-				});
-			});
-			$("h3").click(function(){
-				t.tips({
-					type: "failing",
-					content: "自定义事件",
-					times: 300000
-				}).addEvent("open",function(data){
-					$(this).css({
-						color: "#4745B6"
+		$(function(){
+			seajs.use("./js/LY.tips.js",function(t){
+				$("h2").click(function(){
+					t.tips({
+						top: 10,
+						type: 'success',
+						content: 'one',
+						times: 5000,
+						mask: {
+							backgroundColor: "#55D80A",
+							opacity: 0.3
+						},
+						skin: {
+							border: "3px solid #9F931B",
+							backgroundColor: "#2A72DC",
+							borderRadius: 8
+						},
+						fontType: {
+							color: "#A56C36",
+							fontSize: 24,
+							fontWeight: 800
+						},
+						renderAfter: function(data){
+							data.$p.css({
+								color: "#fff"
+							});
+						}
 					});
-					alert(data);
+				});
+				$("h3").click(function(){
+					t.tips({
+						type: "failing",
+						content: "自定义事件",
+						times: 3000
+					}).addEvent("mask",function(data){
+						data.$mask.css({
+							backgroundColor: 'red'
+						});
+					})
 				});
 			});
-			$("h4").click(function(){
-				t.tips({
-
-				})
-			});
-			$("h5").click(function(){
-				t.tips({
-
-				})
-			});
-			$("h6").click(function(){
-				t.tips({
-
-				})
-			});
-		});
+		})
 	</script>
 </body>
 </html>

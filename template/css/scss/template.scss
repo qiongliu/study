@@ -84,27 +84,25 @@ $mainColor: #398801;
 				.login {
 					position: relative;
 					margin-top: 10px;
-					input {
-						float: left;
-						width: 124px;
-						height: 32px;
-						line-height: 32px;
-						background-color: #68b433;
-						padding: 0 14px;
-						color: #cbe2c1;
-						margin-right: 6px;
-						text-align: left;
-						font-size: $font16;
-						border-radius: $loginRadius;
-					}
 					@at-root {
-						.i-password {
-							position: absolute;
-							top: 8px;
-							left: 174px;
+						.userName,.password,.span-password {
+							float: left;
+							width: 124px;
+							height: 32px;
+							line-height: 32px;
+							background-color: #68b433;
+							padding: 0 14px;
 							color: #cbe2c1;
-							font-style: normal;
+							margin-right: 6px;
+							text-align: left;
 							font-size: $font16;
+							border-radius: $loginRadius;
+						}
+						.password {
+							display: none;
+						}
+						.span-password {
+							font-style: normal;
 						}
 						.login-btn {
 							width: 72px;
@@ -116,6 +114,7 @@ $mainColor: #398801;
 							border-radius: $loginRadius;
 							margin-right: 6px;
 							font-size: $font18;
+							cursor: pointer;
 						}
 						.sign-active {
 							a {
@@ -456,7 +455,7 @@ $mainColor: #398801;
 					height: 308px;
 				}
 				#pie-charts {
-					width: 300px;
+					width: 405px;
 					height: 308px;
 				}
 				.resource-table {

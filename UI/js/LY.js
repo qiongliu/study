@@ -36,20 +36,26 @@ define(function(require,exports){
 				}
 			}
 		},
+		deleteEvent: function(){
+			for(var i in this.handlers){
+				delete this.handlers[i];
+			}
+		},
 		initDom: function(){},
 		renderDom: function(){},
 		bindEvent: function(){},
 		sync: function(){},
-		render: function(container){
+		render: function(){
 			this.initDom();
 			this.renderDom();
 			this.bindEvent();
 		},
 		destructor: function(){},
 		destroy: function(){
+			this.deleteEvent();
 			this.destructor();
-			this.wrapBox.off();
-			this.wrapBox.remove();
+			this.$wrapBox.off();
+			this.$wrapBox.remove();
 		}
 	};
 	exports.ui = UI;
