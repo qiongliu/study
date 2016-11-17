@@ -1,5 +1,7 @@
 define(function(require,exports){
 
+	require("jquery-1.11.3.min.js");
+
 	var UI = function(){
 		this.type = {
 			dialog: "dialog",
@@ -12,7 +14,7 @@ define(function(require,exports){
 	};
 
 	UI.version = "1.0";
-	UI.reserveKeyword = "linyi";
+	UI.reserverdKeywords = "linyi";
 
 	UI.init = function(){
 		return new UI();
@@ -39,23 +41,22 @@ define(function(require,exports){
 				delete this.handlers[i];
 			}
 		},
+		initDom: function(){},
+		renderDom: function(){},
+		bindEvent: function(){},
+		sync: function(){},
 		render: function(){
 			this.initDom();
 			this.renderDom();
-			this.animateDom();
 			this.bindEvent();
 		},
+		destructor: function(){},
 		destroy: function(){
 			this.deleteEvent();
 			this.destructor();
 			this.$wrapBox.off();
 			this.$wrapBox.remove();
-		},
-		initDom: function(){},
-		renderDom: function(){},
-		animateDom: function(){},
-		bindEvent: function(){},
-		destructor: function(){}
+		}
 	};
 	exports.ui = UI;
 });

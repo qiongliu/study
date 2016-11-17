@@ -6,7 +6,7 @@ define(function(require,exports){
 			alert("参数格式不对！");
 			return false;
 		}
-		this.prefix = LY.reserveKeyword;
+		this.prefix = LY.reserverdKeywords;
 		// ie8 属性名使用default 报错
 		this.type = {
 			moren: "moren",
@@ -65,7 +65,9 @@ define(function(require,exports){
 
 		$.extend(true,this.opts,opts);
 
-		this.render();
+		this.begin();
+
+
 	};
 
 	Tips.prototype = $.extend({},LY.init(),{
@@ -108,7 +110,7 @@ define(function(require,exports){
 				"padding": "0 20px 0 64px"
 			});
 			var tipsLeft = typeof this.opts.left === "undefined" ? "50%" : this.opts.left,
-			tipsTop = typeof this.opts.top === "undefined" ?"50%" : this.opts.top,
+			tipsTop = typeof this.opts.top === "undefined" ?"50%" : this.opts.left,
 			tipsMarginL = typeof this.opts.left === "undefined" ? -this.$tips.outerWidth()/2 : "",
 			tipsMarginT = typeof this.opts.top === "undefined" ? -this.$tips.outerHeight()/2 : "";
 
@@ -161,6 +163,10 @@ define(function(require,exports){
 		destructor: function(){
 			this.$mask && this.$mask.remove();
 			this.$tips && this.$tips.remove();
+		},
+		begin: function(){
+			this.render();
+			return this;
 		}
 	});
 
