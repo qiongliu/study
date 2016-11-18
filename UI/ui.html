@@ -3,12 +3,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>ui</title>
-	<link rel="stylesheet" href="css/LY.tips.css">
+	<link rel="stylesheet" href="css/LY.css">
 </head>
 <body>
 	<h2>warning</h2>
 	<h3>default</h3>
-	<h4>success</h4>
+	<h4>dialog</h4>
 	<h5>failing</h5>
 	<h6>loading</h6>
 	<script src="js/lib/jquery-1.11.3.min.js"></script>
@@ -55,7 +55,19 @@
 					})
 				});
 			});
-		})
+
+			seajs.use("./js/LY.dialog.js",function(d){
+				$("h4").click(function(){
+					d.dialog({
+						contnet: "this is dialog"
+					}).addEvent("confirmAfter",function(data){
+						data.$dialogContent.text("confirmAfter");
+					}).addEvent("cancelAfter",function(data){
+						data.$dialogContent.text("cancelAfter");
+					});
+				});
+			});
+		});
 	</script>
 </body>
 </html>

@@ -14,7 +14,7 @@ define(function(require,exports){
 	};
 
 	UI.version = "1.0";
-	UI.reserverdKeywords = "linyi";
+	UI.reserveKeyword = "linyi";
 
 	UI.init = function(){
 		return new UI();
