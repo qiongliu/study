@@ -74,10 +74,14 @@
 
 **git checkout -- file，可以理解为以版本库最新文件替代本地文件**
 
-### 添加远程仓库
+### 添加远程仓库、克隆远程仓库
+#### 添加远程仓库
 > 在github上新建个仓库`gitStudy`，与本地仓库关联，并将本地文件push到github上。
 
-> git remote add origin https://github.com/qiongliu/gitStudy
+> `git remote add origin https://github.com/qiongliu/gitStudy`
 
->git push -u gitDemo master
+> `git push -u gitDemo master`
+
+#### 克隆远程仓库
+> `git clone git@github.com:qiongliu/MarkDown.git` 
 
