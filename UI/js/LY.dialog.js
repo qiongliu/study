@@ -10,8 +10,8 @@ define(function(require,exports){
 		this.prefix = LY.reserveKeyword;
 		this.opts = {
 			title: "dialog",
-			content: "this is a default content",
 			dataMode: "html",
+			content: "this is a default content",
 			width: 400,
 			height: 200,
 			backgroundColor: "#ddd",
@@ -166,7 +166,7 @@ define(function(require,exports){
 				fontSize: this.opts.contentStyle.fontSize,
 				fontWeight: this.opts.contentStyle.fontWeight,
 				color: this.opts.contentStyle.color,
-				padding: this.opts.contentStyle.padding
+				padding: this.opts.contentStyle.padding,
 			});
 			this.$btn.css({
 				height: this.opts.btnStyle.height,

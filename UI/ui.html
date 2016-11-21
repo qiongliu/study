@@ -9,13 +9,13 @@
 	<h2>warning</h2>
 	<h3>default</h3>
 	<h4>dialog</h4>
-	<h5>failing</h5>
+	<h5>dialogIframe</h5>
 	<h6>loading</h6>
 	<script src="js/lib/jquery-1.11.3.min.js"></script>
 	<script src="js/lib/sea.js"></script>
 	<script>
 		$(function(){
-			seajs.use("./js/LY.tips.js",function(t){
+			seajs.use(["./js/LY.tips.js","./js/LY.dialog.js"],function(t,d){
 				$("h2").click(function(){
 					t.tips({
 						top: 10,
@@ -54,12 +54,23 @@
 						});
 					})
 				});
-			});
-
-			seajs.use("./js/LY.dialog.js",function(d){
 				$("h4").click(function(){
 					d.dialog({
 						contnet: "this is dialog"
+					}).addEvent("confirmAfter",function(data){
+						data.$dialogContent.text("confirmAfter");
+					}).addEvent("cancelAfter",function(data){
+						data.$dialogContent.text("cancelAfter");
+					});
+				});
+				$("h5").click(function(){
+					d.dialog({
+						width: 1000,
+						height: 600,
+						contnet: "this is dialog",
+						dataMode: "iframe",
+						content: '<iframe src="http://www.sneduyun.com/connect/Student/StudentReg.shtml" frameborder="0" width=100% height=100%></iframe>',
+						isBtn: false
 					}).addEvent("confirmAfter",function(data){
 						data.$dialogContent.text("confirmAfter");
 					}).addEvent("cancelAfter",function(data){
