@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>autoHeight</title>
+</head>
+<body>
+<script>
+	(function(){
+		var GetQueryString = function (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r !== null) {
+                return unescape(r[2]);
+            }
+            return null;
+        };
+        try {
+        	var action = GetQueryString("action");
+        	if(action === null){
+        		return false;
+        	}
+        	var height = GetQueryString("height");
+        	if(!isNaN(height)){
+        		var el = top.document.getElementById("autoHeight");
+        		if(el !== null){
+        			el.style.height = height + 'px';
+        		}
+        	}
+        } catch(e) {
+
+        }
+	})();
+</script>
+</body>
+</html>
