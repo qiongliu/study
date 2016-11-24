@@ -7,6 +7,7 @@ define(function(require,exports){
 			alert("参数格式不对！");
 			return false;
 		}
+		var self = this;
 		this.prefix = LY.reserveKeyword;
 		this.opts = {
 			title: "dialog",
@@ -76,7 +77,6 @@ define(function(require,exports){
 
 		$.extend(true,this.opts,opts);
 		this.render();
-		
 	};
 
 	Dialog.prototype = $.extend({},LY.init(),{
@@ -230,49 +230,30 @@ define(function(require,exports){
 				// self.destroy();
 			});
 		},
+		changeOpacity: function(el,opa){
+			el.on({
+				"mouseover": function(){
+					$(this).css({
+						opacity: 1,
+						filter: "Alpha(opacity=100)"
+					});
+				},
+				"mouseout": function(){
+					$(this).css({
+						opacity: opa,
+						filter: "Alpha(opacity=" + opa * 100 + ")"
+					});
+				}
+			});
+		},
 		animateDom: function(){
 			var self = this;
-			this.$btnClose.on({
-				"mouseover": function(){
-					$(this).css({
-						opacity: 1,
-						filter: "Alpha(opacity=100)"
-					});
-				},
-				"mouseout": function(){
-					$(this).css({
-						opacity: self.opts.closeStyle.opacity,
-						filter: "Alpha(opacity=" + self.opts.closeStyle.opacity * 100 + ")"
-					});
-				}
-			});
-			this.$btnConfirm.on({
-				"mouseover": function(){
-					$(this).css({
-						opacity: 1,
-						filter: "Alpha(opacity=100)"
-					});
-				},
-				"mouseout": function(){
-					$(this).css({
-						opacity: self.opts.btnStyle.common.opacity,
-						filter: "Alpha(opacity=" + self.opts.btnStyle.common.opacity * 100 + ")"
-					});
-				}
-			});
-			this.$btnCancel.on({
-				"mouseover": function(){
-					$(this).css({
-						opacity: 1,
-						filter: "Alpha(opacity=100)"
-					});
-				},
-				"mouseout": function(){
-					$(this).css({
-						opacity: self.opts.btnStyle.common.opacity,
-						filter: "Alpha(opacity=" + self.opts.btnStyle.common.opacity * 100 + ")"
-					});
-				}
+			this.changeOpacity(this.$btnClose,this.opts.closeStyle.opacity);
+			this.changeOpacity(this.$btnConfirm,this.opts.btnStyle.common.opacity);
+			this.changeOpacity(this.$btnCancel,this.opts.btnStyle.common.opacity);
+
+			require.async("./drag.js",function(){
+				new window.Drag("." + self.prefix + "-dialog-title","." + self.prefix + "-dialog");
 			});
 		},
 		destructor: function(){}

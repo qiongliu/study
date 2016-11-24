@@ -44,11 +44,12 @@ define(function(require,exports){
 		initDom: function(){},
 		renderDom: function(){},
 		bindEvent: function(){},
-		sync: function(){},
+		animateDom: function(){},
 		render: function(){
 			this.initDom();
 			this.renderDom();
 			this.bindEvent();
+			this.animateDom();
 		},
 		destructor: function(){},
 		destroy: function(){

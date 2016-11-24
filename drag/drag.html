@@ -2,188 +2,43 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>clip</title>
+	<title>drag</title>
+	<link rel="stylesheet" href="css/reset.css">
 	<style>
-		body{margin: 0;padding: 0;background-color: #31502C;}
-		.clip{position:relative;width: 800px;height: 500px;margin: 50px auto;contenteditable:true;}
-		.content,.preview{position: absolute;top: 0;width: 300px;height: 300px;}
-		.content{left: 0;}
-		.preview{left: 350px;}
-		.content img,.preview img{width: 100%;position: absolute;}
-		.clip-bottom{opacity: .5;}
-		.clip-top{clip: rect(0,100px,100px,0);}
-		#clip-border,.drap-area{position: absolute;}
-		#clip-border{border: 1px solid #fff;width: 100px;height: 100px;top: 0;left: 0;cursor: move;}
-		.drap-area{width: 8px;height: 8px;background-color: #fff;}
-		#tl{left: 0;top: 0;margin-left: -4px;margin-top: -4px;cursor: nw-resize;}
-		#t{left: 50%;top: 0;margin-left: -4px;margin-top: -4px;cursor: n-resize;}
-		#tr{right: 0;top: 0;margin-right: -4px;margin-top: -4px;cursor: ne-resize;}
-		#r{right: 0;top: 50%;margin-top: -4px;margin-right: -4px;cursor: e-resize;}
-		#br{right: 0;bottom: 0;margin-bottom: -4px;margin-right: -4px;cursor: se-resize;}
-		#b{left: 50%;bottom: 0;margin-bottom: -4px;margin-left: -4px;cursor: s-resize;}
-		#bl{left: 0;bottom: 0;margin-bottom: -4px;margin-left: -4px;cursor: sw-resize;}
-		#l{left: 0;top: 50%;margin-left: -4px;margin-top: -4px;cursor: e-resize;}
-		.clip-preview{clip: rect(0,100px,100px,0);}
-
+		.container {
+			width: 500px;
+			margin: 0 auto;
+			border: 1px solid #ddd;
+			overflow: hidden;
+		}
+		.header {
+			height: 50px;
+			padding: 0 12px;
+			line-height: 50px;
+			font-size: 12px;
+			background-color: #2D421B;
+			cursor: move;
+		}
+		.content {
+			height: 260px;
+			padding: 12px;
+			background-color: #50442F;
+		}
 	</style>
 </head>
 <body>
-	<!-- 这只是一段测试github的注释，没别的意思 -->
-	<div class="clip">
-		<div class="content">
-			<img src="small.jpg" alt="" class="clip-bottom">
-			<img src="small.jpg" alt="" class="clip-top">
-			<div id="clip-border">
-				<div class="drap-area" id="tl"></div>
-				<div class="drap-area" id="t"></div>
-				<div class="drap-area" id="tr"></div>
-				<div class="drap-area" id="r"></div>
-				<div class="drap-area" id="br"></div>
-				<div class="drap-area" id="b"></div>
-				<div class="drap-area" id="bl"></div>
-				<div class="drap-area" id="l"></div>
-			</div>
+	<div class="container" id="container">
+		<div class="header" id="header">
+			<p>drag here!</p>
 		</div>
-		<div class="preview">
-			<img src="big.jpg" alt="" class="clip-preview">
+		<div class="content" id="content">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non voluptate, corporis voluptatem accusamus nam. Deserunt dolore, repudiandae temporibus dolorum optio quod pariatur aperiam unde id reiciendis voluptatum repellendus voluptatibus. Sed.</p>
 		</div>
 	</div>
-	<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<script src="js/drag.js"></script>
 	<script>
-		$(function(){
-			document.onselectstart = new Function('event.returnValue=false;');
-			var $clip = $(".clip"),
-			$content = $clip.find('.content'),
-			$clipTop = $clip.find(".clip-top"),
-			$clipPreview = $clip.find('.clip-preview'),
-			$border = $clip.find('#clip-border'),
-			$area = $clip.find('.drap-area'),
-			$tl = $clip.find("#tl"),
-			$t = $clip.find("#t"),
-			$tr = $clip.find("#tr"),
-			$r = $clip.find("#r"),
-			$br = $clip.find('#br'),
-			$b = $clip.find('#b'),
-			$bl = $clip.find('#bl'),
-			$l = $clip.find('#l'),
-			$d = $(document);
-
-			function rightMove(e){
-				e.stopPropagation();
-				var x = e.clientX,
-				offsetX = x - drag.l - drag.w, 
-				w = drag.w + offsetX;
-				$border.width(w);
-			}
-
-			function downMove(e){
-				e.stopPropagation();
-				var y = e.clientY,
-				offsetY = y - drag.t - drag.h,
-				h = drag.h + offsetY;
-				$border.height(h);
-			}
-
-			function leftMove(e){
-				e.stopPropagation();
-				var x = e.clientX,
-				offsetX = drag.l - x,
-				w = drag.w + offsetX,
-				l = drag.l - offsetX;
-				$border.width(w);
-				$border.offset({left: l});
-			}
-
-			function topMove(e){
-				e.stopPropagation();
-				var y = e.clientY,
-				offsetY = drag.t - y,
-				h = drag.h + offsetY,
-				t = drag.t - offsetY;
-				$border.height(h);
-				$border.offset({top: t});
-			}
-
-			function dragMove(e){
-				e.stopPropagation();
-				var x         = e.clientX,
-				y             = e.clientY,
-				t             = drag.t + y - drag.y,
-				l             = drag.l + x - drag.x,
-				contentTop    = $content.offset().top,
-				contentLeft   = $content.offset().left,
-				contentWidth  = $content.width(),
-				contentHeight = $content.height();
-				l < contentLeft ? l = contentLeft : l;
-				l > contentLeft + contentWidth - drag.w ? l = contentLeft + contentWidth - drag.width : l;
-				t < contentTop ? t = contentTop : t;
-				t > contentTop + contentHeight - drag.h ? t = contentTop + contentHeight - drag.h : t;
-				$border.offset({
-					left: l,
-					top: t
-				});
-			}
-
-			function clipImg(){
-				var t = $border.position().top,
-				l = $border.position().left,
-				r = l + drag.w,
-				b = t + drag.h;
-				$clipTop.css('clip','rect(' + t + 'px,' + r + 'px,' + b + 'px,' + l + 'px)');
-			}
-
-			function previewImg(){
-				var t = $border.position().top,
-				l = $border.position().left,
-				r = l + drag.w,
-				b = t + drag.h;
-				$clipPreview.css({
-					'clip':'rect(' + t + 'px,' + r + 'px,' + b + 'px,' + l + 'px)',
-					'left':-l,
-					'top':-t
-				});
-			}
-
-			var drag = function(el,dir){
-				el.on('mousedown',function(e){
-					drag.x = e.clientX;
-					drag.y = e.clientY;
-					drag.w = $border.width();
-					drag.h = $border.height();
-					drag.l = $border.offset().left;
-					drag.t = $border.offset().top;
-					$d.on('mousemove.drag',function(e){
-						switch(dir){
-							case 't':topMove(e);break;
-							case 'r':rightMove(e);break;
-							case 'b':downMove(e);break;
-							case 'l':leftMove(e);break;
-							case 'tl':leftMove(e);topMove(e);break;
-							case 'tr':rightMove(e);topMove(e);break;
-							case 'br':rightMove(e);downMove(e);break;
-							case 'bl':leftMove(e);downMove(e);break;
-							case 'clip-border':dragMove(e);break;
-							default:break;
-						}
-						clipImg();
-						previewImg();
-						$d.on('mouseup.drag',function(e){
-							$d.off(".drag");
-						});
-					});
-				});
-			};
-
-			drag($border,'clip-border');
-			drag($tl,'tl');
-			drag($t,'t');
-			drag($tr,'tr');
-			drag($r,'r');
-			drag($br,'br');
-			drag($b,'b');
-			drag($bl,'bl');
-			drag($l,'l');
-		});
+		new Drag("#header","#container");
 	</script>
 </body>
 </html>
