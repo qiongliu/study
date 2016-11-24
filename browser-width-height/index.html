@@ -1,0 +1,255 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>browser-width-height</title>
+	<style>
+		/*html,body {
+			width: 100%;
+			height: 100%;
+		}*/
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			width: 1200px;
+			background-color: #318707;
+			height: 1000px;
+			font-family: "Microsoft Yahei";
+		}
+		span,b {
+			margin: 0 20px;
+		}
+		ul {
+			list-style: none;
+			background-color: #405433;
+			width: 30px;
+			width: 1000px;
+			height: 2000px;
+		}
+		li {
+			opacity: 0.2;
+			filter: Alpha(opacity=20);
+		}
+		.content {
+			opacity: 1;
+			filter: Alpha(opacity=100);
+		}
+	</style>
+</head>
+<body>
+	<ul>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li>1</li>
+		<li class="content">几乎所有浏览器都不支持在document.body上监听整个网页的滚动事件，除了QQ浏览器</li>
+		<li class="content">几乎所有浏览器都支持在window对象上监听整个网页的滚动事件</li>
+		<li class="content">几乎所有浏览器都支持在document对象上监听整个网页的滚动事件，除了QQ浏览器</li>
+		<li class="content">几乎所有浏览器都支持用document.documentElement.scrollTop来获取网页的滚动高度，除了Chrome和Safari</li>
+		<li class="content">只有Chrome和Safari支持用document.body.scrollTop来获取网页的高度</li>
+		<li class="content">通过测试，我们得出获取网页滚动高度scrollTop的最佳实践为：</li>
+		<li class="content">把获取滚动高度的事件处理程序绑定到window对象上</li>
+		<li class="content">通过获取document.documentElement.scrollTop和document.body.scrollTop两者之间较大值为网页的真实滚动高度</li>
+	</ul>
+	<script>
+		window.onload = function(){
+			var e = document.createElement("e");
+			e.style.position = "fixed";
+			e.style.top = 0;
+			e.style.left = 0;
+			document.body.appendChild(e);
+
+			var e3 = document.createElement("e3");
+			e3.innerHTML = "<p>网页被卷去的宽(chrome):<span>" + 
+				document.body.scrollLeft + "px</span><b>" + 
+				"document.body.scrollLeft</b></p>";
+
+			var e31 = document.createElement("e31");
+			e31.innerHTML = "<p>网页被卷去的高(chrome):<span>" + 
+				document.body.scrollTop + "px</span><b>" + 
+				"document.body.scrollTop</b></p>";
+
+			var e4 = document.createElement("e4");
+			e4.innerHTML = "<p>网页被卷去的宽(ie、ff):<span>" + 
+				document.documentElement.scrollLeft + "px</span><b>" + 
+				"document.documentElement.scrollLeft</b></p>";
+
+			var e41 = document.createElement("e41");
+			e41.innerHTML = "<p>网页被卷去的高(ie、ff):<span>" + 
+				document.documentElement.scrollTop + "px</span><b>" + 
+				"document.documentElement.scrollTop</b></p>";
+
+			var e5 = document.createElement("e5");
+			e5.innerHTML = "<p>屏幕的宽:<span>" + 
+				screen.width + "px</span><b>" + 
+				"screen.width</b></p>";
+
+			var e51 = document.createElement("e51");
+			e51.innerHTML = "<p>屏幕的高:<span>" + 
+				screen.height + "px</span><b>" + 
+				"screen.height</b></p>";
+
+			var e6 = document.createElement("e6");
+			e6.innerHTML = "<p>屏幕可用宽:<span>" + 
+				screen.availWidth + "px</span><b>" + 
+				"screen.availWidth</b></p>";
+
+			var e61 = document.createElement("e61");
+			e61.innerHTML = "<p>屏幕可用高:<span>" + 
+				screen.availHeight + "px</span><b>" + 
+				"screen.availHeight</b></p>";
+
+			var e7 = document.createElement("e7");
+			e7.innerHTML = "<p>浏览器宽:（ie8-不可用）<span>" + 
+				window.outerWidth + "px</span><b>" + 
+				"window.outerWidth</b></p>";
+
+			var e71 = document.createElement("e71");
+			e71.innerHTML = "<p>浏览器高:（ie8-不可用）<span>" + 
+				window.outerHeight + "px</span><b>" + 
+				"window.outerHeight</b></p>";
+
+			var e8 = document.createElement("e8");
+			e8.innerHTML = "<p>浏览器内页面可用宽度（包括滚动条，不包括浏览器边框）:（ie8-不可用）<span>" + 
+				window.innerWidth + "px</span><b>" + 
+				"window.innerWidth</b></p>";
+
+			var e81 = document.createElement("e81");
+			e81.innerHTML = "<p>浏览器内页面可用高度（包括滚动条，不包括浏览器边框）:（ie8-不可用）<span>" + 
+				window.innerHeight + "px</span><b>" + 
+				"window.innerHeight</b></p>";
+
+			var e1 = document.createElement("e1");
+			e1.innerHTML = "<p>body宽：<span>" + 
+				document.body.offsetWidth + "px或者" + 
+				document.body.clientWidth+ "px</span><b>" + 
+				"document.body.offsetWidth</b>或者<b>" + 
+				"document.body.clientWidth</b></p>";
+
+			var e11 = document.createElement("e11");
+			e11.innerHTML = "<p>body高：<span>" + 
+				document.body.offsetHeight + "px或者" + 
+				document.body.clientHeight+ "px</span><b>" + 
+				"document.body.offsetHeight</b>或者<b>" + 
+				"document.body.clientHeight</b></p>";
+
+			var e2 = document.createElement("e2");
+			e2.innerHTML = "<p>网页正文全文区域宽：<span>" +
+				document.body.scrollWidth + "px或者" + document.documentElement.scrollWidth +  "px</span><b>" + 
+				"document.body.scrollWidth</b>或者<b>document.documentElement.scrollWidth</b></p>";
+
+			var e21 = document.createElement("e21");
+			e21.innerHTML = "<p>网页正文全文区域高：<span>" +
+				document.body.scrollHeight + "px或者" + document.documentElement.scrollHeight +  "px</span><b>" + 
+				"document.body.scrollHeight</b>或者<b>document.documentElement.scrollHeight</b></p>";
+
+
+
+
+
+
+			
+			
+			e.appendChild(e5);  e.appendChild(e51);
+			e.appendChild(e6);  e.appendChild(e61);
+			e.appendChild(e7);	e.appendChild(e71);
+			e.appendChild(e8);	e.appendChild(e81);
+
+			e.appendChild(e1);  e.appendChild(e11);
+			e.appendChild(e2);  e.appendChild(e21);
+			e.appendChild(e3);  e.appendChild(e31);
+			e.appendChild(e4);  e.appendChild(e41);
+		};
+	</script>
+</body>
+</html>
