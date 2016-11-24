@@ -24,8 +24,8 @@
 					offsetY = e.clientY - y,
 					l = left + offsetX,
 					t = top + offsetY;
-					maxLeft = $(w).width() - self.c.width();
-					maxTop = $(w).height() - self.c.height();
+					maxLeft = $(w).width() - self.c.outerWidth();
+					maxTop = $(w).height() - self.c.outerHeight();
 					if(l <= 0){
 						l = 0;
 					}else if(l >= maxLeft){
