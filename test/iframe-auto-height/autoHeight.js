@@ -8,7 +8,7 @@
 			if(param !== null){
 				params += "&t=" + Math.random();
 			}
-			var url = "http://" + this._domain + "/js/autoHeight.html?" + params,
+			var url = "http://" + this._domain + "/autoHeight.html?" + params,
 			isExit = document.getElementById("autoHeight");
 			if(isExit === null){
 				var _iframe = document.createElement('iframe');
