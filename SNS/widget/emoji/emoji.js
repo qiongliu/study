@@ -1,8 +1,11 @@
 ;(function(){
 
-	var Smiley = function(opts){
+	var Emoji = function(opts){
 		if(!$.isPlainObject(opts)){
-			alert("参数格式不对！");
+			SE.widgets.tips({
+				type: 'failing',
+				content: '请给Emoji插件输入格式正确的参数！'
+			});
 			return false;
 		}
 		this.opts = {
@@ -15,31 +18,32 @@
 		this.render();
 	};
 
-	Smiley.prototype = $.extend(true, {}, SE, {
+	Emoji.prototype = $.extend(true, {}, SE, {
 		initDom: function(){
 			var self = this,
 			arr = [];
-			arr.push("<div id=" + this.prefix + "-emoji-wrap>");
+			arr.push("<div id=" + this.prefix + "-emoji-wrap class='clearfix'>");
 			for (var i in SE.config.emoji){
 				arr.push('<a href="javascript:;"><img src="' + SE.config.emojiRoot  + SE.config.emoji[i] + '" alt="' + i + '"></a>')
 			}
 			arr.push("</div>");
 			SE.widgets.dialog({
 				title: "emoji",
-				dataMode: "iframe",
 				content: arr.join(""),
 				isBtn: false,
-				height: 370,
+				height: 310,
+				width: 408,
 				isFollow: true,
-				followE: self.opts.eventEl
+				followE: self.opts.eventEl,
+				titleStyle: {
+					height: 30
+				}
 			});
-			this.$em = $("#" + this.prefix + "-emoji-wrap");
+			this.$wrapBox = $("." + this.prefix + "-dialog-wrapBox")
+			this.$em = this.$wrapBox.find("#" + this.prefix + "-emoji-wrap");
 			this.$emImg = this.$em.find("a");
 		},
 		renderDom: function(){
-			this.$em.css({
-				padding: 12
-			});
 			this.$emImg.css({
 				float: "left",
 				width: 24,
@@ -53,16 +57,26 @@
 		bindEvent: function(){
 			var self = this;
 			this.$emImg.on("click",function(){
-				var smiley = $(this).find("img").clone()[0];
-				$(self.opts.textEl).append(smiley);
+				if(!self.opts.textEl){
+					SE.widgets.tips({
+						type: "warning",
+						content: "你的emoji插件可能没有传入textEl参数！"
+					});
+					setTimeout(function(){
+						self.destroy();
+					},2000);
+					return false;
+				}
+				var emoji = $(this).find("img").clone()[0];
+				$(self.opts.textEl).append(emoji);
 				self.fireEvent("clickAfter",self);
 			});
 		}
 	});
 
-	Smiley.init = function(opts){
-		new Smiley(opts);
+	Emoji.init = function(opts){
+		new Emoji(opts);
 	};
 
-	SE.widgets.smiley = Smiley.init;
+	SE.widgets.emoji = Emoji.init;
 })();

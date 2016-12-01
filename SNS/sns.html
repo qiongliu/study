@@ -37,7 +37,7 @@
 <h2 class="dialog dialog-top-right">dialog-top-right</h2>
 <h2 class="dialog dialog-bottom-right">dialog-bottom-right</h2>
 <h2 class="dialog dialog-bottom-left">dialog-bottom-left</h2>
-<h3 class="emoji">smiley:</h3>
+<h3 class="emoji">emoji:</h3>
 <script src="lib/jquery-1.8.3.min.js"></script>
 <script src="lib/sea.js"></script>
 <script>
@@ -47,19 +47,23 @@
 		};
 
 		seajs.use("./SE.js",function(se){
-			se.init(["dialog","em"],function(){
+			se.init(["dialog"],function(){
 				$(".dialog-noFollow").on('click',function(e){
-					SE.widgets.dialog({
-						isFollow: true,
-						followEl: ".dialog-noFollow"
-					}).addEvent('confirmAfter',function(data){
+					SE.widgets.dialog("s").addEvent('confirmAfter',function(data){
 						data.$dialogContent.html('confiremAfter');
 					});
 				});
-
-				$(".dialog").on('click',function(e){
-					SE.widgets.smiley({
+			});
+			se.init(["tips","emoji"],function(){
+				$(".dialog-top-left").on('click',function(e){
+					SE.widgets.emoji({
 						textEl: ".emoji",
+						eventEl: e
+					});
+				});
+
+				$(".dialog-top-right").on('click',function(e){
+					SE.widgets.emoji({
 						eventEl: e
 					});
 				});

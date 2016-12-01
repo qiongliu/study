@@ -1,13 +1,15 @@
 ;(function(){
 	var Dialog = function(opts){
 		if(!$.isPlainObject(opts)){
-			alert("参数格式不对！");
+			SE.widgets.tips({
+				type: 'failing',
+				content: '请给Dialog插件输入格式正确的参数！'
+			});
 			return false;
 		}
 		this.prefix = SE.reserveKeyword;
 		this.opts = {
 			title: "dialog",
-			dataMode: "html",
 			content: "this is a default content",
 			width: 400,
 			height: 200,
@@ -44,8 +46,8 @@
 				backgroundColor: "#fff",
 				fontSize: 14,
 				fontWeight: 400,
-				padding: 15,
-				color: "#333"
+				padding: 0,
+				color: "#333",
 			},
 			isBtn: true,
 			btnStyle: {
@@ -81,7 +83,7 @@
 	Dialog.prototype = $.extend({},SE,{
 		initDom: function(){
 			var arr = [];
-			arr.push("<div class="+ this.prefix + "-wrapBox>");
+			arr.push("<div class="+ this.prefix + "-dialog-wrapBox>");
 				arr.push("<div class="+ this.prefix + "-dialog-mask></div>");
 				arr.push("<div class="+ this.prefix + "-dialog>");
 					arr.push("<div class="+ this.prefix + "-dialog-title>");
@@ -102,7 +104,7 @@
 			arr.push("</div></div>");
 			$("body").append(arr.join(""));
 
-			this.$wrapBox = $("." + this.prefix + "-wrapBox");
+			this.$wrapBox = $("." + this.prefix + "-dialog-wrapBox");
 			this.$mask = this.$wrapBox.find("." + this.prefix + "-dialog-mask");
 			this.$dialog = this.$wrapBox.find("." + this.prefix + "-dialog");
 			this.$dialogTitle = this.$wrapBox.find("." + this.prefix + "-dialog-title");
@@ -115,7 +117,6 @@
 		},
 		renderDom: function(){
 
-			this.opts.contentStyle.padding = this.opts.dataMode === "html" ? this.opts.contentStyle.padding : 0;
 			this.opts.btnStyle.height = this.opts.isBtn ? this.opts.btnStyle.height : 0 ;
 			this.$mask.css({
 				backgroundColor: this.opts.maskStyle.backgroundColor,

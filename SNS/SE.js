@@ -8,7 +8,6 @@
 		config: {},
 		widgets: {},
 		addEvent: function(type,fn){
-			console.log(this.handlers[type])
 			if(typeof (this.handlers[type]) === "undefined"){
 				this.handlers[type] = [];
 			}
@@ -59,14 +58,15 @@ define(function(require,exports){
 	var Widget = function(widgets,fn){
 		this.version = 1.1;
 		this.setting = {
-			"skin": "./css/LY.css",
+			"skin": "./css/se.css",
 			"lib": "./lib.js",
 			"config": "./config.js"
 		};
 		this.widgetType = {
 			"parse": "./parse.js",
 			"dialog": "./widget/dialog/dialog.js",
-			"em": "./widget/emoji/em.js"
+			"emoji": "./widget/emoji/emoji.js",
+			"tips": "./widget/tips/tips.js"
 		};
 
 		this.loader(widgets,fn);
