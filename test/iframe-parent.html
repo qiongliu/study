@@ -9,8 +9,13 @@
 	<h1>父窗口：iframe-parent</h1>
 	<h2>获取子窗口的元素：</h2>
 	<h3>获取子窗口的方法：</h3>
-	<iframe src="iframe-child.html" id="iframeChild" name="iframeChild" frameborder="1" width="600" height="300"></iframe>
+	<iframe src="iframe-child.html?name=liuqiong" id="iframeChild" name="iframeChild" frameborder="1" width="600" height="300"></iframe>
 	<script>
+		//通过window.name实现跨域，window.name的值只能是字符串的形式，这个字符串的大小最大能允许2M左右甚至更大的一个容量
+		// window.name = 'liuqiong';
+		// setTimeout(function(){location.href="iframe-child.html"},3000)
+
+
 		//子窗口要调用此方法，所以要写在$(function(){})外面
 		var parentMethod = function(text){
 			//js 获取子窗口的元素

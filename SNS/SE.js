@@ -1,12 +1,14 @@
 ;(function(){
 	var SE = function(){
-	this.reserveKeyword = "linyi";
-	this.handlers = {};
-};
+		this.reserveKeyword = "linyi";
+		this.handlers = {};
+	};
 
 	SE.prototype = {
+		config: {},
 		widgets: {},
 		addEvent: function(type,fn){
+			console.log(this.handlers[type])
 			if(typeof (this.handlers[type]) === "undefined"){
 				this.handlers[type] = [];
 			}
@@ -46,9 +48,7 @@
 	};
 
 	SE.init = function(){
-		var se = new SE();
-		se.prototype = SE.prototype;
-		return se;
+		return new SE();
 	};
 
 	window.SE = SE.init();
@@ -60,7 +60,8 @@ define(function(require,exports){
 		this.version = 1.1;
 		this.setting = {
 			"skin": "./css/LY.css",
-			"lib": "./lib.js"
+			"lib": "./lib.js",
+			"config": "./config.js"
 		};
 		this.widgetType = {
 			"parse": "./parse.js",

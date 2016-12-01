@@ -3,18 +3,65 @@
 <head>
 	<meta charset="UTF-8">
 	<title>sns</title>
+	<style>
+		.dialog-noFollow {
+			width: 100px;
+		}
+		.dialog {
+			position: absolute;
+			width:100px;
+			background-color: #ccc;
+			text-align: center;
+		}
+		.dialog-top-left {
+			top: 50px;
+			left: 50px;
+		}
+		.dialog-top-right {
+			top: 50px;
+			right: 50px;
+		}
+		.dialog-bottom-left {
+			bottom: 50px;
+			left: 50px;
+		}
+		.dialog-bottom-right {
+			bottom: 50px;
+			right: 50px;
+		}
+	</style>
 </head>
 <body>
-<h2 class="dialog">dialog</h2>
+<h2 class="dialog-noFollow">dialog,noFollow</h2>
+<h2 class="dialog dialog-top-left">dialog-top-left</h2>
+<h2 class="dialog dialog-top-right">dialog-top-right</h2>
+<h2 class="dialog dialog-bottom-right">dialog-bottom-right</h2>
+<h2 class="dialog dialog-bottom-left">dialog-bottom-left</h2>
+<h3 class="emoji">smiley:</h3>
 <script src="lib/jquery-1.8.3.min.js"></script>
 <script src="lib/sea.js"></script>
 <script>
-	seajs.use("./SE.js",function(se){
-		se.init(["dialog","em"],function(){
-			$(".dialog").on('click',function(){
-				console.log(SE.widgets);
-				SE.widgets.dialog({
+	$(function(){
+		window.globalParam = {
+			siteImages: "localhost:3000"
+		};
 
+		seajs.use("./SE.js",function(se){
+			se.init(["dialog","em"],function(){
+				$(".dialog-noFollow").on('click',function(e){
+					SE.widgets.dialog({
+						isFollow: true,
+						followEl: ".dialog-noFollow"
+					}).addEvent('confirmAfter',function(data){
+						data.$dialogContent.html('confiremAfter');
+					});
+				});
+
+				$(".dialog").on('click',function(e){
+					SE.widgets.smiley({
+						textEl: ".emoji",
+						eventEl: e
+					});
 				});
 			});
 		});

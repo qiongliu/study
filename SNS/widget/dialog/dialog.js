@@ -4,7 +4,6 @@
 			alert("参数格式不对！");
 			return false;
 		}
-		var self = this;
 		this.prefix = SE.reserveKeyword;
 		this.opts = {
 			title: "dialog",
@@ -16,6 +15,9 @@
 			border: "1px solid #999",
 			borderRadius: 8,
 			isShadow: true,
+			isFollow: false,
+			followE: "",
+			followSpace: 20,
 			maskStyle: {
 				backgroundColor: "#f5f5f5",
 				opacity: 0.3,
@@ -76,7 +78,7 @@
 		this.render();
 	};
 
-	Dialog.prototype = $.extend({},SE.prototype,{
+	Dialog.prototype = $.extend({},SE,{
 		initDom: function(){
 			var arr = [];
 			arr.push("<div class="+ this.prefix + "-wrapBox>");
@@ -120,12 +122,25 @@
 				opacity: this.opts.maskStyle.opacity,
 				filter: "Alpha(opacity=" + this.opts.maskStyle.opacity * 100 + ")"
 			});
+			if(this.opts.isFollow && this.opts.followE !== ""){
+				var followLeft = this.opts.followE.clientX + this.opts.followSpace,
+				followTop = this.opts.followE.clientY + this.opts.followSpace,
+				win = $(window);
+				if((followTop + this.opts.height) > win.height()){
+					followTop = this.opts.followE.clientY - this.opts.height - this.opts.followSpace
+				}
+				if((followLeft + this.opts.width) > win.width()){
+					followLeft = this.opts.followE.clientX - this.opts.width - this.opts.followSpace
+				}
+			};
 			this.$dialog.css({
 				width: this.opts.width,
 				height: this.opts.height,
 				border: this.opts.border,
-				marginLeft: -this.opts.width / 2,
-				marginTop: -this.opts.height / 2,
+				left: typeof followLeft !== "undefined" ? followLeft : "50%",
+				top: typeof followTop !== "undefined" ? followTop : "50%",
+				marginLeft: typeof followLeft !== "undefined" ? 0 : -this.opts.width / 2,
+				marginTop: typeof followTop !== "undefined" ? 0 : -this.opts.height / 2,
 				borderRadius: this.opts.borderRadius,
 				backgroundColor: this.opts.backgroundColor
 			});
@@ -213,18 +228,18 @@
 			})
 			this.$btnClose.on("click",function(e){
 				e.stopPropagation();
-				// self.fireEvent("closeAfter",self);
+				self.fireEvent("closeAfter",self);
 				self.destroy();
 			});
 			this.$btnConfirm.on("click",function(e){
 				e.stopPropagation();
-				// self.fireEvent("confirmAfter",self);
+				self.fireEvent("confirmAfter",self);
 				// self.destroy();
 			});
 			this.$btnCancel.on("click",function(e){
 				e.stopPropagation();
-				// self.fireEvent("cancelAfter",self);
-				// self.destroy();
+				self.fireEvent("cancelAfter",self);
+				self.destroy();
 			});
 		},
 		changeOpacity: function(el,opa){
@@ -257,7 +272,7 @@
 	});
 
 	Dialog.init = function(opts){
-		new Dialog(opts);
+		return new Dialog(opts);
 	};
 
 	SE.widgets.dialog = Dialog.init;
