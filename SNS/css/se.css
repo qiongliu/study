@@ -71,3 +71,7 @@ html { overflow-y: scroll; }
 .linyi-dialog-btn a { text-align: center; cursor: pointer;}
 
 
+/*emoji*/
+.linyi-emoji-img { float: left; width: 24px; height: 24px; line-height: 24px; }
+
+

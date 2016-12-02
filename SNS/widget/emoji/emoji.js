@@ -21,34 +21,33 @@
 	Emoji.prototype = $.extend(true, {}, SE, {
 		initDom: function(){
 			var self = this,
-			arr = [];
+			arr = [],
+			data = "";
 			arr.push("<div id=" + this.prefix + "-emoji-wrap class='clearfix'>");
 			for (var i in SE.config.emoji){
-				arr.push('<a href="javascript:;"><img src="' + SE.config.emojiRoot  + SE.config.emoji[i] + '" alt="' + i + '"></a>')
+				arr.push('<a href="javascript:;" title="' + i + '"><img class="' + this.prefix + '-emoji-img" src="' + SE.config.emojiRoot  + SE.config.emoji[i] + '" alt="' + i + '"></a>')
 			}
 			arr.push("</div>");
+			data = arr.join("");
 			SE.widgets.dialog({
 				title: "emoji",
-				content: arr.join(""),
+				content: data,
 				isBtn: false,
 				height: 310,
 				width: 408,
-				isFollow: true,
+				existMast: false,
 				followE: self.opts.eventEl,
 				titleStyle: {
 					height: 30
 				}
 			});
-			this.$wrapBox = $("." + this.prefix + "-dialog-wrapBox")
+			this.$wrapBox = $("." + this.prefix + "-dialog-wrapBox");
 			this.$em = this.$wrapBox.find("#" + this.prefix + "-emoji-wrap");
 			this.$emImg = this.$em.find("a");
 		},
 		renderDom: function(){
 			this.$emImg.css({
 				float: "left",
-				width: 24,
-				height: 24,
-				lineHeight: 24 + "px",
 				textAlign: "center",
 				border: "1px solid #F0F0F0",
 				padding: 4
@@ -56,7 +55,8 @@
 		},
 		bindEvent: function(){
 			var self = this;
-			this.$emImg.on("click",function(){
+			this.$emImg.off().on("click",function(e){
+				e.stopPropagation();
 				if(!self.opts.textEl){
 					SE.widgets.tips({
 						type: "warning",
@@ -67,15 +67,20 @@
 					},2000);
 					return false;
 				}
-				var emoji = $(this).find("img").clone()[0];
-				$(self.opts.textEl).append(emoji);
-				self.fireEvent("clickAfter",self);
+				self.fireEvent('insertAfter',self);
+
+				SE.lib("insertCaret",{
+					obj: self.opts.textEl,
+					val: this.title
+				});
+				
+				self.fireEvent("clickBefore",self);
 			});
 		}
 	});
 
 	Emoji.init = function(opts){
-		new Emoji(opts);
+		return new Emoji(opts);
 	};
 
 	SE.widgets.emoji = Emoji.init;

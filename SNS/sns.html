@@ -14,7 +14,7 @@
 			text-align: center;
 		}
 		.dialog-top-left {
-			top: 50px;
+			top: 120px;
 			left: 50px;
 		}
 		.dialog-top-right {
@@ -29,6 +29,12 @@
 			bottom: 50px;
 			right: 50px;
 		}
+		.message {
+			border: 1px solid #ccc;
+			padding: 4px;
+			width: 300px;
+			height: 60px;
+		}
 	</style>
 </head>
 <body>
@@ -37,7 +43,7 @@
 <h2 class="dialog dialog-top-right">dialog-top-right</h2>
 <h2 class="dialog dialog-bottom-right">dialog-bottom-right</h2>
 <h2 class="dialog dialog-bottom-left">dialog-bottom-left</h2>
-<h3 class="emoji">emoji:</h3>
+<textarea name="message" id="message" class="message">说点啥吧！</textarea>
 <script src="lib/jquery-1.8.3.min.js"></script>
 <script src="lib/sea.js"></script>
 <script>
@@ -57,8 +63,17 @@
 			se.init(["tips","emoji"],function(){
 				$(".dialog-top-left").on('click',function(e){
 					SE.widgets.emoji({
-						textEl: ".emoji",
+						textEl: ".message",
 						eventEl: e
+					}).addEvent('insertAfter',function(data){
+						var text = $(data.opts.textEl);
+						if(text.text() === SE.config.editVal){
+							text.text("");
+						}
+					}).addEvent('clickBefore',function(data){
+						SE.widgets.tips({
+							content: "success"
+						});
 					});
 				});
 

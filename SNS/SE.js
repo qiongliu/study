@@ -6,6 +6,7 @@
 
 	SE.prototype = {
 		config: {},
+		lib:{},
 		widgets: {},
 		addEvent: function(type,fn){
 			if(typeof (this.handlers[type]) === "undefined"){

@@ -1,6 +1,7 @@
 ;(function(){
 	var config = {};
 	config.imagesDomain = window.globalParam.siteImages;
+    config.editVal = "说点啥吧！"
     config.tipsRoot = "http://" + config.imagesDomain + "/SNS/images/tips/";
 	config.emojiRoot = "http://" + config.imagesDomain + "/SNS/images/emoji/";
 	config.emoji = {

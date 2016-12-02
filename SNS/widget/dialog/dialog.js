@@ -17,12 +17,12 @@
 			border: "1px solid #999",
 			borderRadius: 8,
 			isShadow: true,
-			isFollow: false,
 			followE: "",
 			followSpace: 20,
+			existMast: true,
 			maskStyle: {
 				backgroundColor: "#f5f5f5",
-				opacity: 0.3,
+				opacity: 0.6,
 			},
 			titleStyle: {
 				height: 40,
@@ -83,9 +83,13 @@
 	Dialog.prototype = $.extend({},SE,{
 		initDom: function(){
 			var arr = [];
+			var existMast = this.opts.existMast ? "block":"none";
 			arr.push("<div class="+ this.prefix + "-dialog-wrapBox>");
-				arr.push("<div class="+ this.prefix + "-dialog-mask></div>");
-				arr.push("<div class="+ this.prefix + "-dialog>");
+				arr.push("<div class="+ this.prefix + "-dialog-mask style='background-color:" + this.opts.maskStyle.backgroundColor
+					+ "; opacity:" + this.opts.maskStyle.opacity + "; filter:Alpha(opacity=" + this.opts.maskStyle.opacity * 100 + "); display:"
+					+ existMast + ";'></div>");
+				arr.push("<div class="+ this.prefix + "-dialog style='width:" + this.opts.width +"; height:" + this.opts.height + "; border:"
+				 	+ this.opts.border + "; left'>");
 					arr.push("<div class="+ this.prefix + "-dialog-title>");
 						arr.push("<span class="+ this.prefix + "-dialog-title-content>" + this.opts.title + "</span>");
 						arr.push("<a class="+ this.prefix + "-dialog-btn-close>" + this.opts.closeStyle.content + "</a>");
@@ -118,22 +122,17 @@
 		renderDom: function(){
 
 			this.opts.btnStyle.height = this.opts.isBtn ? this.opts.btnStyle.height : 0 ;
-			this.$mask.css({
-				backgroundColor: this.opts.maskStyle.backgroundColor,
-				opacity: this.opts.maskStyle.opacity,
-				filter: "Alpha(opacity=" + this.opts.maskStyle.opacity * 100 + ")"
-			});
-			if(this.opts.isFollow && this.opts.followE !== ""){
+			if(this.opts.followE !== ""){
 				var followLeft = this.opts.followE.clientX + this.opts.followSpace,
 				followTop = this.opts.followE.clientY + this.opts.followSpace,
 				win = $(window);
 				if((followTop + this.opts.height) > win.height()){
-					followTop = this.opts.followE.clientY - this.opts.height - this.opts.followSpace
+					followTop = this.opts.followE.clientY - this.opts.height - this.opts.followSpace;
 				}
 				if((followLeft + this.opts.width) > win.width()){
-					followLeft = this.opts.followE.clientX - this.opts.width - this.opts.followSpace
+					followLeft = this.opts.followE.clientX - this.opts.width - this.opts.followSpace;
 				}
-			};
+			}
 			this.$dialog.css({
 				width: this.opts.width,
 				height: this.opts.height,
@@ -143,10 +142,11 @@
 				marginLeft: typeof followLeft !== "undefined" ? 0 : -this.opts.width / 2,
 				marginTop: typeof followTop !== "undefined" ? 0 : -this.opts.height / 2,
 				borderRadius: this.opts.borderRadius,
-				backgroundColor: this.opts.backgroundColor
+				backgroundColor: this.opts.backgroundColor,
+				zIndex: 999
 			});
 			this.opts.isShadow && this.$dialog.css({
-				"boxShadow":"0 3px 9px rgba(0,0,0,.5)"
+				boxShadow:"0 3px 9px rgba(0,0,0,.5)"
 			});
 			this.$dialogTitle.css({
 				height: this.opts.titleStyle.height,
@@ -265,6 +265,10 @@
 			this.changeOpacity(this.$btnConfirm,this.opts.btnStyle.common.opacity);
 			this.changeOpacity(this.$btnCancel,this.opts.btnStyle.common.opacity);
 
+			SE.lib("drag",{
+				dragArea: this.$dialogTitle,
+				wrapArea: this.$dialog
+			});
 			// require.async("./drag.js",function(){
 			// 	new window.Drag("." + self.prefix + "-dialog-title","." + self.prefix + "-dialog");
 			// });
