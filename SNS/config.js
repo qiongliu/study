@@ -1,7 +1,7 @@
 ;(function(){
 	var config = {};
 	config.imagesDomain = window.globalParam.siteImages;
-    config.editVal = "说点啥吧！"
+    config.editVal = "说点啥吧！";
     config.tipsRoot = "http://" + config.imagesDomain + "/SNS/images/tips/";
 	config.emojiRoot = "http://" + config.imagesDomain + "/SNS/images/emoji/";
 	config.emoji = {
@@ -23,5 +23,10 @@
         "飞吻": "91.gif", "跳跳": "92.gif", "发抖": "93.gif", "怄火": "94.gif", "转圈": "95.gif", "磕头": "96.gif"
     };
 
+    // upload
+    config.photoBoxObj = "#" + SE.reserveKeyword + "-photo-viewbox"; //上传图片
+    config.photoMaxNum = 10;
+    config.swfuploadUrl = "http://" + config.imagesDomain + "SNS/js/lib/swfUploadLib.js";
+    config.uploadFlashUrl = "http://" + config.imagesDomain + "SNS/js/lib/swfupload.swf";
     SE.config = config;
 })();

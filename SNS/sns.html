@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>sns</title>
+	<link rel="stylesheet" href="css/reset.css">
 	<style>
 		.dialog-noFollow {
 			width: 100px;
@@ -13,8 +14,12 @@
 			background-color: #ccc;
 			text-align: center;
 		}
-		.dialog-top-left {
+		.emoji {
 			top: 120px;
+			left: 50px;
+		}
+		.photo-upload {
+			top: 200px;
 			left: 50px;
 		}
 		.dialog-top-right {
@@ -30,20 +35,30 @@
 			right: 50px;
 		}
 		.message {
+			float: left;
 			border: 1px solid #ccc;
 			padding: 4px;
 			width: 300px;
 			height: 60px;
+			margin-right: 50px;
+		}
+		.linyi-photo-viewBox {
+			float: left;
+			width: 400px;
+			height: 110px;
+			border: 1px solid #ccc;
 		}
 	</style>
 </head>
 <body>
 <h2 class="dialog-noFollow">dialog,noFollow</h2>
-<h2 class="dialog dialog-top-left">dialog-top-left</h2>
+<h2 class="dialog emoji">emoji</h2>
+<h2 class="dialog photo-upload">photo-upload</h2>
 <h2 class="dialog dialog-top-right">dialog-top-right</h2>
 <h2 class="dialog dialog-bottom-right">dialog-bottom-right</h2>
 <h2 class="dialog dialog-bottom-left">dialog-bottom-left</h2>
 <textarea name="message" id="message" class="message">说点啥吧！</textarea>
+<div id="linyi-photo-viewBox" class="linyi-photo-viewBox"></div>
 <script src="lib/jquery-1.8.3.min.js"></script>
 <script src="lib/sea.js"></script>
 <script>
@@ -53,15 +68,16 @@
 		};
 
 		seajs.use("./SE.js",function(se){
-			se.init(["dialog"],function(){
-				$(".dialog-noFollow").on('click',function(e){
-					SE.widgets.dialog("s").addEvent('confirmAfter',function(data){
+			$(".dialog-noFollow").on('click',function(e){
+				se.loader(["dialog"],function(){
+					SE.widgets.dialog({contentStyle:{padding:12}}).addEvent('confirmAfter',function(data){
 						data.$dialogContent.html('confiremAfter');
 					});
 				});
 			});
-			se.init(["tips","emoji"],function(){
-				$(".dialog-top-left").on('click',function(e){
+			
+			$(".emoji").on('click',function(e){
+				se.loader(["dialog","tips","emoji"],function(){
 					SE.widgets.emoji({
 						textEl: ".message",
 						eventEl: e
@@ -76,10 +92,32 @@
 						});
 					});
 				});
+			});
 
-				$(".dialog-top-right").on('click',function(e){
+			$(".dialog-top-right").on('click',function(e){
+				se.loader(["dialog","tips","emoji"],function(){
 					SE.widgets.emoji({
 						eventEl: e
+					});
+				});
+			});
+			
+
+			$(".photo-upload").on('click',function(){
+				se.loader('upload',function(){
+					var photoNum = $(SE.config.photoBoxObj).find("img").length,
+					allowNum = SE.config.photoMaxNum - photoNum;
+					if(allowNum <= 0){
+						SE.widgets.tips({
+							type: "failing",
+							content: "最多只能添加" + SE.config.photoMaxNum + "张照片！"
+						});
+						return false;
+					}
+					SE.widgets.upload({
+						file_upload_limit: allowNum,
+						file_queue_limit: allowNum,
+						
 					});
 				});
 			});

@@ -67,7 +67,8 @@ define(function(require,exports){
 			"parse": "./parse.js",
 			"dialog": "./widget/dialog/dialog.js",
 			"emoji": "./widget/emoji/emoji.js",
-			"tips": "./widget/tips/tips.js"
+			"tips": "./widget/tips/tips.js",
+			"upload": "./widget/upload/upload.js"
 		};
 
 		this.loader(widgets,fn);
@@ -109,5 +110,5 @@ define(function(require,exports){
 		new Widget(widgets,fn);
 	};
 
-	exports.init = Widget.init;
+	exports.loader = Widget.init;
 });
