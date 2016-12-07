@@ -5,7 +5,6 @@
 			alert("参数格式不对！");
 			return false;
 		}
-		this.prefix = SE.reserveKeyword;
 		// ie8 属性名使用default 报错
 		this.type = {
 			moren: "moren",
@@ -71,18 +70,18 @@
 	Tips.prototype = $.extend({},SE,{
 		initDom: function(){
 			var arr = [];
-			arr.push("<div class=" + this.prefix + "-tips-wrapBox>");
-			arr.push("<div class=" + this.prefix + "-tips-mask>");
+			arr.push("<div class=" + SE.reserveKeyword + "-tips-wrapBox>");
+			arr.push("<div class=" + SE.reserveKeyword + "-tips-mask>");
 			arr.push("</div>");
-			arr.push("<div class=" + this.prefix + "-tips>");
+			arr.push("<div class=" + SE.reserveKeyword + "-tips>");
 			arr.push("<p>" + this.opts.content + "</p>");
 			arr.push("</div>");
 			arr.push("</div>");
 			$("body").append(arr.join(""));
 
-			this.$wrapBox = $("." + this.prefix + "-tips-wrapBox");
-			this.$mask = this.$wrapBox.find("." + this.prefix + "-tips-mask");
-			this.$tips = this.$wrapBox.find("." + this.prefix + "-tips");
+			this.$wrapBox = $("." + SE.reserveKeyword + "-tips-wrapBox");
+			this.$mask = this.$wrapBox.find("." + SE.reserveKeyword + "-tips-mask");
+			this.$tips = this.$wrapBox.find("." + SE.reserveKeyword + "-tips");
 			this.$p = this.$tips.find("p");
 		},
 		renderDom: function(){

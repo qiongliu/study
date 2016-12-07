@@ -7,7 +7,7 @@
 			});
 			return false;
 		}
-		this.prefix = SE.reserveKeyword;
+
 		this.opts = {
 			title: "dialog",
 			content: "this is a default content",
@@ -16,7 +16,8 @@
 			backgroundColor: "#ddd",
 			border: "1px solid #999",
 			borderRadius: 8,
-			isShadow: true,
+			existShadow: true,
+			existBtn: true,
 			followE: "",
 			followSpace: 20,
 			existMast: true,
@@ -49,7 +50,6 @@
 				padding: 0,
 				color: "#333",
 			},
-			isBtn: true,
 			btnStyle: {
 				backgroundColor: "#fff",
 				height: 50,
@@ -73,7 +73,8 @@
 				cancel: {
 					content: "取消",
 				}
-			}
+			},
+			completed: function(){}
 		};
 
 		$.extend(true,this.opts,opts);
@@ -84,44 +85,44 @@
 		initDom: function(){
 			var arr = [];
 			var existMast = this.opts.existMast ? "block":"none";
-			arr.push("<div class="+ this.prefix + "-dialog-wrapBox>");
-				arr.push("<div class="+ this.prefix + "-dialog-mask style='background-color:" + this.opts.maskStyle.backgroundColor
+			arr.push("<div class="+ SE.reserveKeyword + "-dialog-wrapBox>");
+				arr.push("<div class="+ SE.reserveKeyword + "-dialog-mask style='background-color:" + this.opts.maskStyle.backgroundColor
 					+ "; opacity:" + this.opts.maskStyle.opacity + "; filter:Alpha(opacity=" + this.opts.maskStyle.opacity * 100 + "); display:"
 					+ existMast + ";'></div>");
-				arr.push("<div class="+ this.prefix + "-dialog style='width:" + this.opts.width +"; height:" + this.opts.height + "; border:"
+				arr.push("<div class="+ SE.reserveKeyword + "-dialog style='width:" + this.opts.width +"; height:" + this.opts.height + "; border:"
 				 	+ this.opts.border + "; left'>");
-					arr.push("<div class="+ this.prefix + "-dialog-title>");
-						arr.push("<span class="+ this.prefix + "-dialog-title-content>" + this.opts.title + "</span>");
-						arr.push("<a class="+ this.prefix + "-dialog-btn-close>" + this.opts.closeStyle.content + "</a>");
+					arr.push("<div class="+ SE.reserveKeyword + "-dialog-title>");
+						arr.push("<span class="+ SE.reserveKeyword + "-dialog-title-content>" + this.opts.title + "</span>");
+						arr.push("<a class="+ SE.reserveKeyword + "-dialog-btn-close>" + this.opts.closeStyle.content + "</a>");
 					arr.push("</div>");
-					arr.push("<div class="+ this.prefix + "-dialog-content>" + this.opts.content + "</div>");
-				if(this.opts.isBtn){
-					arr.push("<div class="+ this.prefix + "-dialog-btn>");
+					arr.push("<div class="+ SE.reserveKeyword + "-dialog-content>" + this.opts.content + "</div>");
+				if(this.opts.existBtn){
+					arr.push("<div class="+ SE.reserveKeyword + "-dialog-btn>");
 						if(this.opts.btnStyle.type.indexOf("confirm") > -1){
-							arr.push("<a class="+ this.prefix + "-dialog-btn-confirm>" + this.opts.btnStyle.confirm.content + "</a>");
+							arr.push("<a class="+ SE.reserveKeyword + "-dialog-btn-confirm>" + this.opts.btnStyle.confirm.content + "</a>");
 						}
 						if(this.opts.btnStyle.type.indexOf("cancel") > -1){
-							arr.push("<a class="+ this.prefix + "-dialog-btn-cancel>" + this.opts.btnStyle.cancel.content + "</a>");
+							arr.push("<a class="+ SE.reserveKeyword + "-dialog-btn-cancel>" + this.opts.btnStyle.cancel.content + "</a>");
 						}
 					arr.push("</div>");
 				}
 			arr.push("</div></div>");
 			$("body").append(arr.join(""));
 
-			this.$wrapBox = $("." + this.prefix + "-dialog-wrapBox");
-			this.$mask = this.$wrapBox.find("." + this.prefix + "-dialog-mask");
-			this.$dialog = this.$wrapBox.find("." + this.prefix + "-dialog");
-			this.$dialogTitle = this.$wrapBox.find("." + this.prefix + "-dialog-title");
-			this.$titleContent = this.$wrapBox.find("." + this.prefix + "-dialog-title-content");
-			this.$btnClose = this.$wrapBox.find("." + this.prefix + "-dialog-btn-close");
-			this.$dialogContent = this.$wrapBox.find("." + this.prefix + "-dialog-content");
-			this.$btn = this.$wrapBox.find("." + this.prefix + "-dialog-btn");
-			this.$btnConfirm = this.$wrapBox.find("." + this.prefix + "-dialog-btn-confirm");
-			this.$btnCancel = this.$wrapBox.find("." + this.prefix + "-dialog-btn-cancel");
+			this.$wrapBox = $("." + SE.reserveKeyword + "-dialog-wrapBox");
+			this.$mask = this.$wrapBox.find("." + SE.reserveKeyword + "-dialog-mask");
+			this.$dialog = this.$wrapBox.find("." + SE.reserveKeyword + "-dialog");
+			this.$dialogTitle = this.$wrapBox.find("." + SE.reserveKeyword + "-dialog-title");
+			this.$titleContent = this.$wrapBox.find("." + SE.reserveKeyword + "-dialog-title-content");
+			this.$btnClose = this.$wrapBox.find("." + SE.reserveKeyword + "-dialog-btn-close");
+			this.$dialogContent = this.$wrapBox.find("." + SE.reserveKeyword + "-dialog-content");
+			this.$btn = this.$wrapBox.find("." + SE.reserveKeyword + "-dialog-btn");
+			this.$btnConfirm = this.$wrapBox.find("." + SE.reserveKeyword + "-dialog-btn-confirm");
+			this.$btnCancel = this.$wrapBox.find("." + SE.reserveKeyword + "-dialog-btn-cancel");
 		},
 		renderDom: function(){
 
-			this.opts.btnStyle.height = this.opts.isBtn ? this.opts.btnStyle.height : 0 ;
+			this.opts.btnStyle.height = this.opts.existBtn ? this.opts.btnStyle.height : 0 ;
 			if(this.opts.followE !== ""){
 				var followLeft = this.opts.followE.clientX + this.opts.followSpace,
 				followTop = this.opts.followE.clientY + this.opts.followSpace,
@@ -138,14 +139,14 @@
 				height: this.opts.height,
 				border: this.opts.border,
 				left: typeof followLeft !== "undefined" ? followLeft : "50%",
-				top: typeof followTop !== "undefined" ? followTop : "50%",
+				top: typeof followTop !== "undefined" ? followTop : "40%",
 				marginLeft: typeof followLeft !== "undefined" ? 0 : -this.opts.width / 2,
 				marginTop: typeof followTop !== "undefined" ? 0 : -this.opts.height / 2,
 				borderRadius: this.opts.borderRadius,
 				backgroundColor: this.opts.backgroundColor,
 				zIndex: 999
 			});
-			this.opts.isShadow && this.$dialog.css({
+			this.opts.existShadow && this.$dialog.css({
 				boxShadow:"0 3px 9px rgba(0,0,0,.5)"
 			});
 			this.$dialogTitle.css({
@@ -223,6 +224,7 @@
 		},
 		bindEvent: function(){
 			var self = this;
+			this.opts.completed && this.opts.completed();
 			this.$mask.on("click",function(e){
 				e.stopPropagation();
 				self.destroy();

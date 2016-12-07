@@ -1,5 +1,6 @@
 ;(function(){
 	var config = {};
+    config.webDomain = window.globalParam.siteWeb;
 	config.imagesDomain = window.globalParam.siteImages;
     config.editVal = "说点啥吧！";
     config.tipsRoot = "http://" + config.imagesDomain + "/SNS/images/tips/";
@@ -26,7 +27,7 @@
     // upload
     config.photoBoxObj = "#" + SE.reserveKeyword + "-photo-viewbox"; //上传图片
     config.photoMaxNum = 10;
-    config.swfuploadUrl = "http://" + config.imagesDomain + "SNS/js/lib/swfUploadLib.js";
-    config.uploadFlashUrl = "http://" + config.imagesDomain + "SNS/js/lib/swfupload.swf";
+    config.swfuploadUrl = "http://" + config.webDomain + "/SNS/lib/swfUploadLib.js";
+    config.uploadFlashUrl = "http://" + config.webDomain + "/SNS/lib/swfupload.swf";
     SE.config = config;
 })();

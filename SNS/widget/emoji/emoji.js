@@ -14,7 +14,6 @@
 		};
 		$.extend(true,this.opts,opts);
 		
-		this.prefix = SE.reserveKeyword;
 		this.render();
 	};
 
@@ -23,16 +22,16 @@
 			var self = this,
 			arr = [],
 			data = "";
-			arr.push("<div id=" + this.prefix + "-emoji-wrap class='clearfix'>");
+			arr.push("<div id=" + SE.reserveKeyword + "-emoji-wrap class='clearfix'>");
 			for (var i in SE.config.emoji){
-				arr.push('<a href="javascript:;" title="' + i + '"><img class="' + this.prefix + '-emoji-img" src="' + SE.config.emojiRoot  + SE.config.emoji[i] + '" alt="' + i + '"></a>')
+				arr.push('<a href="javascript:;" title="' + i + '"><img class="' + SE.reserveKeyword + '-emoji-img" src="' + SE.config.emojiRoot  + SE.config.emoji[i] + '" alt="' + i + '"></a>')
 			}
 			arr.push("</div>");
 			data = arr.join("");
 			SE.widgets.dialog({
 				title: "emoji",
 				content: data,
-				isBtn: false,
+				existBtn: false,
 				height: 310,
 				width: 408,
 				existMast: false,
@@ -41,8 +40,8 @@
 					height: 30
 				}
 			});
-			this.$wrapBox = $("." + this.prefix + "-dialog-wrapBox");
-			this.$em = this.$wrapBox.find("#" + this.prefix + "-emoji-wrap");
+			this.$wrapBox = $("." + SE.reserveKeyword + "-dialog-wrapBox");
+			this.$em = this.$wrapBox.find("#" + SE.reserveKeyword + "-emoji-wrap");
 			this.$emImg = this.$em.find("a");
 		},
 		renderDom: function(){

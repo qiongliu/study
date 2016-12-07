@@ -64,6 +64,7 @@
 <script>
 	$(function(){
 		window.globalParam = {
+			siteWeb: "localhost:3000",
 			siteImages: "localhost:3000"
 		};
 
@@ -104,20 +105,10 @@
 			
 
 			$(".photo-upload").on('click',function(){
-				se.loader('upload',function(){
-					var photoNum = $(SE.config.photoBoxObj).find("img").length,
-					allowNum = SE.config.photoMaxNum - photoNum;
-					if(allowNum <= 0){
-						SE.widgets.tips({
-							type: "failing",
-							content: "最多只能添加" + SE.config.photoMaxNum + "张照片！"
-						});
-						return false;
-					}
+				se.loader(["dialog","upload"],function(){
 					SE.widgets.upload({
-						file_upload_limit: allowNum,
-						file_queue_limit: allowNum,
-						
+						file_upload_limit: 5,
+						file_queue_limit: 5
 					});
 				});
 			});
