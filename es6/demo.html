@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>es6</title>
+</head>
+<body>
+	<script src="https://google.github.io/traceur-compiler/bin/traceur.js"></script>
+	<script src="https://google.github.io/traceur-compiler/bin/BrowserSystem.js"></script>
+	<script src="https://google.github.io/traceur-compiler/src/bootstrap.js"></script>
+	<script type="module">
+		// import './Greeter.js';
+	</script>
+	<script type="module">
+	 	class Calc {
+	    	constructor(){
+	     		console.log('Calc constructor');
+	   		}
+	    	add(a, b){
+	    	  return a + b;
+    		}
+ 		}
+
+	 	var c = new Calc();
+	 	console.log(c.add(4,5));
+	</script>
+</body>
+</html>
