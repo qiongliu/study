@@ -130,4 +130,4 @@
 > `git push origin master/dev
 
 #### 8.抓取远程分支
-> `git pull`
+> `git pull origin master/dev`
