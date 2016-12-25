@@ -3,8 +3,8 @@
     config.webDomain = window.globalParam.siteWeb;
 	config.imagesDomain = window.globalParam.siteImages;
     config.editVal = "说点啥吧！";
-    config.tipsRoot = "http://" + config.imagesDomain + "/SNS/images/tips/";
-	config.emojiRoot = "http://" + config.imagesDomain + "/SNS/images/emoji/";
+    config.tipsRoot = "http://" + config.imagesDomain + "/study/SNS/images/tips/";
+	config.emojiRoot = "http://" + config.imagesDomain + "/study/SNS/images/emoji/";
 	config.emoji = {
         "撇嘴": "1.gif", "色": "2.gif", "发呆": "3.gif", "得意": "4.gif", "流泪": "5.gif", "害羞": "6.gif",
         "闭嘴": "7.gif", "睡": "8.gif", "大哭": "9.gif", "尴尬": "10.gif", "发火": "11.gif", "调皮": "12.gif",
