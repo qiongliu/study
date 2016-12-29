@@ -1,0 +1,12 @@
+/*自动合成雪碧图*/
+.i-index {
+	display: inline-block;
+	width: 60px;
+	height: 20px;
+}
+.city {
+	background: url("../../img/index/city.png") center center no-repeat;
+}
+.county {
+	background: url("../../img/index/county.png") center center no-repeat;
+}
