@@ -15,9 +15,8 @@ scss文件常以下划线开始命名：如"_name.scss"；
 //在这个文件里面engine.rb，添加一行代码
 //Encoding.default_external = Encoding.find('utf-8')
 //放在所有的require XXXX 之后即可。
-@import '_reset.scss';
-@import 'import.css'; 
-@import 'tools';
+@import 'common/_reset.scss';
+@import 'common/tools';
 
 //变量-属性值
 $fontSize: 16px;
