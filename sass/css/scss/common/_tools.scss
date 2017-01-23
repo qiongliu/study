@@ -77,4 +77,15 @@
     background: $color url($url) $align $vertical no-repeat;
 }
 
+//居中
+@mixin center($width,$height) {
+    width: $width;
+    height: $height;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -$width/2;
+    margin-top: -$height/2;
+}
+
 

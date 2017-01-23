@@ -83,39 +83,39 @@ gulp.task('concat',function(){
 
 
 //自动合成雪碧图
-function SpriterGroup(){
-	var cssPath = 'E:/note/study/gulp/src/css/';
-	var cssPaths = ['index/index.css','base/base.css'];
+// function SpriterGroup(){
+// 	var cssPath = 'E:/note/study/gulp/src/css/';
+// 	var cssPaths = ['index/index.css','base/base.css'];
 
-    for(var i = 0; i < cssPaths.length; i++){
-    	console.log(cssPath + cssPaths[i])
-        gulp.src(cssPath + cssPaths[i])
-        	.pipe(spriter({
-	            'spriteSheet' : 'E:/note/study/gulp/dist/img/spriter_' + i +'.png',
-	            'pathToSpriteSheetFromCSS' : '../img/spriter_' + i + '.png'
-	        }))
-	        .pipe(gulp.dest('E:/note/study/gulp/dist/css/'));
-    }
-}
+//     for(var i = 0; i < cssPaths.length; i++){
+//     	console.log(cssPath + cssPaths[i])
+//         gulp.src(cssPath + cssPaths[i])
+//         	.pipe(spriter({
+// 	            'spriteSheet' : 'E:/note/study/gulp/dist/img/spriter_' + i +'.png',
+// 	            'pathToSpriteSheetFromCSS' : '../img/spriter_' + i + '.png'
+// 	        }))
+// 	        .pipe(gulp.dest('E:/note/study/gulp/dist/css/'));
+//     }
+// }
 
 gulp.task('spriter', function(){
     SpriterGroup();
 });
 //网络评比
-// function SpriterGroup(){
-// 	var cssPath = 'E:/yun/HengQian.WEB/images/theme/Dream/css/ping/';
-// 	var imgPath = 'E:/yun/HengQian.WEB/images/theme/Dream/img/ping/';
-// 	var cssPaths = ['editWork.css','manage.css','WorkList.css','WorKInfo.css','uploadResource.css','RankList.css','MyTask.css','expert.css','default.css','Billboard.css'];
+function SpriterGroup(){
+	var cssPath = 'E:/yun/HengQian.Images/theme/Dream/css/ping/';
+	var imgPath = 'E:/yun/HengQian.Images/theme/Dream/img/ping/';
+	var cssPaths = ['editWork.css','manage.css','WorkList.css','WorKInfo.css','uploadResource.css','RankList.css','MyTask.css','expert.css','default.css','Billboard.css'];
 
-//     for(var i = 0; i < cssPaths.length; i++){
-//         gulp.src(cssPath + cssPaths[i])
-//         	.pipe(spriter({
-// 	            'spriteSheet' : imgPath + 'dist/wp_spriter_' + + i +'.png',
-// 	            'pathToSpriteSheetFromCSS' : '../../img/ping/wp_spriter_' + i + '.png'
-// 	        }))
-// 	        .pipe(gulp.dest(cssPath + 'dist/'));
-//     }
-// }
+    for(var i = 0; i < cssPaths.length; i++){
+        gulp.src(cssPath + cssPaths[i])
+        	.pipe(spriter({
+	            'spriteSheet' : imgPath + 'dist/wp_spriter_' + + i +'.png',
+	            'pathToSpriteSheetFromCSS' : '../../img/ping/wp_spriter_' + i + '.png'
+	        }))
+	        .pipe(gulp.dest(cssPath + 'dist/'));
+    }
+}
 
 
 

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>click</title>
+	<style>
+		* { margin: 0; padding: 0; }
+		ul { list-style: none; }
+		a { text-decoration: none; }
+		.m-nav { width: 1000px; margin: 50px auto; }
+		.m-nav li { float: left; }
+		.m-nav a { display: inline-block; padding: 10px 20px; color: #fff; background-color: #000; height: 20px; line-height: 20px; text-align: center; font-size: 14px; }
+		.m-nav a:hover, .m-nav a.z-active { background-color: #fff; color: #000; }
+	</style>
+</head>
+<body>
+	<div class="m-nav">
+		<ul>
+			<li><a class="u-nav-btn z-active" href="javascript:;">html</a></li>
+			<li><a class= "u-nav-btn" href="javascript:;">css</a></li>
+			<li><a class= "u-nav-btn" href="javascript:;">javascript</a></li>
+			<li><a class= "u-nav-btn" href="javascript:;">jquery</a></li>
+			<li><a class= "u-nav-btn" href="javascript:;">react</a></li>
+			<li><a class= "u-nav-btn" href="javascript:;">nodejs</a></li>
+		</ul>
+	</div>
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		$(function(){
+			var lastActive = $('.u-nav-btn').eq(0);
+			$('.m-nav').on('click',".u-nav-btn",function(){
+				var self = $(this);
+				if(lastActive) {
+					lastActive.removeClass('z-active');
+				}
+				self.addClass('z-active');
+				lastActive = self;
+			});
+
+			function arrCheck(arr){
+				var hash = {},
+				newArr = [];
+				for(var i = 0, len = arr.length; i < len; i++) {
+					if(!hash[arr[i]]) {
+						newArr.push(arr[i]);
+						hash[arr[i]] = arr[i];
+					}
+				}
+				console.log(newArr);
+			}
+
+			arrCheck([1,2,2,22,11,11,33,'dd',"dd"]);
+		});
+	</script>
+</body>
+</html>
