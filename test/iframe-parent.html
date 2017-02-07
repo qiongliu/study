@@ -11,19 +11,24 @@
 	<h3>获取子窗口的方法：</h3>
 	<iframe src="iframe-child.html" id="iframeChild" name="iframeChild" frameborder="1" width="600" height="300"></iframe>
 	<script>
+		//通过window.name实现跨域，window.name的值只能是字符串的形式，这个字符串的大小最大能允许2M左右甚至更大的一个容量
+		// window.name = 'liuqiong';
+		// setTimeout(function(){location.href="iframe-child.html"},3000)
+
+
 		//子窗口要调用此方法，所以要写在$(function(){})外面
-		var parentMethod = function(text){
-			//js 获取子窗口的元素
-			//frames 属性返回窗口中所有命名的框架。
-			var contentJs = window.frames["iframeChild"].document.getElementsByTagName("h1")[0]; 
-			// jquery 获取子窗口的元素
-			// contents() 方法获得匹配元素集合中每个元素的子节点，包括文本和注释节点。
-			var contentJq = $("#iframeChild").contents();
-			var h1 = contentJq.find("h1");
-			$("h2").append("jQuery获取," + h1.text() + ";js获取," + contentJs.innerHTML);
-			var h4 = contentJq.find("h4");
-			h4.append("这是父窗口返回的数据");
-		};
+		// var parentMethod = function(text){
+		// 	//js 获取子窗口的元素
+		// 	//frames 属性返回窗口中所有命名的框架。
+		// 	var contentJs = window.frames["iframeChild"].document.getElementsByTagName("h1")[0]; 
+		// 	// jquery 获取子窗口的元素
+		// 	// contents() 方法获得匹配元素集合中每个元素的子节点，包括文本和注释节点。
+		// 	var contentJq = $("#iframeChild").contents();
+		// 	var h1 = contentJq.find("h1");
+		// 	$("h2").append("jQuery获取," + h1.text() + ";js获取," + contentJs.innerHTML);
+		// 	var h4 = contentJq.find("h4");
+		// 	h4.append("这是父窗口返回的数据");
+		// };
 
 		$(function(){
 			//获取子窗口的方法
