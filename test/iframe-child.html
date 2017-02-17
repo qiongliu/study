@@ -6,65 +6,65 @@
 	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
 </head>
 <body>
-	<h1 id="h1">子窗口iframe-child</h1>
+	<h1 id="h1">子窗口：iframe-child</h1>
 	<h2>获取父窗口的url:</h2>
 	<h3>获取父窗口的元素：</h3>
 	<h4>调用父窗口的方法：</h4>
 	<h5></h5>
 	<h6></h6>
 	<script>
-	//通过window.name实现跨域
+	// 通过window.name实现跨域
 		// alert(window.name);
 		// console.log(window.location.href);
-		// $(function(){
-		// 	var url = null; 
-	 //        if (parent !== window) { 
-	 //            try {
-	 //                url = parent.location.href; 
-	 //            } catch (e) { 
-	 //            	// referrer 属性可返回载入当前文档的文档的 URL,
-	 //            	// 如果当前文档不是通过超级链接访问的，则为 null。
-	 //                url = document.referrer; 
-	 //            } 
-	 //        }
-		// 	$("h2").append(url);
+		$(function(){
+			var url = null; 
+	        if (parent !== window) { 
+	            try {
+	                url = parent.location.href; 
+	            } catch (e) { 
+	            	// referrer 属性可返回载入当前文档的文档的 URL,
+	            	// 如果当前文档不是通过超级链接访问的，则为 null。
+	                url = document.referrer; 
+	            } 
+	        }
+			$("h2").append(url);
 
 
-		// 	//判断iframe是否跨域
-		// 	// var isCrossDomain = (function(){
-  //  //            	var flag= false;
-  //  //              if (parent !== window) { 
-	 //  //           	var url = null; 
-	 //  //               try {
-	 //  //                   url = parent.location.href; 
-	 //  //               } 
-	 //  //               catch (e) { 
-	 //  //                   url = document.referrer; 
-	 //  //               } 
-  //  //              var parentDomain = url.split('.')[1].split('\/')[0];
-  //  //              var iframeDomain = location.href.split('.')[1].split('\/')[0];
-  //  //              if(parentDomain==iframeDomain) flag=false;
-  //  //              }
-  //  //              return flag;
-  //  //          })(); 
+			// 判断iframe是否跨域
+			var isCrossDomain = (function(){
+              	var flag= false;
+                if (parent !== window) { 
+	            	var url = null; 
+	                try {
+	                    url = parent.location.href; 
+	                } 
+	                catch (e) { 
+	                    url = document.referrer; 
+	                } 
+                var parentDomain = url.split('.')[1].split('\/')[0];
+                var iframeDomain = location.href.split('.')[1].split('\/')[0];
+                if(parentDomain==iframeDomain) flag=false;
+                }
+                return flag;
+            })(); 
 
-		// 	// 用jquery获取父窗口的元素
-		// 	var contentJq = $("h1",parent.document);
-		// 	//用js获取父窗口的元素
-		// 	var contentJs = parent.document.getElementsByTagName("h1")[0];
-		// 	$("h3").append("js获取."+contentJq.text() + ';jQuery获取.' + contentJs.innerHTML);
+			// 用jquery获取父窗口的元素
+			var contentJq = $("h1",parent.document);
+			//用js获取父窗口的元素
+			var contentJs = parent.document.getElementsByTagName("h1")[0];
+			$("h3").append("js获取."+contentJq.text() + ';jQuery获取.' + contentJs.innerHTML);
 
-		// 	//调用父窗口的方法
-	 //        $("h1").on('click',function(){
-		// 		parent.parentMethod();
-	 //        });
+			//调用父窗口的方法
+	        $("h1").on('click',function(){
+				parent.parentMethod();
+	        });
 
-		// });
+			//这是父窗口要调用的方法
+	        window.childMathod = function(){
+	        	$("h3",parent.document).append("这是子窗口返回的数据");
+	        };				
 
-		//这是父窗口要调用的方法，所以要写在$(function(){})外面
-        var childMathod = function(){
-        	$("h3",parent.document).append("这是子窗口返回的数据");
-        };				
+		});
 	</script>
 </body>
 </html>
