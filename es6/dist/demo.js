@@ -4,7 +4,14 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+//let、const
+var i = '10';
+for (var _i = 0; _i < 4; _i++) {}
+// console.log(i);
+
+
 //定义类
+
 var Point = function () {
   function Point(x, y) {
     _classCallCheck(this, Point);
@@ -23,7 +30,11 @@ var Point = function () {
   return Point;
 }();
 
-var p = new Point(1, 2);
+var p = new Point(3, 2);
 
 var str = p.toString();
-console.log(str);
+// console.log(str);
+// 
+var info = { name: 'liyi', age: 30 };
+var tmp = '<div>\n<h1>hello ' + info.name + '</h1>\n<h2>hello template</h2>\n</div>';
+$(".main").append(tmp);

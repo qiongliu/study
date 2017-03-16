@@ -1,0 +1,14 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+#canvas {
+	display: block;
+	margin: 20px auto;
+	border: 1px solid #ccc;
+}
+
+.btn {
+	display: block;
+	margin: 20px auto;
+}

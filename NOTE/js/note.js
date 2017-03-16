@@ -258,7 +258,7 @@ define(function(){
 					self.list.css('left', -self.width);
 				}	
 			});
-			debugger; //设置断点
+			
 		},
 		sideBar:function(){
 			var top = this.header.height() + this.main.height() -this.sidebarHeight;
