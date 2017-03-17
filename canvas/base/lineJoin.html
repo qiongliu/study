@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>line-join</title>
+	<style>
+		#line-join{
+			display: block;
+			margin: 20px auto;
+			background-color: #ccc;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="line-join">
+		当前浏览器不支持，请更换浏览器
+	</canvas>
+	<script>
+		var lineJoin = document.getElementById('line-join');
+		var context = lineJoin.getContext('2d');
+
+		lineJoin.width = 1024;
+		lineJoin.height = 600;
+
+		context.moveTo(20, 20);
+		context.lineTo(200,200);
+		context.lineTo(20,200);
+
+		//lineJoin默认为miter
+		context.lineWidth = 20;
+		context.stroke();
+
+		context.moveTo(320, 20);
+		context.lineTo(500,200);
+		context.lineTo(320,200);
+
+		//lineJoin为bevel
+		context.lineWidth = 20;
+		context.lineJoin = 'bevel';
+		context.stroke();
+
+		context.beginPath();
+		context.moveTo(720, 20);
+		context.lineTo(900,200);
+		context.lineTo(720,200);
+
+		//lineJoin为round
+		context.lineWidth = 20;
+		context.lineJoin = 'round';
+		context.stroke();
+
+
+	</script>
+</body>
+</html>

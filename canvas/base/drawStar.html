@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>drawStar</title>
+	<style>
+		#canvas{
+			display: block;
+			border: 1px solid #ccc;
+			margin: 20px auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas">
+		浏览器不支持，请更换浏览器
+	</canvas>
+	<script>
+		var canvas = document.getElementById('canvas');
+		canvas.width = 1024;
+		canvas.height = 600;
+
+		var context = canvas.getContext('2d');
+
+		// context.lineJoin = 'bevel';
+		// context.lineJoin = 'round';
+		// context.lineJoin = 'miter';
+		//lineJoin为miter时，miterLimit才有效，是指线段中线形成的角与线段外边形成的角的距离；
+		// context.miterLimit = 20;
+		
+		fillStyle = '#000';
+		context.fillRect(0,0,canvas.width,canvas.height);
+
+		for(var i = 0;i < 200;i++){
+			var r = Math.random() * 10 + 10;
+			var x = Math.random() * canvas.width;
+			var y = Math.random() * canvas.height;
+			var m = 0;
+			var n = 0;
+			var rotate = Math.random() * 360;
+			if((x > m+20 || x < m - 20) && (y > n+20 || y<n-20)){
+				if(x < r){
+					x = r;
+				}else if(x > canvas.width -r){
+					x = canvas.width - r;
+				}
+				if(y < r){
+					y = r;
+				}else if(y > canvas.height -r){
+					y = canvas.height - r;
+				}
+				m = x;
+				n = y;
+				drawStar(context,r,r/2,x,y,rotate);	
+			}		
+		}
+		
+
+		function drawStar(ctx,r,R,x,y,rotate){
+			ctx.beginPath();
+			for(var i = 0;i < 5;i++){
+				ctx.lineTo(Math.cos((18+i*72-rotate)/180*Math.PI) * R + x,-Math.sin((18+i*72-rotate)/180*Math.PI) * R + y);
+				ctx.lineTo(Math.cos((54+i*72-rotate)/180*Math.PI) * r + x,-Math.sin((54+i*72-rotate)/180*Math.PI) * r + y);
+			}
+			ctx.closePath();
+
+			ctx.fillStyle = '#fb3';
+			ctx.strokeStyle = '#fd5';
+			ctx.lineWidth = 2;
+			ctx.lineJoin = 'round';
+
+			ctx.fill();
+			ctx.stroke();
+		}
+	</script>
+</body>
+</html>

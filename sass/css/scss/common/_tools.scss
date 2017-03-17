@@ -1,0 +1,91 @@
+@mixin ellipsis() {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+	-ms-text-overflow: ellipsis;
+}
+
+@mixin inline-block() {
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+}
+
+@mixin arrow($direction,$size,$color) {
+    width: 0;
+    height: 0;
+    line-height: 0;
+    font-size: 0;
+    overflow: hidden;
+    border-width: $size;
+    cursor: pointer;
+    @if $direction == top {
+        border-style: dashed dashed solid dashed;
+        border-color: transparent transparent $color transparent;
+        border-top: none;
+    }
+    @else if $direction == bottom {
+        border-style: solid dashed dashed dashed;
+        border-color: $color transparent transparent transparent;
+        border-bottom: none;
+    }
+    @else if $direction == right {
+        border-style: dashed dashed dashed solid;
+        border-color: transparent transparent transparent $color;
+        border-right: none;
+    }
+    @else if $direction == left {
+        border-style: dashed solid dashed dashed;
+        border-color: transparent $color transparent transparent;
+        border-left: none;
+    }
+}
+
+@mixin clearfix($index) {
+	@if $index == 1 {
+		*zoom: 1;
+		&:after {
+			content: "";
+			display: table;
+			clear: both;
+		}
+	} @else if $index == 2 {
+	    *height: 1%;
+		&:after {
+	        clear: both;
+	        content: '.';
+	        display: block;
+	        height: 0;
+	        line-height: 0;
+	        overflow: hidden;
+	    }
+	}
+}
+
+@mixin comWidth($width){
+    width: $width;
+    margin: 0 auto;
+}
+
+@mixin opacity($opacity:1){
+    opacity: $opacity;
+    filter: alpha(opacity = $opacity * 100);
+}
+
+//两个参数
+@mixin bg($color:transparent,$url:'',$align:center,$vertical:center){
+    background: $color url($url) $align $vertical no-repeat;
+}
+
+//居中
+@mixin center($width,$height) {
+    width: $width;
+    height: $height;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -$width/2;
+    margin-top: -$height/2;
+}
+
+

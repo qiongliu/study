@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>scale</title>
+	<style>
+		#canvas,#range,#canvas_water {
+			display: block;
+			margin: 20px auto;
+			/*border: 1px solid #ccc;*/
+		}
+		#range {
+			width: 500px;
+		}
+		#canvas_water {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas">你的浏览器不支持html5哦！</canvas>
+	<canvas id="canvas_water">你的浏览器不支持html5哦！</canvas>
+	<canvas id="canvas_magnifier">你的浏览器不支持html5哦！</canvas>
+	<input id="range" type="range" min="1.0" max="5.0" value="2.0" step=".1">
+	<script>
+		window.onload = function() {
+			var canvas = document.getElementById('canvas'),
+			canvasWater = document.getElementById('canvas_water'),
+			canvasMagnifier = document.getElementById('canvas_magnifier'),
+			ctx = canvas.getContext('2d'),
+			ctxWater = canvasWater.getContext('2d'),
+			ctxMagnifier = canvasMagnifier.getContext('2d'),
+			img = new Image(),
+			range = document.getElementById('range'),
+			scaleVal = range.value;
+
+			canvas.width = 960;
+			canvas.height = 540;
+			canvasWater.width = 200;
+			canvasWater.height = 30;
+
+			ctxWater.font = '30px bold';
+			ctxWater.fillStyle = 'red';
+			ctxWater.textBaseline = 'middle';
+			ctxWater.fillText("==liuqiong==",10,10);
+
+			img.src = 'scale.jpg';
+
+			function scaleImage(scaleVal) {
+				ctx.clearRect(0,0,canvas.width,canvas.height);
+				var imageWidth = canvas.width * scaleVal,
+				imageHeight = canvas.height * scaleVal,
+				dx = canvas.width / 2 - imageWidth / 2,
+				dy = canvas.height / 2 - imageHeight / 2;
+
+				ctx.drawImage(img, dx, dy, imageWidth, imageHeight); 
+				ctx.drawImage(canvasWater, canvas.width - canvasWater.width, canvas.height - canvasWater.height); 
+			}
+
+			function countOffset(x,y) {
+				var bBox = canvas.getBoundingClientRect(),
+				mouseX = x - bBox.left,
+				mouseY = y - bBox.top;
+				return { x: mouseX, y: mouseY};
+			}
+
+			img.onload = function() {
+				scaleImage(scaleVal);
+				range.onmousemove = function(){
+					var scaleVal = range.value;
+					scaleImage(scaleVal);
+				};
+				canvasMagnifier.width = img.width;
+				canvasMagnifier.height = img.height;
+				ctxMagnifier.drawImage(img, 0, 0, canvasMagnifier.width, canvasMagnifier.height);
+				var isMouseDown = false;
+
+				canvas.onmousedown = function(e) {
+					isMouseDown = true;
+					var mouseOffset = countOffset(e.clientX, e.clientY);
+				};
+
+				canvas.onmousemove = function(e) {
+					if (isMouseDown) {
+						var mouseOffset = countOffset(e.clientX, e.clientY);
+					}
+				};
+
+				canvas.onmouseup = function(e) {
+					isMouseDown = false;
+				};
+
+				canvas.onmouseout = function(e) {
+					isMouseDown = false;
+				};
+			};
+
+		};
+	</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>pixel</title>
+	<style>
+		canvas {
+			margin-left: 100px;
+			border: 1px solid #ccc;
+		}
+		input {
+			display: block;
+			margin: 20px auto;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="src"></canvas>
+	<canvas id="dest"></canvas>
+	<input id="click" type="button" value="click me">
+	<input type="button" value="grey">
+	<input type="button" value="blackWhite">
+	<input type="button" value="inverse">
+	<input type="button" value="blur">
+	<script>
+		window.onload = function() {
+			var canvasSrc = document.getElementById('src'),
+			canvasDest = document.getElementById('dest'),
+			ctxSrc = canvasSrc.getContext('2d'),
+			ctxDest = canvasDest.getContext('2d'),
+			click = document.getElementsByTagName('input')[0],
+			grey = document.getElementsByTagName('input')[1],
+			blackWhite = document.getElementsByTagName('input')[2];
+			inverse = document.getElementsByTagName('input')[3];
+			blur = document.getElementsByTagName('input')[4];
+			ee = document.getElementsByTagName('input')[2];
+			rr = document.getElementsByTagName('input')[2];
+
+			canvasSrc.width = canvasDest.width = 480;
+			canvasSrc.height = canvasDest.height = 270;
+
+			var img = new Image();
+			img.src = 'pixel.jpg';
+			img.onload = function() {
+				ctxSrc.drawImage(img, 0, 0, canvasSrc.width, canvasSrc.height);
+				click.onclick = function() {
+					var srcData = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height);
+					ctxDest.putImageData(srcData, 0, 0);
+				};
+				// grey.onclick = function() {
+				// 	var srcData = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height);
+				// 	pixelData = srcData.data;
+				// 	for (var i = 0,len = pixelData.length; i < len; i++) {
+				// 		var r = pixelData[4 * i + 0];
+				// 		var g = pixelData[4 * i + 1];
+				// 		var b = pixelData[4 * i + 2];
+
+				// 		var grey = r * 0.3 + g * 0.59 + b * 0.11;
+
+				// 		pixelData[4 * i + 0] = grey;
+				// 		pixelData[4 * i + 1] = grey;
+				// 		pixelData[4 * i + 2] = grey;
+
+				// 	}
+				// 	ctxDest.putImageData(srcData, 0, 0);
+				// };
+				// blackWhite.onclick = function() {
+				// 	var srcData = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height);
+				// 	pixelData = srcData.data;
+				// 	for (var i = 0,len = pixelData.length; i < len; i++) {
+				// 		var r = pixelData[4 * i + 0];
+				// 		var g = pixelData[4 * i + 1];
+				// 		var b = pixelData[4 * i + 2];
+
+				// 		var grey = r * 0.3 + g * 0.59 + b * 0.11;
+
+				// 		if( grey < 255 / 2) {
+				// 			var bw = 0;
+				// 		} else {
+				// 			var bw = 255;
+				// 		}
+
+				// 		pixelData[4 * i + 0] = bw;
+				// 		pixelData[4 * i + 1] = bw;
+				// 		pixelData[4 * i + 2] = bw;
+
+				// 	}
+				// 	ctxDest.putImageData(srcData, 0, 0);
+				// };
+				// inverse.onclick = function() {
+				// 	var srcData = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height);
+				// 	pixelData = srcData.data;
+				// 	for (var i = 0,len = pixelData.length; i < len; i++) {
+				// 		var r = pixelData[4 * i + 0];
+				// 		var g = pixelData[4 * i + 1];
+				// 		var b = pixelData[4 * i + 2];
+
+				// 		pixelData[4 * i + 0] = 255 - r;
+				// 		pixelData[4 * i + 1] = 255 - g;
+				// 		pixelData[4 * i + 2] = 255 - b;
+
+				// 	}
+				// 	ctxDest.putImageData(srcData, 0, 0);
+				// };
+				// blur.onclick = function() {
+				// 	var srcData = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height),
+				// 	pixelData = srcData.data;
+
+				// 	var tepSrcData = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height),
+				// 	teppixelData = srcData.data;
+
+				// 	var blurR = 3,
+				// 	blurNum = (2 * blurR + 1) * (2 * blurR + 1);
+				// 	for(var i = blurR; i < srcData.height - blurR; i++) {
+				// 		for (var j = blurR; j < srcData.width - blurR; j++) {
+				// 			var totalR = 0,
+				// 			totalG = 0,
+				// 			totalB = 0;
+				// 			for(var m = -blurR; m <= blurR; m++) {
+				// 				for(var n = -blurR; n <= blurR; n++) {
+				// 					var x = i + m,
+				// 					y = j + n;
+
+				// 					var nowPixel = x * srcData.width + y;
+				// 					totalR += teppixelData[4 * nowPixel + 0];
+				// 					totalG += teppixelData[4 * nowPixel + 1];
+				// 					totalB += teppixelData[4 * nowPixel + 2];
+				// 				}
+				// 			}
+				// 			var nowPixel = i * srcData.width + j;
+				// 			pixelData[4 * nowPixel + 0] = totalR / blurNum;
+				// 			pixelData[4 * nowPixel + 1] = totalG / blurNum;
+				// 			pixelData[4 * nowPixel + 2] = totalB / blurNum;
+				// 		}
+				// 	}
+				// 	ctxDest.putImageData(srcData, 0, 0);
+				// }
+			};
+		};
+	</script>
+</body>
+</html>

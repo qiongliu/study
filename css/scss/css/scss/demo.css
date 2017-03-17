@@ -1,0 +1,160 @@
+@charset "UTF-8";
+/* 这是标准的注释方式，单行、多行都可以；
+会显示在生成的css文件中；
+scss文件常以下划线开始命名：如"_name.scss"；
+通过@impprt引入的scss文件，会显示在生成的css文件中，
+通过@import引入的css文件，则会以@import url()方式出现在生成的css文件中。 
+*/
+@import url(import.css);
+body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
+dl, dt, dd, ul, ol, li,
+pre,
+fieldset, lengend, button, input, textarea,
+th, td {
+  /* table elements 表格元素 */
+  margin: 0;
+  padding: 0; }
+
+body,
+button, input, select, textarea {
+  /*font : font-style || font-variant || font-weight || font-size/line-height || font-family */
+  font: 12px/1 "Microsoft Yahei",Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+  /* 用 ascii 字符表示，使得在任何编码下都无问题 */
+  outline: none;
+  background: none; }
+
+h1 {
+  font-size: 18px; }
+
+h2 {
+  font-size: 16px; }
+
+h3 {
+  font-size: 14px; }
+
+h4, h5, h6 {
+  font-size: 100%; }
+
+/* 重置列表元素 */
+ul, ol {
+  list-style: none; }
+
+/* 重置文本格式元素 */
+a {
+  text-decoration: none; }
+
+fieldset, img {
+  border: none; }
+
+/* 让链接里的 img 无边框 */
+button, input, select, textarea {
+  font-size: 100%;
+  /* 使得表单元素在 ie 下能继承字体大小 */ }
+
+/* 重置表格元素 */
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+/* 重置 hr */
+hr {
+  border: none;
+  height: 1px; }
+
+/* 让非ie浏览器默认也显示垂直滚动条，防止因滚动条引起的闪烁 */
+html {
+  overflow-y: scroll; }
+
+/*清空浮动*/
+.clearfix:after {
+  content: " ";
+  display: table;
+  clear: both; }
+
+.clearfix {
+  zoom: 1; }
+
+/*公共样式*/
+/*左右浮动*/
+.fl {
+  float: left; }
+
+.fr {
+  float: right; }
+
+.if {
+  color: #f00; }
+
+body {
+  font: 16px/1.5 "Microsoft YaHei";
+  background-color: #ccc; }
+
+a:link {
+  color: #50641F; }
+a:visited {
+  color: #7F1010; }
+a:hover {
+  color: #0F8437; }
+a:active {
+  color: #153085; }
+
+.comWidth {
+  width: 1000px;
+  margin: 0 auto; }
+
+.nav {
+  height: 34px;
+  line-height: 34px; }
+  .logo, .movie {
+    float: left;
+    width: 100px;
+    padding-left: 20px; }
+    .logo img, .movie img {
+      vertical-align: middle;
+      width: 30%; }
+  .nav ul {
+    list-style: none;
+    text-align: right;
+    overflow: hidden; }
+    .nav ul li {
+      display: inline-block; }
+    .nav ul a {
+      display: inline-block;
+      padding: 0 20px;
+      text-align: center; }
+      .nav ul a span {
+        color: #603516; }
+        .nav ul a span:hover {
+          color: #E512E3; }
+
+.container {
+  font-size: 12px;
+  font-weight: 800;
+  font-family: "SimSun",Sans-serif;
+  border-left-width: 2px; }
+
+.container {
+  margin-top: 50px; }
+  .left {
+    width: 320px;
+    height: 200px;
+    background-color: #ff0000;
+    float: left;
+    border: 1px solid #000;
+    opacity: 0.5;
+    filter: alpha(opacity=50);
+    background: url("../1.jpg") 50% 50% no-repeat; }
+  .right {
+    width: 320px;
+    height: 200px;
+    float: right;
+    background-color: #990000; }
+
+@media only screen and (min-screen: 320px) {
+  p {
+    border: 1px solid #000; }
+
+  body {
+    font-size: 12px; } }
+
+/*# sourceMappingURL=demo.css.map */

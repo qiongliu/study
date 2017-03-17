@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>clip</title>
+	<style>
+	.wrap{
+		position: relative;
+	}
+	#canvas{
+		display: block;
+		border: 1px solid #ccc;
+		margin: 20px auto;
+	}
+	#btn{
+		width: 100px;
+		height: 100px;
+		background: #fff;
+		position: absolute;
+		top: 50px;
+		left: 50px;
+	}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<canvas id="canvas">
+			浏览器不支持
+		</canvas>
+		<div id="btn">
+			停止
+		</div>
+	</div>
+	<script>
+	window.onload = function(){
+		var c = document.getElementById('canvas');
+		var btn = document.getElementById('btn');
+		var cxt = c.getContext('2d');
+		c.width = 1024;
+		c.height = 600;
+		var searchLight = {x:c.width/2,y:c.height/2,r:100,vx:Math.random()*5+10,vy:Math.random()*5+10};
+		
+		btn.onclick = function(){
+			clearInterval(timer);
+		}
+
+		var timer = setInterval(function(){
+			drawArc(cxt);
+			updata(c.width,c.height);
+		}, 40)
+
+		function drawArc(cxt){
+			
+			cxt.clearRect(0,0,c.width,c.height);
+
+			cxt.save();
+
+			cxt.beginPath();
+			cxt.fillStyle = '#000';
+			cxt.fillRect(0,0,c.width,c.height);
+
+			cxt.beginPath();
+			cxt.fillStyle = '#fff';
+			cxt.arc(searchLight.x,searchLight.y,searchLight.r,0,Math.PI*2);
+			cxt.fill();
+			cxt.clip();
+
+			cxt.font = "bold 100px 'Microsoft Yahei'";
+			cxt.textAlign = 'center';
+			cxt.textBaseline = 'middle';
+			cxt.fillStyle = '#000';
+			cxt.fillText("好好学习，天天向上",c.width/2,c.height/2,500);
+
+			cxt.restore();
+		}
+
+		function updata(cWidth,cHeight){
+			searchLight.x += searchLight.vx;
+			searchLight.y += searchLight.vy;
+
+			if(searchLight.x-searchLight.r <= 0){
+				searchLight.vx = -searchLight.vx;
+				searchLight.x  = searchLight.r;
+			}
+			if(searchLight.x + searchLight.r >= cWidth){
+				searchLight.vx = -searchLight.vx;
+				searchLight.x  = cWidth - searchLight.r;
+			}
+			if(searchLight.y-searchLight.r <= 0){
+				searchLight.vy = -searchLight.vy;
+				searchLight.y  = searchLight.r;
+			}
+			if(searchLight.y + searchLight.r >= cHeight){
+				searchLight.vy = -searchLight.vy;
+				searchLight.y  = cHeight - searchLight.r;
+			}
+		}
+	}
+		
+	</script>
+</body>
+</html>
