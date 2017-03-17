@@ -3,6 +3,7 @@ html{
 	color: #222;
 	font-size: 62.5%;
 }
+/*鼠标选中文字的样式*/
 ::selection{
 	background-color: #4DD119;
 	text-shadow: none;
@@ -14,14 +15,14 @@ ul{
 li{
 	list-style-type: none;
 }
-/*¹¤¾ßÀà*/
+/*工具样式*/
 .center-block{
 	display: block;
 	margin-right: auto;
 	margin-left: auto;
 }
 .pull-right{
-	float: right !important;  /*!mportant ÓµÓÐ×î¸ßµÄÈ¨ÖØ*/
+	float: right !important;  /*!mportant 优先级最高*/
 }
 .pull-left{
 	float: left !important;
@@ -36,22 +37,22 @@ li{
 	text-align: center !important;
 }
 .hide{
-	display: none !important;
+	display: none !important; 
 }
 .show{
-	display: block !important;  /*displayÒþ²Ø²»»á±£ÁôÔ­ÓÐ¿Õ¼ä*/
+	display: block !important;  
 }
 .invisible{
-	visibility: hidden;  /*visibility»á±£ÁôÔ­ÓÐ¿Õ¼ä*/
+	visibility: hidden; 
 }
 .text-hide{
-	font: 0/0 a;  /*ÎÄ×ÖÒþ²Ø*/
+	font: 0/0 a;  
 	color: transparent;
 	text-shadow: none;
 	background-color: transparent;
 	border: 0;
 }
-/*Çå³ý¸¡¶¯*/
+/*触发bfc即可以去除浮动*/
 /*.clearfix:after{
 	content: ".";
 	display: block;
@@ -60,9 +61,9 @@ li{
 	visibility: hidden;
 }*/
 .clearfix{
-	zoom: 1;  /*´¥·¢IEµÄhasLayoutÊôÐÔ*/
+	zoom: 1;  /*ie6\7触发hasLayout*/
 }
-.clearfix:after,.clearfix:before{  /*beforeÓÃÀ´±ÜÃâÁ½¸öÔªËØµÄ±ß¾àµþ¼Ó*/
+.clearfix:after,.clearfix:before{  /*before防止元素顶部的空白叠加*/
 	content: " ";
 	display: table;
 }
@@ -70,7 +71,7 @@ li{
 	clear: both;
 }
 
-/*ä¯ÀÀÆ÷ÌáÊ¾ÑùÊ½*/
+
 .browserupgrade{
 	margin: 0;
 	padding: 1rem;
@@ -95,7 +96,7 @@ header{
 	width: 100%;
 }
 header .top{
-	line-height: 3rem;  /*chromeÏÂ¹æ¶¨×îÐ¡×ÖÌåÎª12px,ËùÒÔÔÚchromeÏÂ1rem = 12px*/
+	line-height: 3rem;  /*chrome中文版的最小默认字体大小为12px,故1rem = 12px*/
 	padding: 0 1.5rem;
 	color: #fff;
 	background-color: #555;
@@ -112,17 +113,17 @@ header .top ul li{
 }
 header .top ul li + li{
 	border-left: 1px solid #999;
-	margin-left: -3px;   /*±ÜÃâÔªËØÊ¹ÓÃinline-blockºóÔªËØ¼äµÄ¿Õ°×·ûÔì³ÉµÄ¼ä¾à£¬¿Õ°×·ûÒ²ÊÇÒ»ÖÖ×Ö·û*/
+	margin-left: -3px;   /*解决空白符、换行符由于inline-block带来的间隙*/
 }
 header .top ul li a{
-	display: inline-block;  /*ÐÐÄÚÔªËØwidth\height\padding,marginÉÏÏÂ±ß¾àÎÞÐ§*/
+	display: inline-block; 
 	padding: 0 1.5rem;
 	color: #fff;
 }
-/*Ã½Ìå²éÑ¯ÓµÓÐ½Ï¸ßµÄÈ¨ÖØ£¬¶ÏµãµÄ¼ÆËã²»»áÒÔhtmlµÄfont-sizeÎª»ù×¼£¬¶øÊÇÒÔä¯ÀÀÆ÷µÄÄ¬ÈÏfont-sizeÎª»ù×¼£¬
-´ËÊ±£¬Ê¹ÓÃ¼æÈÝÐÔ¸üºÃµÄem£¬¿ÉÒÔ±ÜÃâremµÄ¼æÈÝÐÔÎÊÌâ*/
-/*¶Ïµã 800 481-800 480*/
+/*媒体查询并不是html的子元素，它的断点宽度是相对于浏览器的宽度，故，此时1rem 不等于 10px，而是1rem 等于 16px*/
+/*em的兼容性比rem更好，而且现在的断点宽度是相对于浏览器而言，所以用em更好*/
 /*800/16=50*/
+/*800 480 320*/
 
 @media only screen and (max-width: 50em) {
 	header .top ul li a{

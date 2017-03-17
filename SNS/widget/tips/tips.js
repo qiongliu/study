@@ -104,7 +104,8 @@
 				"minHeight": "40px",
 				"position": "fixed",
 				"textAlign": "center",
-				"padding": "0 20px 0 64px"
+				"padding": "0 20px 0 64px",
+				"zIndex": 1000
 			});
 			
 			this.$p.css({
