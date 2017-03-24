@@ -12,7 +12,7 @@ app.set('view cache',false);
 
 app.use('/public',express.static(__dirname + "/public"));
 
-app.use('/',require('./routers/main.js'));
+app.use('/',require('./routers/index.js'));
 app.use('/admin',require('./routers/admin.js'));
 app.use('/api',require('./routers/api.js'));
 

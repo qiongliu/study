@@ -1,0 +1,86 @@
+body {
+	background-color: #A29292;
+}
+.g_header .top {
+	background: #000;
+	height: 50px;
+	line-height: 50px;
+}
+.u_logo a {
+	font-size: 18px;
+	color: #fff;
+}
+.m_nav li {
+	float: left;
+}
+.m_nav a {
+	display: inline-block;
+	padding: 0 20px;
+	font-size: 14px;
+	color: #fff;
+}
+.m_nav a:hover {
+	color: #ff0000;
+}
+.m_log_reg li {
+	float: left;
+}
+.m_log_reg a {
+	display: inline-block;
+	padding: 0 20px;
+	font-size: 12px;
+	color: #fff;
+}
+.m_log_reg a:hover {
+	color: #ff0000;
+}
+.m_carousel {
+	height: 240px;
+	background-color: #ff0000;
+}
+.g_content {
+	margin-top: 50px;
+}
+.g_main {
+	background-color: #fff;
+	width: 700px;
+	height: 1000px;
+}
+.g_side {
+	margin-left: 20px;
+	width: 280px;
+	background-color: #fff;
+}
+.m_regist,.m_login {
+	border: 1px solid #ccc;
+	padding: 10px 10px 0 10px;
+	margin: 10px;
+	margin-bottom: 20px;
+}
+.m_regist li,.m_login li {
+	margin-bottom: 10px;
+}
+.m_regist span,.m_login span {
+	display: inline-block;
+	width: 60px;
+	text-align: right;
+}
+.m_regist input,.m_login input {
+	width: 160px;
+	border: 1px solid #ccc;
+	height: 14px;
+	line-height: 14px;
+	padding: 4px 8px;
+	color: #ccc;
+}
+.m_regist a,.m_login a {
+	display: inline-block;
+	background: #aaa;
+	padding: 6px 8px;
+	border-radius: 4px;
+	color: #fff;
+	width: 162px;
+}
+.m_regist .li_btn,.m_login .li_btn {
+	text-align: center;
+}

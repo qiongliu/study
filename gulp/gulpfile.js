@@ -121,12 +121,20 @@ function SpriterGroup(){
 
 
 //浏览器同步检测，本地
+// gulp.task('bs', function() {
+// 	browserSync.init({
+// 		files: "**",
+// 		server: {
+// 			baseDir: "./"
+// 		},
+// 		browser:"C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
+// 	});
+// });
+
 gulp.task('bs', function() {
 	browserSync.init({
 		files: "**",
-		server: {
-			baseDir: "./"
-		},
+		proxy: "localhost:7788",
 		browser:"C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
 	});
 });
