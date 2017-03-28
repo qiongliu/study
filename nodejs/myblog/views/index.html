@@ -40,41 +40,29 @@
 				
 			</div> <!-- main end -->
 			<div class="g_side fr">
-				<div class="m_regist">
+				<div class="m_regist m_login_regist">
+					<p class="regist title">注册</p>
 					<ul>
 						<li><span>用户名：</span><input type="text" name="username" value="请输入用户名"></li>
 						<li><span>密码：</span><input name="password" type="password"></li>
 						<li><span>再次输入：</span><input name="repassword" type="password"></li>
-						<li class="li_btn"><a class="confirm" href="javascript:;">注册</a>
+						<a class="u_regist_confirm" href="javascript:;">注册</a>
+						<p class="has">已有账号？<a class="u_now_login" href="javascript:;">马上登录</a></p>
 					</ul>
 				</div>
-				<div class="m_login">
+				<div class="m_login m_login_regist">
+					<p class="login title">登录</p>
 					<ul>
 						<li><span>用户名：</span><input type="text" name="username" value="请输入用户名"></li>
 						<li><span>密码：</span><input name="password" type="password"></li>
-						<li class="li_btn"><a class="confirm" href="javascript:;">登录</a>
+						<a class="u_login_confirm" href="javascript:;">登录</a>
+						<p class="has">还没注册？<a class="u_now_regist" href="javascript:;">马上注册</a></p>
 					</ul>
 				</div>
 			</div>
 		</div>
 	</div>
 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-<script>
-	$(function(){
-		$.ajax({
-			type: 'get',
-			url: '',
-			dataType: 'json',
-			timeout: 4000,
-			data: {
-				name: '',
-				password: ''
-			},
-			success: function(result){
-
-			}
-		})
-	})
-</script>
+<script src="public/js/index.js"></script>
 </body>
 </html>

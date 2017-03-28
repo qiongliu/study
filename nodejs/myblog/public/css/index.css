@@ -57,6 +57,11 @@ body {
 	margin: 10px;
 	margin-bottom: 20px;
 }
+.m_regist ul,.m_login ul {
+	text-align: right;
+	border-top: 1px solid #ccc;
+	padding-top: 20px;
+}
 .m_regist li,.m_login li {
 	margin-bottom: 10px;
 }
@@ -73,14 +78,25 @@ body {
 	padding: 4px 8px;
 	color: #ccc;
 }
-.m_regist a,.m_login a {
+.u_regist_confirm,.u_login_confirm {
 	display: inline-block;
-	background: #aaa;
+	background: #ff0000;
 	padding: 6px 8px;
 	border-radius: 4px;
 	color: #fff;
 	width: 162px;
-}
-.m_regist .li_btn,.m_login .li_btn {
 	text-align: center;
+}
+.m_login_regist .has {
+	line-height: 28px;
+}
+.m_login_regist .title {
+	line-height: 32px;
+	font-weight: 800;
+	font-size: 18px;
+	border-bottom: 2px solid #ff0000;
+	width: 36px;
+}
+.m_regist {
+	display: none;
 }

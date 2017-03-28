@@ -2,8 +2,11 @@ var path = require('path');
 var express = require('express');
 var ejs = require('ejs');
 var mongoose = require('mongoose');
+var bodyParser = require('body-parser');
 
 var app = express();
+
+app.use(bodyParser.urlencoded({extended:false}));
 
 app.engine('html',ejs.renderFile);
 app.set('views',path.join(__dirname,'views'));
@@ -12,9 +15,11 @@ app.set('view cache',false);
 
 app.use('/public',express.static(__dirname + "/public"));
 
-app.use('/',require('./routers/index.js'));
-app.use('/admin',require('./routers/admin.js'));
-app.use('/api',require('./routers/api.js'));
+
+
+app.use('/',require('./routers/index'));
+app.use('/admin',require('./routers/admin'));
+app.use('/api',require('./routers/api'));
 
 mongoose.connect('mongodb://localhost:27018/blog',function(err){
 	if(err) {
