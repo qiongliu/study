@@ -17,9 +17,9 @@ app.use('/public',express.static(__dirname + "/public"));
 
 
 
-app.use('/',require('./routers/index'));
 app.use('/admin',require('./routers/admin'));
 app.use('/api',require('./routers/api'));
+app.use('/',require('./routers/index'));
 
 mongoose.connect('mongodb://localhost:27018/blog',function(err){
 	if(err) {
@@ -30,5 +30,5 @@ mongoose.connect('mongodb://localhost:27018/blog',function(err){
 			console.log('listen...');
 		});
 	}
-})
+});
 
