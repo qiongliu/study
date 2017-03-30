@@ -15,8 +15,6 @@ app.set('view cache',false);
 
 app.use('/public',express.static(__dirname + "/public"));
 
-
-
 app.use('/admin',require('./routers/admin'));
 app.use('/api',require('./routers/api'));
 app.use('/',require('./routers/index'));

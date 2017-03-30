@@ -1,31 +1,55 @@
 $(function(){
-	$('.u_now_regist').on('click',function(){
-		$(this).parents('.m_login').hide();
-		$('.m_regist').show();
+	var $mRegist = $(".m_regist");
+	var $uNowLogin = $mRegist.find('.u_now_login');
+	var $uRegConf = $mRegist.find('.u_regist_confirm');
+	var $mLogin = $(".m_login");
+	var $uNowReg = $mLogin.find('.u_now_regist');
+	var $uLogConf = $mLogin.find('.u_login_confirm');
+	$uNowReg.on('click',function(){
+		$mLogin.hide();
+		$mRegist.show();
 	});
 
-	$('.u_now_login').on('click',function(){
-		$(this).parents('.m_regist').hide();
-		$('.m_login').show();
+	$uNowLogin.on('click',function(){
+		$mRegist.hide();
+		$mLogin.show();
 	});
 
-	$(".u_regist_confirm").on('click',function(){
+	$uRegConf.on('click',function(){
 		var data = {};
-		data.username = $("input[name='username']").val();
-		data.password = $("input[name='password']").val();
-		data.repassword = $("input[name='repassword']").val();
+		data.username = $mRegist.find("input[name='username']").val();
+		data.password = $mRegist.find("input[name='password']").val();
+		data.repassword = $mRegist.find("input[name='repassword']").val();
 		$.ajax({
 			type: 'post',
 			url: '/api/user/regist',
 			dataType: 'json',
-			// timeout: 4000,
+			timeout: 4000,
 			data: data,
 			success: function(result){
-				console.log(result);
+				$mRegist.find('.regist_info').html(result.message)
 			},
 			error:function(){
 				console.log(arguments);
 			}
 		});
 	});
+	$uLogConf.on('click',function(){
+		var data = {};
+		data.username = $mLogin.find("input[name='username']").val();
+		data.password = $mLogin.find("input[name='password']").val();
+		$.ajax({
+			type: 'post',
+			url: '/api/user/login',
+			dataType: 'json',
+			timeout: 4000,
+			data: data,
+			success: function(result){
+				$mLogin.find('.login_info').html(result.message)
+			},
+			error: function(){
+				console.log(arguments);
+			}
+		})
+	})
 });
