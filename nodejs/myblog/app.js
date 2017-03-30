@@ -3,10 +3,22 @@ var express = require('express');
 var ejs = require('ejs');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var Cookies = require('cookies');
 
 var app = express();
 
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(function(req,res,next){
+	req.cookies = new Cookies(req,res);
+	req.userInfo = {};
+	var userInfo = req.cookies.get('userInfo');
+	if(userInfo) {
+		try {
+			req.userInfo = JSON.parse(userInfo);
+		} catch (e){}
+	}
+	next();
+});
 
 app.engine('html',ejs.renderFile);
 app.set('views',path.join(__dirname,'views'));

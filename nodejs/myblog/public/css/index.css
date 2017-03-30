@@ -51,26 +51,26 @@ body {
 	width: 280px;
 	background-color: #fff;
 }
-.m_regist,.m_login {
+.m_login_wrap {
 	border: 1px solid #ccc;
 	padding: 10px 10px 0 10px;
 	margin: 10px;
 	margin-bottom: 20px;
 }
-.m_regist ul,.m_login ul {
+.m_login_wrap .login_content {
 	text-align: right;
 	border-top: 1px solid #ccc;
 	padding-top: 20px;
 }
-.m_regist li,.m_login li {
+.m_login_wrap li {
 	margin-bottom: 10px;
 }
-.m_regist span,.m_login span {
+.m_login_wrap span {
 	display: inline-block;
-	width: 60px;
+	/*width: 60px;*/
 	text-align: right;
 }
-.m_regist input,.m_login input {
+.m_login_wrap input {
 	width: 160px;
 	border: 1px solid #ccc;
 	height: 14px;
@@ -87,17 +87,20 @@ body {
 	width: 162px;
 	text-align: center;
 }
-.m_login_regist .has {
+.m_login_wrap .has,.m_login_wrap .login_out {
 	line-height: 28px;
 }
-.m_login_regist .title {
+.m_login_wrap .title {
 	line-height: 32px;
 	font-weight: 800;
 	font-size: 18px;
 	border-bottom: 2px solid #ff0000;
 	width: 36px;
 }
-.regist_info,.login_info {
+.m_login_info .title {
+	width: 72px;
+}
+.m_login_wrap .regist_info,.m_login_wrap .login_info {
 	color: #ff0000;
 	margin: 14px 0 0 20px;
 	font-size: 16px;
@@ -106,4 +109,7 @@ body {
 }
 .m_regist {
 	display: none;
+}
+.m_login_info .user_info {
+	text-align: left;
 }

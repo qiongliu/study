@@ -2,9 +2,14 @@ $(function(){
 	var $mRegist = $(".m_regist");
 	var $uNowLogin = $mRegist.find('.u_now_login');
 	var $uRegConf = $mRegist.find('.u_regist_confirm');
+
 	var $mLogin = $(".m_login");
 	var $uNowReg = $mLogin.find('.u_now_regist');
 	var $uLogConf = $mLogin.find('.u_login_confirm');
+
+	var $mLogInfo = $(".m_login_info");
+	var $username = $mLogInfo.find('.user_info span');
+	var $loginOut = $mLogInfo.find('.login_out');
 	$uNowReg.on('click',function(){
 		$mLogin.hide();
 		$mRegist.show();
@@ -27,13 +32,17 @@ $(function(){
 			timeout: 4000,
 			data: data,
 			success: function(result){
-				$mRegist.find('.regist_info').html(result.message)
+				$mRegist.find('.regist_info').html(result.message);
+				if(!result.code) {
+					window.location.reload();
+				}
 			},
 			error:function(){
 				console.log(arguments);
 			}
 		});
 	});
+
 	$uLogConf.on('click',function(){
 		var data = {};
 		data.username = $mLogin.find("input[name='username']").val();
@@ -45,11 +54,26 @@ $(function(){
 			timeout: 4000,
 			data: data,
 			success: function(result){
-				$mLogin.find('.login_info').html(result.message)
+				$mLogin.find('.login_info').html(result.message);
+				if(!result.code) {
+					window.location.reload();
+				}
 			},
 			error: function(){
 				console.log(arguments);
 			}
-		})
-	})
+		});
+	});
+
+	$loginOut.on('click',function(){
+		$.ajax({
+			type: 'get',
+			url: '/api/user/loginOut',
+			dataType: 'json',
+			timeout: 4000,
+			success: function(result){
+				window.location.reload();
+			}
+		});
+	});
 });

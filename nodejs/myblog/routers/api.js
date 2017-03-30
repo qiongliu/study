@@ -57,8 +57,17 @@ router.post('/user/regist',function(req,res,next){
 		return user.save();
 	}).then(function(newUserInfo){
 		resData.message = '注册成功';
+		resData.userInfo = {
+				id: newUserInfo._id,
+				username: newUserInfo.username
+			};
+			req.cookies.set('userInfo',JSON.stringify({
+				id: newUserInfo._id,
+				username: newUserInfo.username
+			}));
 		res.json(resData);
-	})
+		return;
+	});
 });
 
 router.post('/user/login',function(req,res,next){
@@ -66,7 +75,7 @@ router.post('/user/login',function(req,res,next){
 	password = req.body.password;
 	if(username === "" || password === "") {
 		resData.code = 1;
-		resData.message = "用户名和密码不能为空！"
+		resData.message = "用户名和密码不能为空！";
 		res.json(resData);
 		return;
 	}
@@ -79,10 +88,24 @@ router.post('/user/login',function(req,res,next){
 			resData.message = '用户名或密码错误！';
 		} else {
 			resData.message = '登录成功';
+			resData.userInfo = {
+				id: userInfo._id,
+				username: userInfo.username
+			};
+			req.cookies.set('userInfo',JSON.stringify({
+				id: userInfo._id,
+				username: userInfo.username
+			}));
 		}
 		res.json(resData);
 		return;
-	})
-})
+	});
+});
+
+router.get('/user/loginOut',function(req,res,next){
+	req.cookies.set('userInfo','');
+	resData.message = '退出成功';
+	res.json(resData);
+});
 
 module.exports = router;

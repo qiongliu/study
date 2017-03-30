@@ -40,31 +40,44 @@
 				
 			</div> <!-- main end -->
 			<div class="g_side fr">
-				<div class="m_regist m_login_regist">
+			
+				<% if(userInfo.id) { %>
+				<div class="m_login_info m_login_wrap">
+					<div class="title_wrap clearfix">
+						<p class="title fl">用户信息</p>						
+					</div>
+					<div class="login_content">
+						<p class="user_info"><span><%= userInfo.username %></span>，每天进步一点点！</p>
+						<a href="javascript:;" class="login_out">退出</a>
+					</div>
+				</div>
+				<% } else { %>
+				<div class="m_regist m_login_wrap">
 					<div class="title_wrap clearfix">
 						<p class="regist title fl">注册</p>
 						<em class="regist_info fl"></em>						
 					</div>
-					<ul>
-						<li><span>用户名：</span><input type="text" name="username" value="请输入用户名"></li>
+					<ul class="login_content">
+						<li><span>用户名：</span><input type="text" name="username" placeholder="请输入用户名"></li>
 						<li><span>密码：</span><input name="password" type="password"></li>
 						<li><span>再次输入：</span><input name="repassword" type="password"></li>
 						<a class="u_regist_confirm" href="javascript:;">注册</a>
 						<p class="has">已有账号？<a class="u_now_login" href="javascript:;">马上登录</a></p>
 					</ul>
 				</div>
-				<div class="m_login m_login_regist">
+				<div class="m_login m_login_wrap">
 					<div class="title_wrap clearfix">
 						<p class="login title fl">登录</p>
 						<em class="login_info fl"></em>					
 					</div>
-					<ul>
-						<li><span>用户名：</span><input type="text" name="username" value="请输入用户名"></li>
+					<ul class="login_content">
+						<li><span>用户名：</span><input type="text" name="username" placeholder="请输入用户名"></li>
 						<li><span>密码：</span><input name="password" type="password"></li>
 						<a class="u_login_confirm" href="javascript:;">登录</a>
 						<p class="has">还没注册？<a class="u_now_regist" href="javascript:;">马上注册</a></p>
 					</ul>
 				</div>
+				<% } %>
 			</div>
 		</div>
 	</div>
