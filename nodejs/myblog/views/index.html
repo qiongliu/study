@@ -47,7 +47,12 @@
 						<p class="title fl">用户信息</p>						
 					</div>
 					<div class="login_content">
-						<p class="user_info"><span><%= userInfo.username %></span>，每天进步一点点！</p>
+						<p class="user_info">
+							<span><%= userInfo.username %></span>，每天进步一点点！
+							<% if(userInfo.isAdmin) { %>
+								<a href="/admin" class="entry_manage">进入管理</a>
+							<% } %>
+						</p>
 						<a href="javascript:;" class="login_out">退出</a>
 					</div>
 				</div>
