@@ -16,12 +16,12 @@
 </head>
 <body>
 	<%- include('./_nav.html') %>
-	<div class="jumbotron">
-		<div class="container">
-		    <h1>index, <%= userInfo.username %>!</h1>
-		    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis quasi magnam deleniti, deserunt possimus, repellendus omnis fugit at consequatur, tempore eaque. Saepe fuga, tenetur dignissimos molestias corporis consectetur quos labore.</p>
-		 </div>
-	   
-	</div>
+
+	<ol class="breadcrumb">
+	   <li><a href="/admin">后台管理</a></li>
+	   <li><a href="/admin/category">分类管理</a></li>
+	   <li class="active">添加分类</li>
+	</ol>
+	
 </body>
 </html>

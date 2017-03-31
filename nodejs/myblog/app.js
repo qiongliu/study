@@ -4,7 +4,7 @@ var ejs = require('ejs');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 var Cookies = require('cookies');
-var User = require('./module/User');
+var User = require('./models/User');
 
 var app = express();
 
@@ -19,7 +19,7 @@ app.use(function(req,res,next){
 			User.findById(req.userInfo.id).then(function(newUserInfo){
 				req.userInfo.isAdmin = Boolean(newUserInfo.isAdmin);
 				next();
-			})
+			});
 		} catch (e){
 			next();
 		}

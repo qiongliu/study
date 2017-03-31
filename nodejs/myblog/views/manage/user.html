@@ -16,12 +16,33 @@
 </head>
 <body>
 	<%- include('./_nav.html') %>
-	<div class="jumbotron">
-		<div class="container">
-		    <h1>index, <%= userInfo.username %>!</h1>
-		    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis quasi magnam deleniti, deserunt possimus, repellendus omnis fugit at consequatur, tempore eaque. Saepe fuga, tenetur dignissimos molestias corporis consectetur quos labore.</p>
-		 </div>
-	   
-	</div>
+
+	<ol class="breadcrumb">
+	   <li><a href="/admin">后台管理</a></li>
+	   <li><a href="/admin/user">用户管理</a></li>
+	   <li class="active">用户列表</li>
+	</ol>
+	<%- include('./_page.html') %>
+	<table class="table table-hover table-striped table-bordered">
+		<tr>
+			<th>ID</th>
+			<th>用户名</th>
+			<th>密码</th>
+			<th>是否是管理员</th>
+		</tr>
+		<% for(var i = 0; i < users.length; i++) { %>
+		<tr>
+			<td><%= users[i]._id %></td>
+			<td><%= users[i].username %></td>
+			<td><%= users[i].password %></td>
+			<td><%  if(users[i].isAdmin) { %>
+					<%= '是' %>
+				<% } %>
+			</td>
+		</tr>
+		<% } %>
+	</table>
+
+	<%- include('./_page.html') %>
 </body>
 </html>
