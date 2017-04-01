@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
+var Category = require('../models/Category');
 
 router.use(function(req,res,next){
 	if(!req.userInfo.isAdmin) {
@@ -28,7 +29,8 @@ router.get('/user',function(req,res,next){
 					page: page,
 					count: count,
 					pages: pages,
-					limit: limit
+					limit: limit,
+					name: 'user'
 				}
 			});
 		});
@@ -36,16 +38,106 @@ router.get('/user',function(req,res,next){
 
 });
 
+router.get('/category/edit',function(req,res,next){
+	var id = req.query.id;
+	Category.findOne({
+		_id: id
+	}).then(function(category){
+		res.render('manage/edit',{
+			userInfo: req.userInfo,
+			category: category
+		});
+	});
+});
+
+router.post('/category/edit',function(req,res,next){
+	var id = req.query.id;
+	var name = req.body.categoryName;
+	Category.findOne({
+		_id: id
+	}).then(function(category){
+		if(!category) {
+			res.render('manage/error',{
+				userInfo: req.userInfo,
+				message: '没有找到记录'
+			});
+			return Promise.reject();
+		} 
+		else {
+			Category.findOne({
+				_id: {$ne: id},
+				name: name
+			}).then(function(same){
+				if(same) {
+					res.render('manage/error',{
+						userInfo: req.userInfo,
+						message: '已经存在同名分类'
+					});
+					return Promise.reject();
+				} else {
+					return Category.update({
+						_id: id
+					},{
+						name: name
+					});
+				}
+			}).then(function(rs){
+				res.render('manage/success',{
+					userInfo: req.userInfo,
+					message: '修改成功!',
+					url: '/admin/category'
+				});
+			});
+		}
+	});
+});
+
+router.post('/category/delete',function(req,res,next){
+	var id = req.query.id || '';
+	console.log(id);
+	Category.remove({
+		_id: id
+	}).then(function(rs){
+		res.render('manage/success',{
+			userInfo: req.userInfo,
+			message: '删除成功！',
+			url: '/admin/category'
+		});
+	});
+});
+
 router.post('/category/add',function(req,res,next){
-	var name = req.name || '';
+	var name = req.body.categoryName || '';
 	if(name === '') {
- 		console.log(2);
 		res.render('manage/error',{
 			userInfo: req.userInfo,
 			message: '分类名称不能为空!'
-		})		
+		});		
+		return;
 	}
-})
+	Category.findOne({
+		name: name
+	}).then(function(rs){
+		if(rs) {
+			res.render('manage/error',{
+				userInfo: req.userInfo,
+				message: '用户名已经存在'
+			});
+			return Promise.reject();
+		} else {
+			return new Category({
+				name: name
+			}).save();
+		}
+	}).then(function(newCategory){
+		res.render('manage/success',{
+			userInfo: req.userInfo,
+			message: '添加分类成功',
+			url: '/admin/category'
+		});
+	});
+
+});
 
 router.get('/category/add',function(req,res,next){
 	res.render('manage/addCategory',{
@@ -53,9 +145,29 @@ router.get('/category/add',function(req,res,next){
 	});
 });
 
-router.use('/category',function(req,res,next){
-	res.render('manage/category',{
-		userInfo: req.userInfo
+router.get('/category',function(req,res,next){
+	var page = parseInt(req.query.page) || 1,
+	limit = 4,
+	pages = 0;
+
+	Category.count().then(function(count){
+		pages = Math.ceil( count / limit );
+		page = Math.max(page,1);
+		page = Math.min(page,pages);
+		var skip = (page - 1) * limit;
+		Category.find().skip(skip).limit(limit).then(function(categories){
+			res.render('manage/category',{
+				userInfo: req.userInfo,
+				categories: categories,
+				pageInfo: {
+					page: page,
+					limit: limit,
+					count: count,
+					pages: pages,
+					name: 'category'
+				}
+			});
+		});
 	});
 });
 
@@ -64,6 +176,5 @@ router.use('/',function(req,res,next){
 		userInfo: req.userInfo
 	});
 });
-
 
 module.exports = router;

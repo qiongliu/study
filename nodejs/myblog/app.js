@@ -9,6 +9,7 @@ var User = require('./models/User');
 var app = express();
 
 app.use(bodyParser.urlencoded({extended:false}));
+
 app.use(function(req,res,next){
 	req.cookies = new Cookies(req,res);
 	req.userInfo = {};

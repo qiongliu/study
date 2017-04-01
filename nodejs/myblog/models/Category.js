@@ -1,4 +1,4 @@
 var mongoose = require('mongoose');
 var categorySchema = require('../schemas/category');
 
-module.exports = categorySchema.modle('category',categorySchema);
+module.exports = mongoose.model('category',categorySchema);
