@@ -36,7 +36,18 @@ router.get('/user',function(req,res,next){
 
 });
 
-router.use('/category/add',function(req,res,next){
+router.post('/category/add',function(req,res,next){
+	var name = req.name || '';
+	if(name === '') {
+ 		console.log(2);
+		res.render('manage/error',{
+			userInfo: req.userInfo,
+			message: '分类名称不能为空!'
+		})		
+	}
+})
+
+router.get('/category/add',function(req,res,next){
 	res.render('manage/addCategory',{
 		userInfo: req.userInfo
 	});
