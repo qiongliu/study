@@ -1,7 +1,7 @@
 <nav aria-label="...">
 	<ul class="pager">
-	    <li><a href="/admin/<%= pageInfo.name %>?page=<%= pageInfo.page - 1 %>">上一页</a></li>
+	    <li><a href="/manage/<%= pageInfo.name %>?page=<%= pageInfo.page - 1 %>">上一页</a></li>
 	    <li>第 <%= pageInfo.page%> 页 / 共<%= pageInfo.pages%> 页，每页<%= pageInfo.limit%>条数据，共<%= pageInfo.count%>条数据</li>
-	    <li><a href="/admin/<%= pageInfo.name %>?page=<%= pageInfo.page + 1 %>">下一页</a></li>
+	    <li><a href="/manage/<%= pageInfo.name %>?page=<%= pageInfo.page + 1 %>">下一页</a></li>
 	</ul>
 </nav>

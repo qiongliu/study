@@ -15,17 +15,15 @@
 				</div>
 				<div class="m_nav fl">
 					<ul class="clearfix">
-						<li><a href="javascript:;">Html</a></li>
-						<li><a href="javascript:;">Css</a></li>
-						<li><a href="javascript:;">Javascript</a></li>
-						<li><a href="javascript:;">Nodejs</a></li>
-						<li><a href="javascript:;">Reactjs</a></li>
+						<% for(var i = 0; i < categories.length; i++){ %>
+							<li><a href="javascript:;"><%= categories[i].name %></a></li>
+						<% } %>
 					</ul>
 				</div>
 				<div class="m_log_reg fr">
 					<ul class="clearfix">
-						<li><a class="u_login_btn" href="javascript:;">login</a></li>
-						<li><a class="u_regist_btn" href="javascript:;">regist</a></li>
+						<li><a class="u_login_btn" href="javascript:;">登录</a></li>
+						<li><a class="u_regist_btn" href="javascript:;">注册</a></li>
 					</ul>
 				</div>
 			</div>
@@ -50,7 +48,7 @@
 						<p class="user_info">
 							<span><%= userInfo.username %></span>，每天进步一点点！
 							<% if(userInfo.isAdmin) { %>
-								<a href="/admin" class="entry_manage">进入管理</a>
+								<a href="/manage" class="entry_manage">进入管理</a>
 							<% } %>
 						</p>
 						<a href="javascript:;" class="login_out">退出</a>

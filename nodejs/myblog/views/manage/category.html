@@ -9,8 +9,8 @@
 	<%- include('./_nav.html') %>
 
 	<ol class="breadcrumb">
-	   <li><a href="/admin">后台管理</a></li>
-	   <li><a href="/admin/category">分类管理</a></li>
+	   <li><a href="/manage">后台管理</a></li>
+	   <li><a href="/manage/category">分类管理</a></li>
 	   <li class="active">分类首页</li>
 	</ol>
 
@@ -26,7 +26,7 @@
 			<td><%= categories[i]._id %></td>
 			<td><%= categories[i].name %></td>
 			<td>
-				<a href="/admin/category/edit?id=<%= categories[i].id %>">修改</a> / <a href="/admin/category/delete?id=<%= categories[i].id %>">删除</a>
+				<a href="/manage/category/edit?id=<%= categories[i].id %>">修改</a> / <a href="/manage/category/delete?id=<%= categories[i].id %>">删除</a>
 			</td>
 		</tr>
 		<% } %>

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
 var Category = require('../models/Category');
+var Article = require('../models/Article');
 
 router.use(function(req,res,next){
 	if(!req.userInfo.isAdmin) {
@@ -36,6 +37,50 @@ router.get('/user',function(req,res,next){
 		});
 	});
 
+});
+
+router.get('/article/add',function(req,res,next){
+	Category.find().then(function(categories){
+		res.render('manage/addArticle',{
+			userInfo: req.userInfo,
+			categories: categories
+		});		
+	});
+});
+
+router.post('/article/add',function(req,res,next){
+	var category = req.body.category,
+	title = req.body.title,
+	intro = req.body.intro,
+	content = req.body.content;
+
+	if(req.body.category === '') {
+		res.render('manage/error',{
+			userInfo: userInfo,
+			message: '文章分类不能为空'
+		});
+		return;
+	}
+
+	new Article({
+		category: category,
+		title: title,
+		intro: intro,
+		content: content
+	}).save().then(function(rs){
+		res.render('manage/success',{
+			userInfo: req.userInfo,
+			message: '发表成功！',
+			url: 'manage/article'
+		});
+	});
+
+});
+
+router.get('/article',function(req,res,next){
+	res.render('manage/article',{
+		userInfo: req.userInfo
+	});
 });
 
 router.get('/category/edit',function(req,res,next){
@@ -85,23 +130,22 @@ router.post('/category/edit',function(req,res,next){
 				res.render('manage/success',{
 					userInfo: req.userInfo,
 					message: '修改成功!',
-					url: '/admin/category'
+					url: '/manage/category'
 				});
 			});
 		}
 	});
 });
 
-router.post('/category/delete',function(req,res,next){
+router.get('/category/delete',function(req,res,next){
 	var id = req.query.id || '';
-	console.log(id);
 	Category.remove({
 		_id: id
 	}).then(function(rs){
 		res.render('manage/success',{
 			userInfo: req.userInfo,
 			message: '删除成功！',
-			url: '/admin/category'
+			url: '/manage/category'
 		});
 	});
 });
@@ -133,7 +177,7 @@ router.post('/category/add',function(req,res,next){
 		res.render('manage/success',{
 			userInfo: req.userInfo,
 			message: '添加分类成功',
-			url: '/admin/category'
+			url: '/manage/category'
 		});
 	});
 
@@ -151,11 +195,19 @@ router.get('/category',function(req,res,next){
 	pages = 0;
 
 	Category.count().then(function(count){
+		if(count === 0) {
+			res.render('manage/error',{
+				userInfo: req.userInfo,
+				message: '还没有分类哦！'
+			})
+			return;
+		}
 		pages = Math.ceil( count / limit );
 		page = Math.max(page,1);
 		page = Math.min(page,pages);
 		var skip = (page - 1) * limit;
-		Category.find().skip(skip).limit(limit).then(function(categories){
+		//sort():1，升序；-1，降序
+		Category.find().sort({_id: -1}).skip(skip).limit(limit).then(function(categories){
 			res.render('manage/category',{
 				userInfo: req.userInfo,
 				categories: categories,
