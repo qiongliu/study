@@ -56,30 +56,82 @@ router.post('/article/add',function(req,res,next){
 
 	if(req.body.category === '') {
 		res.render('manage/error',{
-			userInfo: userInfo,
+			userInfo: req.userInfo,
 			message: '文章分类不能为空'
 		});
 		return;
 	}
-
 	new Article({
 		category: category,
+		author: req.userInfo.id,
 		title: title,
 		intro: intro,
-		content: content
+		content: content,
+		date: (new Date()).toLocaleString()
 	}).save().then(function(rs){
 		res.render('manage/success',{
 			userInfo: req.userInfo,
 			message: '发表成功！',
-			url: 'manage/article'
+			url: '/manage/article'
 		});
 	});
 
 });
 
-router.get('/article/editArtice',function(req,res,next){
+router.get('/article/editArticle',function(req,res,next){
+	var id = req.query.id || '';
+	var categories = [];
+	Category.find().then(function(rs){
+		categories = rs;
+		return Article.findOne({
+			_id: id
+		}).populate('category');
+	}).then(function(article){
+		if(!article) {
+			res.render('manage/error',{
+				userInfo: req.userInfo,
+				message: '没有找到记录！'
+			});
+			return Promise.reject();
+		} else {
+			res.render('manage/editArticle',{
+				userInfo: req.userInfo,
+				article: article,
+				categories: categories
+			});			
+		}
+	});
+});
 
-})
+router.post('/article/editArticle',function(req,res,next){
+	Article.update({
+		_id: req.query.id
+	},{
+		category: req.body.category,
+		title: req.body.title,
+		intro: req.body.intro,
+		content: req.body.content
+	}).then(function(article){
+		res.render('manage/success',{
+			userInfo: req.userInfo,
+			message: '修改成功！',
+			url: '/manage/article'
+		});
+	});
+});
+
+router.get('/article/deleteArticle',function(req,res,next){
+	var id = req.query.id;
+	Article.remove({
+		_id: id
+	}).then(function(rs){
+		res.render('manage/success',{
+			userInfo: req.userInfo,
+			message: '删除成功！',
+			url: '/manage/article'
+		});
+	});
+});
 
 router.get('/article',function(req,res,next){
 	var page = parseInt(req.query.page) || 1,
@@ -90,14 +142,15 @@ router.get('/article',function(req,res,next){
 			res.render('manage/error',{
 				userInfo: req.userInfo,
 				message: '还没有文章哦！'
-			})
+			});
 			return;
 		}
 		pages = Math.ceil(count / page);
 		page = Math.min(page,pages);
 		page = Math.max(page,1);
 		var skip = (page - 1) * limit;
-		Article.find().sort({_id: -1}).skip(skip).limit(limit).populate('category').then(function(articles){
+		Article.find().sort({_id: -1}).skip(skip).limit(limit).populate(['category','user']).then(function(articles){
+			console.log(articles)
 			res.render('manage/article',{
 				userInfo: req.userInfo,
 				articles: articles,
@@ -109,8 +162,8 @@ router.get('/article',function(req,res,next){
 					name: 'article'
 				}
 			});		
-		})
-	})
+		});
+	});
 });
 
 router.get('/category/editCategory',function(req,res,next){

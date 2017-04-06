@@ -8,7 +8,7 @@ router.use('/',function(req,res,next){
 			userInfo: req.userInfo,
 			categories: categories
 		});
-	})
+	});
 });
 
 module.exports = router;

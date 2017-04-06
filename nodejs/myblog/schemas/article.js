@@ -5,6 +5,10 @@ module.exports = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Category'
 	},
+	author: {
+		type: mongoose.Schema.Types.ObjectId,
+		ref: 'User'
+	},
 	title: String,
 	intro: {
 		type: String,
@@ -13,5 +17,13 @@ module.exports = new mongoose.Schema({
 	content: {
 		type: String,
 		default: ''
+	},
+	date: {
+		type: Date,
+		default: new Date()
+	},
+	hits: {
+		type: Number,
+		default: 0
 	}
 });
