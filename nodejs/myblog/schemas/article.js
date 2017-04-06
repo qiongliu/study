@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 module.exports = new mongoose.Schema({
 	category: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Article'
+		ref: 'Category'
 	},
 	title: String,
 	intro: {

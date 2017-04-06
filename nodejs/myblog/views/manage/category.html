@@ -26,7 +26,7 @@
 			<td><%= categories[i]._id %></td>
 			<td><%= categories[i].name %></td>
 			<td>
-				<a href="/manage/category/edit?id=<%= categories[i].id %>">修改</a> / <a href="/manage/category/delete?id=<%= categories[i].id %>">删除</a>
+				<a href="/manage/category/editCategory?id=<%= categories[i].id %>">修改</a> / <a href="/manage/category/deleteCategory?id=<%= categories[i].id %>">删除</a>
 			</td>
 		</tr>
 		<% } %>

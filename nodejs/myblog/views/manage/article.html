@@ -13,22 +13,27 @@
 	   <li><a href="/manage/article">文章管理</a></li>
 	   <li class="active">发表文章</li>
 	</ol>
-	
+	<%- include('./_page.html') %>
 	<table class="table table-hover table-striped table-bordered">
 		<tr>
 			<th>ID</th>
+			<th>分类</th>
 			<th>标题</th>
 			<th>简介</th>
 			<th>内容</th>
 			<th>操作</th>
 		</tr>
-		<tr>
-			<td>id</td>
-			<td>title</td>
-			<td>jianjie</td>
-			<td>neirong</td>
-			<td><a href="javasript:;">修改</a> / <a href="javasript:;">删除</a></td>
-		</tr>
+		<% for(var i in articles) { %>
+			<tr>
+				<td><%= articles[i].id %></td>
+				<td><%= articles[i].category.name %></td>
+				<td><%= articles[i].title %></td>
+				<td><%= articles[i].intro %></td>
+				<td><%= articles[i].content %></td>
+				<td style="width: 10%"><a href="/manage/article/editArticle">修改</a> / <a href="/manage/article/deleteArticle">删除</a></td>
+			</tr>
+		<% } %>
 	</table>
+	<%- include('./_page.html') %>
 </body>
 </html>

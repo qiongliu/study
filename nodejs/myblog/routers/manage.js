@@ -77,13 +77,43 @@ router.post('/article/add',function(req,res,next){
 
 });
 
+router.get('/article/editArtice',function(req,res,next){
+
+})
+
 router.get('/article',function(req,res,next){
-	res.render('manage/article',{
-		userInfo: req.userInfo
-	});
+	var page = parseInt(req.query.page) || 1,
+	pages = 0,
+	limit = 4;
+	Article.count().then(function(count){
+		if(count === 0) {
+			res.render('manage/error',{
+				userInfo: req.userInfo,
+				message: '还没有文章哦！'
+			})
+			return;
+		}
+		pages = Math.ceil(count / page);
+		page = Math.min(page,pages);
+		page = Math.max(page,1);
+		var skip = (page - 1) * limit;
+		Article.find().sort({_id: -1}).skip(skip).limit(limit).populate('category').then(function(articles){
+			res.render('manage/article',{
+				userInfo: req.userInfo,
+				articles: articles,
+				pageInfo: {
+					page: page,
+					pages: pages,
+					limit: limit,
+					count: count,
+					name: 'article'
+				}
+			});		
+		})
+	})
 });
 
-router.get('/category/edit',function(req,res,next){
+router.get('/category/editCategory',function(req,res,next){
 	var id = req.query.id;
 	Category.findOne({
 		_id: id
@@ -137,7 +167,7 @@ router.post('/category/edit',function(req,res,next){
 	});
 });
 
-router.get('/category/delete',function(req,res,next){
+router.get('/category/deleteCategory',function(req,res,next){
 	var id = req.query.id || '';
 	Category.remove({
 		_id: id
