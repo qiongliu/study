@@ -149,8 +149,7 @@ router.get('/article',function(req,res,next){
 		page = Math.min(page,pages);
 		page = Math.max(page,1);
 		var skip = (page - 1) * limit;
-		Article.find().sort({_id: -1}).skip(skip).limit(limit).populate(['category','user']).then(function(articles){
-			console.log(articles)
+		Article.find().sort({_id: -1}).skip(skip).limit(limit).populate(['category','author']).then(function(articles){
 			res.render('manage/article',{
 				userInfo: req.userInfo,
 				articles: articles,

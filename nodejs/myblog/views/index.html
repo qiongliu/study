@@ -15,8 +15,8 @@
 				</div>
 				<div class="m_nav fl">
 					<ul class="clearfix">
-						<% for(var i = 0; i < categories.length; i++){ %>
-							<li><a href="javascript:;"><%= categories[i].name %></a></li>
+						<% for(var i = 0; i < data.categoryInfo.length; i++){ %>
+							<li><a href="javascript:;"><%= data.categoryInfo[i].name %></a></li>
 						<% } %>
 					</ul>
 				</div>
@@ -35,7 +35,24 @@
 	<div class="g_content">
 		<div class="comWidth clearfix">
 			<div class="g_main fl">
-				
+				<div class="article">
+					<% for(var i in data.articleInfo) { %>
+						<div class="m_article">
+							<h2><%= data.articleInfo[i].title %></h2>
+							<div class="info">
+								作者：<span class="author"><%= data.articleInfo[i].author.username %></span>
+								时间：<span class="time"><%= data.articleInfo[i].date.toLocaleString() %></span>
+								阅读：<span class="hits"><%= data.articleInfo[i].hits %></span>
+								笔记：<span class="note"></span>
+							</div>
+							<p class="intro"><%= data.articleInfo[i].intro %></p>
+							<div class="full_text">
+								<a href="javascript:;">阅读全文</a>
+							</div>
+						</div>
+					<% } %>
+				</div>
+				<div class="m_page"></div>
 			</div> <!-- main end -->
 			<div class="g_side fr">
 			

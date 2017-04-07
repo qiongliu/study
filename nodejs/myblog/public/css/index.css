@@ -42,7 +42,6 @@ body {
 	margin-top: 50px;
 }
 .g_main {
-	background-color: #fff;
 	width: 700px;
 	height: 1000px;
 }
@@ -113,3 +112,37 @@ body {
 .m_login_info .user_info {
 	text-align: left;
 }
+.m_article {
+	text-align: center;
+	background: #fff;
+	padding: 30px 30px 20px;
+}
+.m_article h2 {
+
+}
+.m_article .info {
+	font-size: 14px;
+	margin: 20px;
+}
+.m_article .info span {
+	color: red;
+}
+.m_article .intro {
+	text-align: left;
+	font-size: 16px;
+}
+.m_article .full_text {
+	text-align: left;
+	margin-top: 20px;
+}
+.m_article .full_text a {
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	padding: 0 16px;
+	color: #fff;
+	background: #ff0000;
+	border-radius: 4px;
+}
+

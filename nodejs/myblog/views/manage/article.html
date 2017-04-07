@@ -33,8 +33,8 @@
 				<td><%= articles[i].title %></td>
 				<td><%= articles[i].intro %></td>
 				<td><%= articles[i].content %></td>
-				<td><% articles[i].author.username %></td>
-				<td><%= articles[i].date %></td>
+				<td><%= articles[i].author.username %></td>
+				<td><%= articles[i].date.toLocaleString() %></td>
 				<td><%= articles[i].hits %></td>
 				<td style="width: 10%"><a href="/manage/article/editArticle?id=<%= articles[i].id %>">修改</a> / <a href="/manage/article/deleteArticle?id=<%= articles[i].id %>">删除</a></td>
 			</tr>
