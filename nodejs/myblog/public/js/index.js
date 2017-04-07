@@ -1,4 +1,5 @@
 $(function(){
+	var $mNav = $(".m_nav");
 	var $mRegist = $(".m_regist");
 	var $uNowLogin = $mRegist.find('.u_now_login');
 	var $uRegConf = $mRegist.find('.u_regist_confirm');
@@ -10,6 +11,12 @@ $(function(){
 	var $mLogInfo = $(".m_login_info");
 	var $username = $mLogInfo.find('.user_info span');
 	var $loginOut = $mLogInfo.find('.login_out');
+
+	$mNav.find('a').on('click',function(){
+		$('.nav_active').removeClass('nav_active');
+		$(this).addClass('nav_active');
+	});
+
 	$uNowReg.on('click',function(){
 		$mLogin.hide();
 		$mRegist.show();

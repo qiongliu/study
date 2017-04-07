@@ -25,5 +25,9 @@ module.exports = new mongoose.Schema({
 	hits: {
 		type: Number,
 		default: 0
+	},
+	noteNum: {
+		type: Number,
+		default: 0
 	}
 });

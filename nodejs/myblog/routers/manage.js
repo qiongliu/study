@@ -170,14 +170,14 @@ router.get('/category/editCategory',function(req,res,next){
 	Category.findOne({
 		_id: id
 	}).then(function(category){
-		res.render('manage/edit',{
+		res.render('manage/editCategory',{
 			userInfo: req.userInfo,
 			category: category
 		});
 	});
 });
 
-router.post('/category/edit',function(req,res,next){
+router.post('/category/editCategory',function(req,res,next){
 	var id = req.query.id;
 	var name = req.body.categoryName;
 	Category.findOne({

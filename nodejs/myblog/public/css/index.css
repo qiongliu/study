@@ -1,5 +1,5 @@
 body {
-	background-color: #A29292;
+	background-color: #282828;
 }
 .g_header .top {
 	background: #000;
@@ -9,6 +9,8 @@ body {
 .u_logo a {
 	font-size: 18px;
 	color: #fff;
+	margin-right: 20px;
+	display: block;
 }
 .m_nav li {
 	float: left;
@@ -19,8 +21,9 @@ body {
 	font-size: 14px;
 	color: #fff;
 }
-.m_nav a:hover {
+.m_nav a:hover,.m_nav a.nav_active {
 	color: #ff0000;
+	background-color: #242424;
 }
 .m_log_reg li {
 	float: left;
@@ -43,7 +46,6 @@ body {
 }
 .g_main {
 	width: 700px;
-	height: 1000px;
 }
 .g_side {
 	margin-left: 20px;
@@ -116,6 +118,7 @@ body {
 	text-align: center;
 	background: #fff;
 	padding: 30px 30px 20px;
+	margin-bottom: 30px;
 }
 .m_article h2 {
 
@@ -145,4 +148,34 @@ body {
 	background: #ff0000;
 	border-radius: 4px;
 }
-
+.m_page {
+	text-align: center;
+	background-color: #fff;
+	padding: 8px 0;
+}
+.m_page a {
+	display: inline-block;
+	height: 26px;
+	line-height: 26px;
+	padding: 0 20px;
+	color: #fff;
+	background: #ff0000;
+	margin: 0 20px;
+	border-radius: 4px;
+}
+.m_article .content {
+	line-height: 20px;
+	font-size: 16px;
+	
+}
+.g_footer {
+	height: 50px;
+	line-height: 50px;
+	background-color: #000;
+	margin-top: 50px;
+	text-align: center;
+}
+.g_footer p {
+	color: #fff;
+	font-size: 16px;
+}
