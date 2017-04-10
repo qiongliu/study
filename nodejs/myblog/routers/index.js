@@ -10,8 +10,8 @@ router.use(function(req,res,next) {
 	Category.find().then(function(categories){
 		data.categoryInfo = categories;
 		next();
-	})
-})
+	});
+});
 
 router.get('/view',function(req,res,next){
 	Article.findOne({
@@ -23,20 +23,20 @@ router.get('/view',function(req,res,next){
 		res.render('view',{
 			userInfo: req.userInfo,
 			data: data
-		})
-	})
-})
+		});
+	});
+});
 
 
 router.get('/',function(req,res,next){
-	data.category = req.query.category || '',
-	data.articleInfo = [],
+	data.category = req.query.category || '';
+	data.articleInfo = [];
 	data.pageInfo = {
 		page : req.query.page || 1,
 		limit : 4,
 		pages : 0,
 		count : 0
-	}
+	};
 	var where = {};
 	if(data.category) {
 		where.category = data.category;

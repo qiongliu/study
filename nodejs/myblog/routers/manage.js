@@ -281,7 +281,7 @@ router.get('/category',function(req,res,next){
 			res.render('manage/error',{
 				userInfo: req.userInfo,
 				message: '还没有分类哦！'
-			})
+			});
 			return;
 		}
 		pages = Math.ceil( count / limit );

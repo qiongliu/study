@@ -166,7 +166,10 @@ body {
 .m_article .content {
 	line-height: 20px;
 	font-size: 16px;
-	
+	white-space: pre-wrap;
+	word-break: break-all;
+	text-align: left;
+	font-family: 'Microsoft Yahei';
 }
 .g_footer {
 	height: 50px;
@@ -178,4 +181,52 @@ body {
 .g_footer p {
 	color: #fff;
 	font-size: 16px;
+}
+.m_comment {
+	background-color: #fff;
+	padding: 30px 20px;
+	position: relative;
+}
+.m_comment h2 {
+
+}
+.m_comment .count {
+
+}
+.m_comment .textarea_wrap {
+	margin: 20px 0;
+}
+.m_comment .comment {
+	width: 588px;
+	height: 70px;
+	border: 1px solid #ff0000;
+	border-right: none;
+	resize: none;
+}
+.m_comment .comment_btn {
+	width: 70px;
+	height: 72px;
+	background-color: #ff0000;
+	line-height: 72px;
+	text-align: center;
+	color: #fff;
+	font-size: 20px;
+}
+.m_comment .no_login {
+	background-color: #ff0000;
+	color: #fff;
+	text-align: center;
+	line-height: 24px;
+}
+.m_comment .no_comment {
+	/*font-size: 16px;*/
+}
+.m_comment_info {
+	margin-top: 14px;
+}
+.m_comment_info p {
+	line-height: 20px;
+}
+.m_comment_info .time {
+
 }
