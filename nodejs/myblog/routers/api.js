@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
+var Article = require('../models/Article');
 
 var resData = {};
 router.use(function(req,res,next){
@@ -107,5 +108,24 @@ router.get('/user/loginOut',function(req,res,next){
 	resData.message = '退出成功';
 	res.json(resData);
 });
+
+router.post('/comment/post',function(req,res,next){
+	var id = req.body.articleId,
+	content = req.body.articleContent;
+	var data = {
+		user: req.userInfo.username,
+		content: content,
+		date: new Date()
+	}
+	Article.findOne({
+		_id: id
+	}).then(function(article){
+		article.comment.push(data);
+		return article.save();
+	}).then(function(newArticle){
+		data.message = '评论成功！';
+		res.json(data);
+	})
+})
 
 module.exports = router;

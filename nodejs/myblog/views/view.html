@@ -55,11 +55,15 @@
 							<h2 class="fl">评论</h2>
 							<p class="count fr">一共有<span>4</span>条评论</p>
 						</div>
+						<% if(userInfo.id) { %>
 						<div class="textarea_wrap clearfix">
 							<textarea name="comment" id="comment" class="comment fl"></textarea>
+							<input type="hidden" id="articleId" value="<%= data.articleInfo.id %>">
 							<input class="comment_btn fl" type="button" value="提交">
 						</div>
-						<p class="no_login">你还没有登录，请先登录！</p>
+						<% } else { %>
+						<p class="no_login">你还没有登录，请先<a href="javascript:;">登录！</a></p>
+						<% } %>
 						<p class="no_comment">还没有留言!</p>
 						<ul class="m_comment_info">
 							<li>
@@ -121,6 +125,6 @@
 		<p>hello note!</p>
 	</div>
 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-<script src="public/js/index.js"></script>
+<script src="public/js/view.js"></script>
 </body>
 </html>
