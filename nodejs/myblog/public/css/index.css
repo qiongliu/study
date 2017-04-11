@@ -227,6 +227,17 @@ body {
 .m_comment_info {
 	margin-top: 14px;
 }
+.m_comment_info li {
+	padding: 10px 0;
+	border-bottom: 1px solid #ff0000;
+}
+.m_comment_info .delete {
+	margin-right: 10px;
+	color: #282828;
+}
+.m_comment_info .comment_load {
+	margin-top: 10px;
+}
 .m_comment_info p {
 	line-height: 20px;
 }

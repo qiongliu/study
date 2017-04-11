@@ -29,9 +29,5 @@ module.exports = new mongoose.Schema({
 	noteNum: {
 		type: Number,
 		default: 0
-	},
-	comment: {
-		type: Array,
-		default: []
 	}
 });

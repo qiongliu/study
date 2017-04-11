@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var Category = require('../models/Category'); //使用 ‘/models/category’，会报错。
 var Article = require('../models/Article');
+var Comment = require('../models/Comment');
 
 var data = {};
 router.use(function(req,res,next) {
@@ -13,18 +14,24 @@ router.use(function(req,res,next) {
 	});
 });
 
-router.get('/view',function(req,res,next){
+router.get('/article',function(req,res,next){
 	Article.findOne({
 		_id: req.query.id
 	}).populate('author').then(function(article){
 		data.articleInfo = article;
 		article.hits++;
-		article.save();
-		res.render('view',{
+		return article.save();
+	}).then(function(){
+		return Comment.find({
+			articleId: req.query.id
+		});
+	}).then(function(comments){
+		data.comments = comments;
+		res.render('article',{
 			userInfo: req.userInfo,
 			data: data
 		});
-	});
+	})
 });
 
 

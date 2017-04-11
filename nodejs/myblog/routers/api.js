@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
 var Article = require('../models/Article');
+var Comment = require('../models/Comment');
 
 var resData = {};
 router.use(function(req,res,next){
@@ -109,23 +110,24 @@ router.get('/user/loginOut',function(req,res,next){
 	res.json(resData);
 });
 
-router.post('/comment/post',function(req,res,next){
-	var id = req.body.articleId,
-	content = req.body.articleContent;
-	var data = {
-		user: req.userInfo.username,
-		content: content,
-		date: new Date()
-	}
-	Article.findOne({
-		_id: id
-	}).then(function(article){
-		article.comment.push(data);
-		return article.save();
-	}).then(function(newArticle){
-		data.message = '评论成功！';
-		res.json(data);
+router.post('/comment/post',function(req,res,next) {
+	var id = req.body.articleId;
+	resData.user = req.userInfo.username;
+	resData.content = req.body.articleComment;
+	resData.date = new Date();
+	new Comment({
+		articleId: id,
+		user: resData.user,
+		content: resData.content
+	}).save().then(function(comment){
+		resData.message = '评论成功！';
+		resData.commentId = comment._id;
+		res.json(resData);
 	})
+});
+
+router.get('/comment/delete',function(req,res,next){
+	var id = req.body.id
 })
 
 module.exports = router;

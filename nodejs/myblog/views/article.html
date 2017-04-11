@@ -53,7 +53,7 @@
 					<div class="m_comment">
 						<div class="title clearfix">
 							<h2 class="fl">评论</h2>
-							<p class="count fr">一共有<span>4</span>条评论</p>
+							<p class="count fr">一共有<span><%= data.comments.length %></span>条评论</p>
 						</div>
 						<% if(userInfo.id) { %>
 						<div class="textarea_wrap clearfix">
@@ -64,12 +64,18 @@
 						<% } else { %>
 						<p class="no_login">你还没有登录，请先<a href="javascript:;">登录！</a></p>
 						<% } %>
-						<p class="no_comment">还没有留言!</p>
 						<ul class="m_comment_info">
-							<li>
-								<p><span class="username">admin</span><span class="time fr">2017年4月10日 17:24:14</span></p>
-								<p class="comment_load">哈哈</p>
-							</li>
+							<% if(data.comments.length) { %>
+								<% for(var i = 0; i < data.comments.length; i++) { %>
+									<li>
+										<p><span class="username"><%= data.comments[i].user %></span><span class="time fr"><%= new Date(data.comments[i].date).toLocaleString() %></span><a href="javascript:;" class="delete fr" commentId="<%= data.comments[i].id %>">删除</a>
+										</p>
+										<p class="comment_load"><%= data.comments[i].content %></p>
+									</li>
+								<% } %>
+							<% } else { %>
+								<p class="no_comment">还没有留言!</p>
+							<% } %>
 						</ul>
 					</div>
 				</div>
@@ -125,6 +131,7 @@
 		<p>hello note!</p>
 	</div>
 <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
-<script src="public/js/view.js"></script>
+<script src="public/js/index.js"></script>
+<script src="public/js/article.js"></script>
 </body>
 </html>
