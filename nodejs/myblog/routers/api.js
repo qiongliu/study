@@ -118,16 +118,53 @@ router.post('/comment/post',function(req,res,next) {
 	new Comment({
 		articleId: id,
 		user: resData.user,
-		content: resData.content
+		content: resData.content,
+		date: new Date()
 	}).save().then(function(comment){
 		resData.message = '评论成功！';
 		resData.commentId = comment._id;
+		return Comment.count();
+	}).then(function(count){
+		resData.count = count;
 		res.json(resData);
-	})
+	});
 });
 
-router.get('/comment/delete',function(req,res,next){
-	var id = req.body.id
-})
+router.post('/comment/delete',function(req,res,next){
+	var id = req.body.commentId || '';
+	Comment.remove({
+		_id: id
+	}).then(function(rs){
+		resData.message = '删除成功!';
+		return Comment.count();
+	}).then(function(count){
+		resData.count = count;
+		res.json(resData);
+	});
 
+});
+
+router.get('/comment/more',function(req,res,next){
+	var articleId = req.query.articleId;
+	var moreInfo = {
+		more: req.query.more || 1,
+		mores: 0,
+		limit: 5,
+		count: 0
+	};
+	Comment.count({
+		articleId: articleId 
+	}).then(function(count){
+		moreInfo.count = count;
+		moreInfo.mores = Math.ceil(moreInfo.count / moreInfo.limit) - 1;
+		moreInfo.more = Math.min(moreInfo.more, moreInfo.mores);
+		var skip = moreInfo.more * moreInfo.limit;
+		return Comment.where({articleId: articleId}).find().sort({date: -1}).skip(skip).limit(moreInfo.limit);
+	}).then(function(comments){
+		resData.message = '加载成功！';
+		resData.comments = comments;
+		resData.moreInfo = moreInfo;
+		res.json(resData);
+	});
+});
 module.exports = router;

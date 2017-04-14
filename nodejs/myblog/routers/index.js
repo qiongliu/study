@@ -15,6 +15,10 @@ router.use(function(req,res,next) {
 });
 
 router.get('/article',function(req,res,next){
+	var moreInfo = {
+		limit: 5,
+		more: 0
+	};
 	Article.findOne({
 		_id: req.query.id
 	}).populate('author').then(function(article){
@@ -24,14 +28,15 @@ router.get('/article',function(req,res,next){
 	}).then(function(){
 		return Comment.find({
 			articleId: req.query.id
-		});
+		}).limit(moreInfo.limit).sort({date: -1});
 	}).then(function(comments){
 		data.comments = comments;
 		res.render('article',{
 			userInfo: req.userInfo,
-			data: data
+			data: data,
+			moreInfo: moreInfo
 		});
-	})
+	});
 });
 
 
