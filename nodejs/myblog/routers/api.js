@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var crypto = require('crypto');
 var User = require('../models/User');
 var Article = require('../models/Article');
 var Comment = require('../models/Comment');
@@ -39,6 +40,8 @@ router.post('/user/regist',function(req,res,next){
 	if(password !== repassword) {
 		resData.code = 4;
 		resData.message = '两次密码输入的不一样';
+		req.flash('error', '两次输入的密码不一致!'); 
+	    res.redirect('/');
 		res.json(resData);
 		return;
 	}
@@ -51,6 +54,9 @@ router.post('/user/regist',function(req,res,next){
 			res.json(resData);
 			return;
 		}
+
+		var md5 = crypto.createHash('md5');
+	    password = md5.update(password).digest('hex');
 
 		var user = new User({
 			username: username,
@@ -167,4 +173,5 @@ router.get('/comment/more',function(req,res,next){
 		res.json(resData);
 	});
 });
+
 module.exports = router;

@@ -3,6 +3,7 @@ var router = express.Router();
 var Category = require('../models/Category'); //使用 ‘/models/category’，会报错。
 var Article = require('../models/Article');
 var Comment = require('../models/Comment');
+var marked = require('marked');
 
 var data = {};
 router.use(function(req,res,next) {
@@ -31,6 +32,7 @@ router.get('/article',function(req,res,next){
 		}).limit(moreInfo.limit).sort({date: -1});
 	}).then(function(comments){
 		data.comments = comments;
+		data.articleInfo.content = marked(data.articleInfo.content.toString());
 		res.render('article',{
 			userInfo: req.userInfo,
 			data: data,
