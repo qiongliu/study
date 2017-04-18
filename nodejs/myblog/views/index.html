@@ -89,13 +89,16 @@
 						<p class="regist title fl">注册</p>
 						<em class="regist_info fl"></em>						
 					</div>
-					<ul class="login_content">
-						<li><span>用户名：</span><input type="text" name="username" placeholder="请输入用户名"></li>
-						<li><span>密码：</span><input name="password" type="password"></li>
-						<li><span>再次输入：</span><input name="repassword" type="password"></li>
-						<a class="u_regist_confirm" href="javascript:;">注册</a>
-						<p class="has">已有账号？<a class="u_now_login" href="javascript:;">马上登录</a></p>
-					</ul>
+					<form action="/api/user/regist" method="post">
+						<ul class="login_content">
+							<li><span>用户名：</span><input type="text" name="username" placeholder="请输入用户名"></li>
+							<li><span>密码：</span><input name="password" type="password"></li>
+							<li><span>再次输入：</span><input name="repassword" type="password"></li>
+							<!-- <a class="u_regist_confirm" href="javascript:;">注册</a> -->
+							<input class="u_regist_confirm" type="submit" value="注册">
+							<p class="has">已有账号？<a class="u_now_login" href="javascript:;">马上登录</a></p>
+						</ul>
+					</form>
 				</div>
 				<div class="m_login m_login_wrap">
 					<div class="title_wrap clearfix">

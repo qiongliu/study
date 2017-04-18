@@ -22,28 +22,26 @@ router.post('/user/regist',function(req,res,next){
 	if(username === "") {
 		resData.code = 1;
 		resData.message = '用户名不能为空';
-		res.json(resData);
-		return;
+		req.flash('error', resData); 
+	    return res.redirect('/');
 	}
 	if(password === "") {
 		resData.code = 2;
 		resData.message = '密码不能为空';
-		res.json(resData);
-		return;
+		req.flash('error', resData); 
+	    return res.redirect('/');
 	}
 	if(repassword === "") {
 		resData.code = 3;
 		resData.message = '重复密码不能为空';
-		res.json(resData);
-		return;
+		req.flash('error', resData); 
+	    return res.redirect('/');
 	}
 	if(password !== repassword) {
 		resData.code = 4;
 		resData.message = '两次密码输入的不一样';
-		req.flash('error', '两次输入的密码不一致!'); 
-	    res.redirect('/');
-		res.json(resData);
-		return;
+		req.flash('error', resData); 
+	    return res.redirect('/');
 	}
 	User.findOne({
 		username: username
@@ -51,8 +49,8 @@ router.post('/user/regist',function(req,res,next){
 		if (userInfo) {
 			resData.code = 5;
 			resData.message = "用户名已经被注册";
-			res.json(resData);
-			return;
+			req.flash('error', resData); 
+		    return res.redirect('/');
 		}
 
 		var md5 = crypto.createHash('md5');
@@ -65,16 +63,20 @@ router.post('/user/regist',function(req,res,next){
 		return user.save();
 	}).then(function(newUserInfo){
 		resData.message = '注册成功';
-		resData.userInfo = {
-				id: newUserInfo._id,
-				username: newUserInfo.username
-			};
-			req.cookies.set('userInfo',JSON.stringify({
-				id: newUserInfo._id,
-				username: newUserInfo.username
-			}));
-		res.json(resData);
-		return;
+		// resData.userInfo = {
+		// 		id: newUserInfo._id,
+		// 		username: newUserInfo.username
+		// 	};
+			// req.cookies.set('userInfo',JSON.stringify({
+			// 	id: newUserInfo._id,
+			// 	username: newUserInfo.username
+			// }));
+		req.session.userInfo = {
+			id: newUserInfo._id,
+			username: newUserInfo.username
+		};
+		req.flash('success', resData); 
+	    return res.redirect('/');
 	});
 });
 

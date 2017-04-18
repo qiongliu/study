@@ -71,7 +71,7 @@ body {
 	/*width: 60px;*/
 	text-align: right;
 }
-.m_login_wrap input {
+.m_login_wrap li input {
 	width: 160px;
 	border: 1px solid #ccc;
 	height: 14px;

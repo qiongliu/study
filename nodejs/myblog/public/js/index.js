@@ -27,28 +27,28 @@ $(function(){
 		$mLogin.show();
 	});
 
-	$uRegConf.on('click',function(){
-		var data = {};
-		data.username = $mRegist.find("input[name='username']").val();
-		data.password = $mRegist.find("input[name='password']").val();
-		data.repassword = $mRegist.find("input[name='repassword']").val();
-		$.ajax({
-			type: 'post',
-			url: '/api/user/regist',
-			dataType: 'json',
-			timeout: 4000,
-			data: data,
-			success: function(result){
-				$mRegist.find('.regist_info').html(result.message);
-				if(!result.code) {
-					window.location.reload();
-				}
-			},
-			error:function(){
-				console.log(arguments);
-			}
-		});
-	});
+	// $uRegConf.on('click',function(){
+	// 	var data = {};
+	// 	data.username = $mRegist.find("input[name='username']").val();
+	// 	data.password = $mRegist.find("input[name='password']").val();
+	// 	data.repassword = $mRegist.find("input[name='repassword']").val();
+	// 	$.ajax({
+	// 		type: 'post',
+	// 		url: '/api/user/regist',
+	// 		dataType: 'json',
+	// 		timeout: 4000,
+	// 		data: data,
+	// 		success: function(result){
+	// 			$mRegist.find('.regist_info').html(result.message);
+	// 			if(!result.code) {
+	// 				window.location.reload();
+	// 			}
+	// 		},
+	// 		error:function(){
+	// 			console.log(arguments);
+	// 		}
+	// 	});
+	// });
 
 	$uLogConf.on('click',function(){
 		var data = {};
