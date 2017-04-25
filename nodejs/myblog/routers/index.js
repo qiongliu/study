@@ -55,7 +55,7 @@ router.get('/',function(req,res,next){
 	if(data.category) {
 		where.category = data.category;
 	}
-
+	
 	Article.where(where).count().then(function(count){
 		data.pageInfo.count = count;
 		data.pageInfo.pages = Math.ceil(count / data.pageInfo.limit);
@@ -67,7 +67,12 @@ router.get('/',function(req,res,next){
 		data.articleInfo = articles;
 		res.render('index',{
 			data: data,
-			userInfo: req.userInfo
+			userInfo: req.userInfo,
+			session: {
+				success: req.flash('success').toString(),
+	    		error: req.flash('error').toString(),
+	    		userInfo: req.session.userInfo
+			}
 		});
 	});
 });

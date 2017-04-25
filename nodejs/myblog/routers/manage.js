@@ -3,6 +3,8 @@ var router = express.Router();
 var User = require('../models/User');
 var Category = require('../models/Category');
 var Article = require('../models/Article');
+var muilter = require('../bin/multer');
+var upload = muilter.single('file');
 
 router.use(function(req,res,next){
 	if(!req.userInfo.isAdmin) {
@@ -39,6 +41,7 @@ router.get('/user',function(req,res,next){
 
 });
 
+
 router.get('/article/add',function(req,res,next){
 	Category.find().then(function(categories){
 		res.render('manage/addArticle',{
@@ -61,6 +64,14 @@ router.post('/article/add',function(req,res,next){
 		});
 		return;
 	}
+
+	// upload(req,res,function(err){
+	// 	if(err) {
+	// 		return console.log(err);
+	// 	}
+	// 	console.log(req.file);
+	// })
+	
 	new Article({
 		category: category,
 		author: req.userInfo.id,
@@ -75,7 +86,6 @@ router.post('/article/add',function(req,res,next){
 			url: '/manage/article'
 		});
 	});
-
 });
 
 router.get('/article/editArticle',function(req,res,next){

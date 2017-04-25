@@ -20,13 +20,12 @@ app.set('view engine','html');
 app.set('view cache',false);
 app.engine('html',ejs.renderFile);
 
-app.use(flash());
-
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use('/public',express.static(__dirname + "/public"));
 app.use(bodyParser.urlencoded({extended:false}));
+app.use(flash());
 
 app.use(function(req,res,next){
 	req.cookies = new Cookies(req,res);

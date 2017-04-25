@@ -6,6 +6,7 @@ var Article = require('../models/Article');
 var Comment = require('../models/Comment');
 
 var resData = {};
+
 router.use(function(req,res,next){
 	resData = {
 		code: 0,
@@ -22,25 +23,25 @@ router.post('/user/regist',function(req,res,next){
 	if(username === "") {
 		resData.code = 1;
 		resData.message = '用户名不能为空';
-		req.flash('error', resData); 
+		req.flash('error', resData.message); 
 	    return res.redirect('/');
 	}
 	if(password === "") {
 		resData.code = 2;
 		resData.message = '密码不能为空';
-		req.flash('error', resData); 
+		req.flash('error', resData.message); 
 	    return res.redirect('/');
 	}
 	if(repassword === "") {
 		resData.code = 3;
 		resData.message = '重复密码不能为空';
-		req.flash('error', resData); 
+		req.flash('error', resData.message); 
 	    return res.redirect('/');
 	}
 	if(password !== repassword) {
 		resData.code = 4;
 		resData.message = '两次密码输入的不一样';
-		req.flash('error', resData); 
+		req.flash('error', resData.message); 
 	    return res.redirect('/');
 	}
 	User.findOne({
@@ -49,13 +50,11 @@ router.post('/user/regist',function(req,res,next){
 		if (userInfo) {
 			resData.code = 5;
 			resData.message = "用户名已经被注册";
-			req.flash('error', resData); 
+			req.flash('error', resData.message); 
 		    return res.redirect('/');
 		}
-
 		var md5 = crypto.createHash('md5');
 	    password = md5.update(password).digest('hex');
-
 		var user = new User({
 			username: username,
 			password: password
@@ -63,19 +62,11 @@ router.post('/user/regist',function(req,res,next){
 		return user.save();
 	}).then(function(newUserInfo){
 		resData.message = '注册成功';
-		// resData.userInfo = {
-		// 		id: newUserInfo._id,
-		// 		username: newUserInfo.username
-		// 	};
-			// req.cookies.set('userInfo',JSON.stringify({
-			// 	id: newUserInfo._id,
-			// 	username: newUserInfo.username
-			// }));
 		req.session.userInfo = {
 			id: newUserInfo._id,
 			username: newUserInfo.username
 		};
-		req.flash('success', resData); 
+		req.flash('success', resData.message); 
 	    return res.redirect('/');
 	});
 });
@@ -89,6 +80,8 @@ router.post('/user/login',function(req,res,next){
 		res.json(resData);
 		return;
 	}
+	var md5 = crypto.createHash('md5');
+	password = md5.update(password).digest('hex');
 	User.findOne({
 		username: username,
 		password: password

@@ -13,7 +13,7 @@
 	   <li><a href="/manage/article">文章管理</a></li>
 	   <li class="active">发表文章</li>
 	</ol>
-
+	 <!-- enctype='multipart/form-data' -->
 	<form method='post'>
 		<div class="form-group">
 	        <label for="category">分类</label>
@@ -27,6 +27,11 @@
 	        <label for="title">文章标题</label>
 	        <input type="text" class="form-control" id="title" name='title' placeholder="请输入文章名称">
 	    </div>
+	    <div class="form-group">
+		    <label for="file">上传文件</label>
+		    <input type="file"  class="form-control" id="file" name="file">
+		    <p class="help-block">最多可同时上传2个文件</p>
+	  	</div>
 	    <div class="form-group">
 	        <label for="intro">文章简介</label>
 	        <textarea name="intro" id="intro" class="form-control" rows="3" placeholder="请输入文章简介"></textarea>
