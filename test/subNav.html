@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>subNav</title>
+	<style>
+		* {
+			margin: 0;
+			padding: 0;
+		}
+		a {
+			text-decoration: none;
+		}
+		ul {
+			list-style: none;
+		}
+		.m_subNav {
+			position: relative;
+		}
+		.m_subNav .nav {
+			background-color: #ccc;
+			width: 200px;
+			float: left;
+		}
+		.m_subNav .nav a {
+			display: inline-block;
+			font: 400 14px/40px 'Microsoft Yahei';
+			color: #000;
+		}
+		.m_subNav .nav li {
+			padding: 0 12px;
+		}
+		.m_subNav li.nav_active {
+			background-color: #fff;
+		}
+		.m_subNav .nav_active a {
+			color: #ff0000;
+		}
+		.m_subNav .sub {
+			float: left;
+			background-color: #bbb;
+			width: 500px;
+			height: 480px;
+			font: 400 14px/40px 'Microsoft Yahei';
+			color: #f0f0f0;
+		}
+		.none {
+			display: none;
+		}
+		.clearfix:after {
+			content: " ";
+			display: table;
+			clear: both;
+		}
+		.m_subNav #sub {
+			border: 1px solid #ccc;
+			box-shadow: 4px 0 4px #ddd;
+			width: 400px;
+			position: absolute;
+			left: 200px;
+		}
+		.m_subNav dt{
+			float: left;
+		}
+		.m_subNav dt a {
+			font-size: 14px;
+			color: #ff3333;
+			line-height: 40px;
+			height: 40px;
+			padding: 0 20px;
+		}
+		.m_subNav dd{
+			float: left;
+			width: 290px;
+		}
+		.m_subNav dd a {
+			font-size: 12px;
+			line-height: 40px;
+			color: #000;
+			padding: 0 10px;
+		}
+		.m_subNav dd a:hover {
+			color: #ff0000;
+		}
+		.m_subNav .sub_active {
+			color: #ff0000;
+		}
+	</style>
+</head>
+<body>
+	<div class="m_subNav">
+		<ul class="nav">
+			<li data-id="a"><a href="javascript:;">女装</a><a href="javascript:;">/内衣</a></li>
+			<li data-id="b"><a href="javascript:;">女鞋</a><a href="javascript:;">/男鞋</a><a href="javascript:;">/箱包</a>
+			</li>
+			<li data-id="c"><a href="javascript:;">手机</a><a href="javascript:;">数码</a><a href="javascript:;">电脑办公</a>
+			</li>
+			<li data-id="d"><a href="javascript:;">女装</a><a href="javascript:;">/内衣</a></li>
+			<li data-id="e"><a href="javascript:;">女鞋</a><a href="javascript:;">/男鞋</a><a href="javascript:;">/箱包</a>
+			</li>
+			<li data-id="f"><a href="javascript:;">手机</a><a href="javascript:;">数码</a><a href="javascript:;">电脑办公</a>
+			</li>
+			<li data-id="g"><a href="javascript:;">女装</a><a href="javascript:;">/内衣</a></li>
+			<li data-id="h"><a href="javascript:;">女鞋</a><a href="javascript:;">/男鞋</a><a href="javascript:;">/箱包</a>
+			</li>
+			<li data-id="i"><a href="javascript:;">手机</a><a href="javascript:;">数码</a><a href="javascript:;">电脑办公</a>
+			</li>
+			<li data-id="j"><a href="javascript:;">女装</a><a href="javascript:;">/内衣</a></li>
+			<li data-id="k"><a href="javascript:;">女鞋</a><a href="javascript:;">/男鞋</a><a href="javascript:;">/箱包</a>
+			</li>
+			<li data-id="l"><a href="javascript:;">手机</a><a href="javascript:;">数码</a><a href="javascript:;">电脑办公</a>
+			</li>
+		</ul>
+		<div id="sub" class="none">
+			<div id="a" class="sub_content none">
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行a1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行a2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行a3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行a3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行a3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行a3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行a3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+			</div>
+			<div id="b" class="sub_content none">
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行b1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行b2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行b2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行b3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行b2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行b3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+			</div>
+			<div id="c" class="sub_content none">
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行c1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行c1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行c1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行c2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行c3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+			</div>
+			<div id="d" class="sub_content none">
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行d1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行d1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行d2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行d3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+			</div>
+			<div id="e" class="sub_content none">
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行e1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行e2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行e2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行e3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+			</div>
+			<div id="f" class="sub_content none">
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行f1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行f1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行f2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行f3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+			</div>
+			<div id="g" class="sub_content none">
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行g1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行g2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行g2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行g3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+			</div>
+			<div id="h" class="sub_content none">
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行h1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行h2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行h3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行h3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+			</div>
+			<div id="i" class="sub_content none">
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行i1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行i1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行i2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行i3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+			</div>
+			<div id="j" class="sub_content none">
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行j1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行j1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行j1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行j2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行j3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+			</div>
+			<div id="k" class="sub_content none">
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行k1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行k2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行k3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行k2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行k3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行k2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行k3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+			</div>
+			<div id="l" class="sub_content none">
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行l1</a></dt>
+					<dd><a class="sub_active" href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行l2</a></dt>
+					<dd><a href="javascript:;">T恤T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">T恤T恤针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣T恤</a><a href="javascript:;">针织衫</a><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">T恤针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行l3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行l3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+				<dl class="clearfix">
+					<dt><a href="javascript:;">当季流行l3</a></dt>
+					<dd><a href="javascript:;">T恤</a><a href="javascript:;">风衣</a><a href="javascript:;">针织衫</a></dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		$(function(){
+			var sub = $("#sub");
+			var navActive = null;
+			var subActive = null;
+			var timer = null;
+			var mouseInSub = false;
+
+			sub.on({
+				"mouseenter": function(){
+					mouseInSub = true;
+				},
+				"mouseleave": function(){
+					mouseInSub = false;
+				}
+			});
+
+			$(".m_subNav").on({
+				"mouseenter": function(){
+					sub.removeClass('none');
+				},
+				"mouseleave": function(){
+					sub.addClass('none');
+					if (navActive) {
+						navActive.removeClass("nav_active");
+						navActive = null;
+					} 
+					if (subActive) {
+						subActive.addClass("none");
+						subActive = null;
+					}
+				}
+			}).on("mouseenter","li",function(e){
+				var self = $(this);
+				if (!navActive) {
+					navActive = self.addClass('nav_active');
+					subActive = $("#" + navActive.data('id')).removeClass('none');
+					return;
+				}
+
+				if (timer) {
+					clearTimeout(timer);
+				}
+				
+				timer = setTimeout(function(){
+					if (mouseInSub) {
+						return;
+					}
+					navActive.removeClass('nav_active');
+					subActive.addClass('none');
+
+					navActive = self.addClass('nav_active');
+					subActive = $("#" + navActive.data('id')).removeClass('none');
+					timer = null;
+				},300);
+			});
+		});
+	</script>
+</body>
+</html>

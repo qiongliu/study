@@ -1,5 +1,5 @@
 var express = require('express');
-var settings = require('./settings');
+var config = require('./config');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var path = require('path');
@@ -47,11 +47,11 @@ app.use(function(req,res,next){
 });
 
 app.use(session({
-  	secret: settings.cookieSecret,
-  	key: settings.db,//cookie name
+  	secret: config.cookieSecret,
+  	key: config.db,//cookie name
   	cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
   	store: new MongoStore({
-  	  	url: 'mongodb://' + settings.host + ':' + settings.port + '/' + settings.db
+  	  	url: 'mongodb://' + config.host + ':' + config.port + '/' + config.db
   	})
 }));
 
@@ -73,7 +73,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-mongoose.connect('mongodb://' + settings.host + ':' + settings.port + '/' + settings.db,function(err){
+mongoose.connect('mongodb://' + config.host + ':' + config.port + '/' + config.db,function(err){
 	if(err) {
 		console.log('mongodb err...');
 	} else {

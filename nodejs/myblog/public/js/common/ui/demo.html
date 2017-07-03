@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ui deom</title>
+	<link rel="stylesheet" href="css/ui.css">
+</head>
+<body>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<select name="dropdown" id="dropdown1">
+		<option value="0">0</option>
+		<option value="1">1</option>
+		<option value="2">2</option>
+		<option value="3">3</option>
+		<option value="4">4</option>
+		<option value="5">5</option>
+	</select>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<select name="dropdown" id="dropdown2" style="width: 100px;height: 30px;">
+		<option value="0">00</option>
+		<option value="1">11</option>
+		<option value="2">22</option>
+		<option value="3">33</option>
+		<option value="4">44</option>
+		<option value="5">55</option>
+	</select>
+	<!-- <div class="ui-selectDrop">
+		<button class="ui-selectBtn"" href="javascript:;">0</button>
+		<ul class="ui-selectMenu">
+			<li><a href="javascript:;">1</a></li>
+			<li><a href="javascript:;">2</a></li>
+			<li><a href="javascript:;">3</a></li>
+			<li><a href="javascript:;">4</a></li>
+		</ul>
+	</div> -->
+	<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/seajs/2.2.1/sea.js"></script>
+	<script>
+		$(function(){
+			window.uiPath = 'http://localhost:3000/study/nodejs/myblog/public/js/common/ui/ui.js';  
+			seajs.config({
+				base: "",
+				alias: {
+					"ui": window.uiPath
+				}
+			});
+
+			seajs.use('ui',function(ui){
+				// ui.loader('tips',function(){
+				// 	Ui.widgets.tips({}).addEvent('closeClick',function(data){
+				// 		console.log(data);
+				// 	});
+				// });
+				ui.loader('dropdown',function(){
+					Ui.widgets.dropdown({
+						name: 'dropdown',
+						showCount: 5
+					});
+				});
+			});
+		});
+	</script>
+</body>
+</html>

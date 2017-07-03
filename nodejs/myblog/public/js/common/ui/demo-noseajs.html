@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Ui deom</title>
+</head>
+<body>
+	<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+	<script src="./ui.js"></script>
+	<script src="./widgets/tips.js"></script>
+	<link rel="stylesheet" href="./css/ui.css">
+	
+	<script>
+		$(function(){
+			window.uiPath = 'http://localhost:3000/study/nodejs/myblog/public/js/common/ui/ui.js';  
+			Ui.widgets.tips({
+				type: 'success',
+				content: 'hehe'
+			});
+		});
+	</script>
+</body>
+</html>
