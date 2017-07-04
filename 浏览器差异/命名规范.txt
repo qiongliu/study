@@ -1,8 +1,0 @@
-js:
-1、常量大写；
-2、循环变量简写；
-3、函数名：Carouse() || jCarouse()
-4、内部函数、变量： _fadnIn(),_offset
-5、jquery对象： $nav
-6、参数名缩写：len,val
-7、命名以下划线分隔

@@ -77,8 +77,13 @@
 
 **git checkout -- file，可以理解为以版本库最新文件替代本地文件**
 
-### 添加远程仓库、克隆远程仓库
-#### 添加远程仓库
+### 远程仓库关联本地仓库、克隆远程仓库
+### 创建SSH Key
+> 在本地git bash 执行：$ ssh-keygen -t rsa -C "youremail@example.com"
+
+> .ssh目录有私钥id_rsa和公钥id_rsa.pub两个文件，将id_rsa.pub的内容添加到github的Add SSH Key
+
+#### 远程仓库关联本地仓库
 > 在github上新建个仓库`giDemo`，与本地仓库关联，并将本地文件push到github上。
 
 > `git remote add origin https://github.com/qiongliu/gitDemo`
