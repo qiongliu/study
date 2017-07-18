@@ -1,7 +1,7 @@
 ## 安装package control
 
 ### 方法一
-> 快捷键ctrl+` 
+> 快捷键ctrl+` 打开控制台
 
 > `mport urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.NET/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)`
 
@@ -20,4 +20,11 @@
 |AdvancedNewFile		| 快速新建文件           | ctrl + alt + n    |
 |OminMarkupPreviwer		| 实时预览markdown文件 	 | ctrl + alt + o    |
 |AutoFileName	 		| 文件路径提示		 	 | 无			     |
+|colorPicker			| 颜色选择器			 | ctrl + shift + c  |
+|AutoFileName			| src、href时，文件路径提示 | 无 |
 
+
+### 快速开启浏览器
+> Tools->Build System->New Build System,添加{"cmd":["C:\Program Files (x86)\Google\Chrome\Application\chrome.exe","$file"]}，可以任意名保存；
+
+> 快捷键：ctrl+b
