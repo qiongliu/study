@@ -79,7 +79,7 @@
 
 ### 远程仓库关联本地仓库、克隆远程仓库
 ### 创建SSH Key
-> 在本地git bash 执行：$ ssh-keygen -t rsa -C "youremail@example.com"
+> 在本地git bash 执行：$ ssh-keygen -t rsa -C "273984995@qq.com"
 
 > 用户主目录下，`C:\Users\Administrator`，会成生.ssh目录
 
