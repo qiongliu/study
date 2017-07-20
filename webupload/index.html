@@ -1,0 +1,382 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>WebUploader</title>
+        <link rel="stylesheet" href="/js/webuploader/webuploader.css" />
+        <script src="/js/jquery-1.10.2.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/js/webuploader/md5.js" type="text/javascript" charset="utf-8"></script>
+        <script src="/js/webuploader/webuploader.js" type="text/javascript" charset="utf-8"></script>
+        <style type="text/css">
+            body, h1, h2, h3, h4, h5, h6, p, blockquote, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, th, td, figure {
+                margin: 0;
+                padding: 0;
+            }
+
+            body, button, input, select, textarea {
+                font: 12px/1.5 "Microsoft Yahei";
+            }
+
+            h1, h2, h3, h4, h5, h6, button, input, select, textarea {
+                font-size: 100%;
+            }
+
+            address, cite, dfn, em, var {
+                font-style: normal;
+            }
+
+            code, kbd, pre, samp {
+                font-family: courier new,courier,monospace;
+            }
+
+            p, ul, li, dl, dd, dt, form, h1, h2, h3, h4, h5, h6 {
+                list-style: none;
+            }
+
+            a {
+                color: #666;
+                text-decoration: none;
+            }
+
+                a:hover {
+                    color: #0089CD;
+                    text-decoration: none;
+                }
+
+            fieldset, img {
+                border: 0;
+            }
+
+            table {
+                border-collapse: collapse;
+                border-spacing: 0;
+            }
+
+            input::-moz-focus-inner, button::-moz-focus-inner {
+                border: 0;
+                padding: 0;
+                outline: 0;
+            }
+            .blank10 {height:10px;clear:both;line-height:10px;overflow:hidden;}
+            .main {
+                width:405px;
+                margin:20px auto;
+                padding:20px;
+                border:1px solid #ddd;
+                box-shadow:0 0 5px rgba(0,0,0,.3);
+            }
+            .tit {width:100%;height:30px;margin-bottom:15px;text-align:center;font-size:16px;font-weight:bold;}
+            .urlInput {
+                width:300px;height:34px;line-height:34px;padding:0 10px;border:1px solid #ddd;color:#666;float:left;
+            }
+            .picker {
+                width:80px;float:left;
+            }
+            #theList {
+                width: 400px;
+                border: 1px solid #dddddd;
+                border-bottom: none;
+                display: none;
+            }
+
+            .upItem {
+                height: 30px;
+                width: 100%;
+                line-height: 30px;
+            }
+
+            .fileName {
+                padding-left: 10px;
+                width: 318px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                float: left;
+            }
+
+            .itemDel, .itemStop, .itemUpload {
+                display: inline-block;
+                width: 35px;
+                text-align: center;
+                color: #666666;
+                cursor: pointer;
+                float: right;
+            }
+
+            /*#theList .itemStop, #theList .itemUpload {
+                display: none;
+            }*/
+
+            .percentage {
+                width: 400px;
+                height: 20px;
+                line-height: 20px;
+                background-color: #aaaaaa;
+                position: relative;
+                border-bottom: 1px solid #dddddd;
+            }
+
+            .progressBar {
+                width: 0;
+                height: 20px;
+                background-color: #5cb85c;
+            }
+
+            .progressInfo {
+                width: 400px;
+                height: 20px;
+                line-height: 20px;
+                color: #fff;
+                font-size: 12px;
+                text-align: center;
+                position: absolute;
+                left: 0;
+                top: 0;
+            }
+            .downLoadList {
+                margin-top:15px;
+            }
+        </style>
+	</head>
+	<body>
+        <div class="main">
+            <p class="tit">大文件上传测试</p>
+            <input type="text" class="urlInput" id="uploadUrl" placeholder="请选择文件" value="" />
+            <div id="picker">选择文件</div>
+            <div class="blank10"></div>
+            <div id="uploader">
+                <ul id="theList"></ul>
+            </div>
+            <div class="downLoadList">
+            </div>
+        </div>
+		
+        <script>
+            /***文件上传开始***/
+            var formData = { userType: "manager", md5: "" };   //自定义表单信息
+            var chunkSize = 2000 * 1024;        //分块大小
+            var numLimit = 5;                   //上传文件数限制
+            var sizeLimit = 2000;               //上传文件大小限制，单位M
+            var uniqueFileName = null;          //文件唯一标识符
+            var fileMD5Arr = [];
+            var backEndUrl = "upload.ashx";
+
+            WebUploader.Uploader.register({
+                "before-send-file": "beforeSendFile", //在文件发送之前request，此时还没有分片（如果配置了分片的话），可以用来做文件整体md5验证。
+                "before-send": "beforeSend",   //在分片发送之前request，可以用来做分片验证，如果此分片已经上传成功了，可返回一个rejected promise来跳过此分片上传
+                "after-send-file": "afterSendFile" //在所有分片都上传完毕后，且没有错误后request，用来做分片验证，此时如果promise被reject，当前文件上传会触发错误。
+            }, {
+                beforeSendFile: function (file) {
+                    //秒传验证
+                    var task = new $.Deferred();
+                    var start = new Date().getTime();
+                    (new WebUploader.Uploader()).md5File(file, 0, 10 * 1024 * 1024).progress(function (percentage) {
+                        $("#" + file.id + " .progressInfo").text("正在计算文件MD5：" + (percentage * 100).toFixed(2) + "%");
+                        //console.log(percentage);
+                    }).then(function (val) {
+                        //console.log("总耗时: "+((new Date().getTime()) - start)/1000);
+                        var md5Mark = md5(val + file.type + file.lastModifiedDate + file.size);
+                        var fileMD5 = {};
+                        fileMD5.fileID = file.id;
+                        fileMD5.md5 = md5Mark;
+                        fileMD5Arr.push(fileMD5);
+						formData.md5 = md5Mark;
+
+                        $.ajax({
+                            type: "POST",
+                            url: backEndUrl,
+                            data: {
+                                status: "md5Check",
+                                md5: getFileMD5(file.id),
+                                name: file.name
+                            },
+                            cache: false,
+                            timeout: 100000, //todo 超时的话，只能认为该文件不曾上传过
+                            dataType: "json"
+                        }).then(function (data, textStatus, jqXHR) {
+                            if (data.Error) {
+                                $("#" + file.id + " .progressInfo").text(data.Message);
+                            } else {
+                                if (data.FileExtist) {   //若存在，则返回失败给WebUploader，表明该文件不需要上传
+                                    task.reject();
+                                    uploader.skipFile(file);
+                                    file.path = data.FilePath;
+                                    UploadComlate(file);
+                                } else {
+                                    task.resolve();
+                                }
+                            }
+                        }, function (jqXHR, textStatus, errorThrown) {    //任何形式的验证失败，都触发重新上传
+                            task.resolve();
+                        });
+                    });
+                    return $.when(task);
+                },
+                beforeSend: function (block) {
+                    //分片验证是否已传过，用于断点续传
+                    var task = new $.Deferred();
+                    $.ajax({
+                        type: "POST",
+                        url: backEndUrl,
+                        data: {
+                            status: "chunkCheck",
+                            md5: getFileMD5(block.file.id),
+                            chunkIndex: block.chunk,
+                            size: block.end - block.start
+                        },
+                        cache: false,
+                        timeout: 180000, //todo 超时的话，只能认为该分片未上传过
+                        dataType: "json"
+                    }).then(function (data, textStatus, jqXHR) {
+                        if (data.Error) {
+                            $("#" + file.id + " .progressInfo").text(data.Message);
+                        } else {
+                            if (data.FileExtist) {   //若存在，返回失败给WebUploader，表明该分块不需要上传
+                                task.reject();
+                            } else {
+                                task.resolve();
+                            }
+                        }
+                    }, function (jqXHR, textStatus, errorThrown) {    //任何形式的验证失败，都触发重新上传
+                        task.resolve();
+                    });
+
+                    return $.when(task);
+                },
+                afterSendFile: function (file) {
+                    var chunksTotal = 0;
+                    if ((chunksTotal = Math.ceil(file.size / chunkSize)) > 1) {
+                        //合并请求
+                        var task = new $.Deferred();
+                        $.ajax({
+                            type: "POST",
+                            url: backEndUrl,
+                            data: {
+                                status: "chunksMerge",
+                                md5: getFileMD5(file.id),
+                                chunks: chunksTotal,
+                                ext: file.ext,
+                                name: file.name
+                            },
+                            cache: false,
+                            timeout: 180000,
+                            dataType: "json"
+                        }).then(function (data, textStatus, jqXHR) {
+                            if (data.Error) {
+                                $("#" + file.id + " .progressInfo").text(data.Message);
+                            } else {
+                                task.resolve();
+                                file.path = data.FilePath;
+                                UploadComlate(file);
+                            }
+
+                        }, function (jqXHR, textStatus, errorThrown) {
+                            task.reject();
+                        });
+
+                        return $.when(task);
+                    } else {
+                        UploadComlate(file);
+                    }
+                }
+            });
+
+            var uploader = WebUploader.create({
+                swf: "/js/webuploader/Uploader.swf",
+                server: backEndUrl,
+                pick: "#picker",
+				auto: true,
+                resize: false,
+                dnd: "#theList",
+                paste: document.body,
+                accept: {
+                    title: '上传文件',
+                    extensions: 'mp4,flv,rar,zip,iso,7z,jpg,gif,png,txt,doc,docx,xls,xlsx,ppt,pptx,pdf',
+                    mimeTypes: '*/*'
+                },
+                disableGlobalDnd: true,
+                compress: false,
+                prepareNextFile: false,
+                chunked: true,
+                chunkSize: chunkSize,
+                threads: true,
+                formData: function () { return $.extend(true, {}, formData); },
+                fileNumLimit: numLimit,
+                fileSingleSizeLimit: sizeLimit * 1024 * 1024,
+                duplicate: true
+            });
+            uploader.on("error", function (type) {
+                if (type == "Q_TYPE_DENIED") {
+                    alert("文件格式错误！");
+                } else if (type == "F_EXCEED_SIZE") {
+                    alert("文件大小不能超过" + sizeLimit + "M！");
+                } else if (type == "Q_EXCEED_NUM_LIMIT") {
+                    alert("一次只能上传" + numLimit + "个文件！");
+                }
+            });
+            uploader.on("fileQueued", function (file) {
+                if (file.getStatus() == 'invalid') {
+                    alert(file.statusText);
+                } else {
+                    if ($("#theList").is(":hidden")) $("#theList").show();
+                    $("#theList").append('<li id="' + file.id + '">' +
+                        '<div class="upItem"><span class="itemUpload">上传</span><span class="itemStop">暂停</span><span class="itemDel">删除</span><p class="fileName">' + file.name + '</p></div>' +
+                        '<div class="percentage"><div class="progressInfo">等待上传...</div><div class="progressBar"></div></div>' +
+                    '</li>');
+                }
+            });
+
+            $("#theList").on("click", ".itemUpload", function () {
+                uploader.upload($(this).parent().parent().attr("id"));
+                //"上传"-->"暂停"
+                $(this).hide();
+                $(this).parent().find(".itemStop").show();
+            });
+
+            $("#theList").on("click", ".itemStop", function () {
+                uploader.stop(uploader.getFile($(this).parent().parent().attr("id")));
+                //"暂停"-->"上传"
+                $(this).hide();
+                $(this).parent().find(".itemUpload").show();
+            });
+
+            //todo 如果要删除的文件正在上传（包括暂停），则需要发送给后端一个请求用来清除服务器端的缓存文件
+            $("#theList").on("click", ".itemDel", function () {
+                uploader.removeFile($(this).parent().parent().attr("id"));	//从上传文件列表中删除
+                $(this).parent().parent().remove();	//从上传列表dom中删除
+                if ($("#theList li").length == 0) $("#theList").hide();
+            });
+
+            uploader.on("uploadProgress", function (file, percentage) {
+                $("#" + file.id + " .progressBar").width(percentage * 400);
+                if (percentage < 1) {
+                    $("#" + file.id + " .progressInfo").text("文件上传中：" + (percentage * 100).toFixed(2) + "%");
+                } else {
+                    $("#" + file.id + " .progressInfo").text("文件处理中...");
+                }
+            });
+
+            function UploadComlate(file) {
+                $(".downLoadList").append("<p><a href='" + file.path + "'>" + file.name + "</a></p>");
+                $("#uploadUrl").val(file.path);
+                $("#" + file.id + " .progressBar").width(400);
+                $("#" + file.id + " .progressInfo").text("上传完毕");
+                $("#"+file.id).find(".itemStop").hide();
+                $("#"+file.id).find(".itemUpload").hide();
+                $("#"+file.id).find(".itemDel").hide();
+            }
+            /***文件上传结束***/
+            function getFileMD5(fileid) {
+                var fileMD5 = "";
+                $.each(fileMD5Arr,function (index, obj) {
+                    if (obj.fileID == fileid) {
+                        fileMD5 = obj.md5;
+                        return false;
+                    }
+                });
+                return fileMD5;
+            }
+        </script>
+	</body>
+</html>

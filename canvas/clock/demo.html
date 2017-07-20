@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>clock</title>
+	<style>
+		#canvas {
+			display: block;
+			margin: 50px auto;
+			/*border: 1px solid #ccc;*/
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas">当前浏览器不支持canvas，请更换浏览器</canvas>
+	<script>
+		window.onload = function(){
+			var canvas = document.getElementById('canvas');
+			canvas.width = 200;
+			canvas.height = 200;
+			var ctx = canvas.getContext('2d');
+			var r = canvas.width/2;
+			var lineWidth = 6;
+
+			ctx.translate(r,r);
+
+			function clockBg() {
+				ctx.save();
+
+				ctx.beginPath();
+				ctx.arc(0,0,r-lineWidth/2,0,2*Math.PI);
+				ctx.strokeStyle = '#000';
+				ctx.lineWidth = lineWidth;
+				ctx.stroke();
+
+				var time = [3,4,5,6,7,8,9,10,11,12,1,2,3];
+				ctx.font = '18px Microsoft Hahei';
+				ctx.textAlign = 'center';
+				ctx.textBaseline = 'middle';
+				for(var i = 0;i < 12;i++) {
+					var rad = 2 * Math.PI / 12 * i;
+					var x = Math.cos(rad) * (r - 24);
+					var y = Math.sin(rad) * (r - 24);
+					ctx.fillText(time[i],x,y);
+				}
+
+				for(var i = 0; i < 60; i++) {
+					var rad = 2 * Math.PI / 60 * i;
+					var x = Math.cos(rad) * (r - 12);
+					var y = Math.sin(rad) * (r - 12);
+					ctx.beginPath();
+					ctx.arc(x,y,2,0,2*Math.PI);
+					if(i % 5 === 0) {
+						ctx.fillStyle = "#000"
+					} else {
+						ctx.fillStyle = "#ccc";
+					}
+					ctx.fill();
+				}
+				
+			}
+
+			function drawCenter () {
+				ctx.beginPath();
+				ctx.arc(0,0,2,0,2*Math.PI);
+				ctx.fillStyle = "#ff0000";
+				ctx.fill();			
+			}
+
+			function drawHour() {
+				var height = r - 40;
+				var rad = 2 * Math.PI / 30;
+				var x = Math.cos(rad) * height;
+				var y = Math.sin(rad) * height;
+				ctx.beginPath();
+				ctx.moveTo(0,0);
+				ctx.lineTo(x,y);
+				ctx.lineWidth = 10;
+				ctx.strokeStyle = "#000";
+				ctx.lineCap = 'round';
+				ctx.stroke();
+			}
+			function drawMinute() {
+				var height = r - 30;
+				var rad = 2 * Math.PI / 10;
+				var x = Math.cos(rad) * height;
+				var y = Math.sin(rad) * height;
+				ctx.beginPath();
+				ctx.moveTo(0,0);
+				ctx.lineTo(x,y);
+				ctx.lineWidth = 6;
+				ctx.strokeStyle = "#000";
+				ctx.lineCap = 'round';
+				ctx.stroke();
+			}
+			function drawSecond() {
+				var height = r - 20;
+				var rad = 2 * Math.PI / 8;
+				var x = Math.cos(rad) * height;
+				var y = Math.sin(rad) * height;
+				ctx.beginPath();
+				ctx.moveTo(0,0);
+				ctx.lineTo(x,y);
+				ctx.lineWidth = 2;
+				ctx.strokeStyle = "#ff0000";
+				ctx.lineCap = 'round';
+				ctx.stroke();
+			}
+
+			clockBg();
+			drawHour();
+			drawMinute();
+			drawSecond();
+			drawCenter();
+		};
+	</script>
+</body>
+</html>

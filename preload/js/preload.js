@@ -20,6 +20,7 @@
 			var img = new Image();
 
 			img.onload = function () {
+				img.onload = null; //避免gif多次请求
 				self.opts.each && self.opts.each(self.count,self.len);
 
 				if(self.count >= self.len - 1) {
