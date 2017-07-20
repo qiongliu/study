@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>deferred</title>
+</head>
+<body>
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		$(function() {
+
+			function wait() {
+				var dfd = new $.Deferred();
+				setTimeout(function() {
+					alert('wait!');
+					dfd.resolve('ok!');
+					dfd.reject('err');
+				},2000);
+				return dfd.promise();
+			}
+
+			wait().then(function(data){
+				alert(data);
+			},function(err) {
+				alert(err);
+			});
+		});
+	</script>
+</body>
+</html>
