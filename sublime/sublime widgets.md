@@ -19,12 +19,14 @@
 | ----------- 			| -----------------------| --------------    |
 |AdvancedNewFile		| 快速新建文件           | ctrl + alt + n    |
 |OminMarkupPreviwer		| 实时预览markdown文件 	 | ctrl + alt + o    |
-|AutoFileName	 		| 文件路径提示		 	 | 无			     |
 |colorPicker			| 颜色选择器			 | ctrl + shift + c  |
 |AutoFileName			| src、href时，文件路径提示 | 无 |
+|QuoteHTML				| HTML转为字符串		 | 暂无	|
+|SideBarEnhancements	| 侧边栏增强			 | 无 |
+|SyncedSideBar			| 选择文件定位到对应目录 | 无 |
 
 
 ### 快速开启浏览器
-> Tools->Build System->New Build System,添加{"cmd":["C:\Program Files (x86)\Google\Chrome\Application\chrome.exe","$file"]}，可以任意名保存；
+> Tools->Build System->New Build System,添加{"cmd":["C:/Program Files (x86)/Google/Chrome/Application/chrome.exe","$file"]}，可以任意名保存；
 
 > 快捷键：ctrl+b

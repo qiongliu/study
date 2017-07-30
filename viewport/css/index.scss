@@ -1,0 +1,40 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+@mixin px2rem($name,$px) {
+	#{$name}: $px / 75 * 1rem
+}
+@mixin font-dpr($font-size){ 
+	font-size: #{$font-size}px; 
+	[data-dpr="2"] & { font-size: $font-size * 2px; } 
+	[data-dpr="3"] & { font-size: $font-size * 3px; } 
+}
+
+.wrap {
+	@include px2rem(height, 50)
+}
+.wrap1 {
+	width: 100%;
+	background-color: #C58B8B;
+}
+.wrap2 {
+	@include px2rem(width, 375);
+	background-color: #D6FCAF;
+}
+.wrap3 {
+	@include px2rem(width, 10);
+	background-color: #4F7488;
+}
+.border {
+	border-top: 1px solid #16EE7A;
+}
+.scss {
+	@include px2rem(width, 750);
+	@include px2rem(height, 300);
+	background-color: #E47EDD;
+}
+
+.wrap {
+	@include font-dpr(12)
+}
