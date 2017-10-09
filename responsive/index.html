@@ -5,7 +5,10 @@
 	<!-- 告诉IE使用最新的引擎渲染网页，chrome=1则可以激活Chrome Frame. -->
 	<meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
 	<title>responsive</title>
-	<!-- 定义理想视图的宽度等于可视视图的宽度，缩放比例为1；另有布局视图；orientation,横向或者纵向  -->
+    <!-- 布局视口：默认960px,虚拟视口，页面先以960px进行布局，然后缩放到可视视口
+    可视视口：一般等于设备的宽度
+    理想视口：布局视口在一个设备上的最佳尺寸 -->
+	<!-- 定义理想视口的宽度等于可视视口的宽度，缩放比例为1；另有布局视图；orientation,横向或者纵向  -->
 	<meta name="viewport" content="width=device-width,initial-scale=1">
      <!-- build:css css/combined.css -->
 	<link href="css/normalize.css" rel="stylesheet">

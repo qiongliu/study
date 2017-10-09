@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>lodash</title>
+</head>
+<body>
+	<script src="lodash.js"></script>
+	<script>
+		var nativeMax = Math.max,
+				nativeMin = Math.min,
+				nativeCeil = Math.ceil,
+				nativeFloor = Math.floor;
+
+		var arrChunk = [1,2,3,4,5];
+		function chunk (arr, size) {
+			size = nativeMax(nativeFloor(size) || 1, 1);
+			var len = arr instanceof Array ? arr.length : 0,
+			index = 0,
+			resIndex = -1,
+			result = Array(nativeCeil(len / size));
+			while (index < len) {
+				result[++resIndex] = arr.slice(index, (index += size));
+			}
+			return result;
+		}
+		// var chunkRes = chunk(arrChunk, 2);
+		// console.log(chunkRes);
+		
+		var arrCompact = [1,false,2,null,0,3,4,'',undefined,NaN];
+		function compact (arr) {
+			var len = arr.length,
+			index = -1,
+			resIndex = -1,
+			result = [];
+			while (++index < len) {
+				var val = arr[index];
+				if (val) {
+					result[++resIndex] = val;
+				}
+			}
+			return result;
+		}
+		var compactRes = compact(arrCompact);
+		console.log(compactRes);
+	</script>
+</body>
+</html>
