@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vue</title>
+</head>
+<body>
+	<div id="app">
+		<input type="text" v-model="text">
+		{{text}}
+	</div>
+	<script>
+		// 双向绑定
+
+		function compile (node,vm) {
+			var reg = /\{\{(.*)\}\}/;
+			if (node.nodeType === 1) {
+				var attr = node.attributes;
+				for (var i = 0,len = attr.length; i < len; i++) {
+					if (attr[i].nodeName = "v-model") {
+						var name = attr[i].nodeValue;
+						node.value = vm.data[name];
+					}
+				}
+			}
+
+			if (node.nodeType === 3) {
+				if (reg.test(node.nodeValue)) {
+					var name = RegExp.$1;
+					name = name.trim();
+					node.nodeValue = vm.data[name];
+				}
+			}
+		}
+
+		function node2Fragment (node,vm) {
+			var flag = document.createDocumentFragment();
+			var child;
+			while (child = node.firstChild) {
+				compile(child,vm);
+				flag.appendChild(child);
+			}
+			return flag;
+		}
+
+		function Vue (opts) {
+			this.data = opts.data;
+			var dom = document.getElementById(opts.el);
+			var domFragment = node2Fragment(dom,this);
+			dom.appendChild(domFragment);
+		}
+
+		var vm = new Vue({
+			el: "app",
+			data: {
+				text: 'hello vue!'
+			}
+		})
+	</script>
+</body>
+</html>
