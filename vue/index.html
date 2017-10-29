@@ -10,7 +10,6 @@
 		{{text}}
 	</div>
 	<script>
-		// 双向绑定
 
 		function defineReactive (obj,key,val) {
 			var dep = new Dep();
@@ -35,6 +34,7 @@
 
 		function compile(node,vm) {
 			var reg = /\{\{(.*)\}\}/;
+<<<<<<< HEAD
 
 			if(node.nodeType === 1) {
 				var attr = node.attributes;
@@ -45,19 +45,36 @@
 						node.addEventListener('input',function (e) {
 							vm[name] = e.target.value;
 						})
+=======
+			if(node.nodeType === 1) {
+				var attr = node.attributes;
+				for (var i = 0,len = attr.length; i < len; i++) {
+					if(attr[i].nodeName === 'v-model') {
+						var name = attr[i].nodeValue;
+						node.value = vm[name];
+						node.addEventListener('input',function(){
+							vm[name] = node.value;
+						});
+>>>>>>> 8a33fbaa92b29022ae449604c0c84d762407ee99
 					}
 				}
 			}
 
 			if(node.nodeType === 3) {
 				if(reg.test(node.nodeValue)) {
+<<<<<<< HEAD
 					var name = RegExp.$1.trim();
 					// node.nodeValue = vm.data[name];
 					new Watch(vm,node,name);
+=======
+					var name = RegExp.$1;
+					new Watcher(vm,node,name);
+>>>>>>> 8a33fbaa92b29022ae449604c0c84d762407ee99
 				}
 			}
 		}
 
+<<<<<<< HEAD
 		function Dep () {
 			this.subs = [];
 		}
@@ -78,10 +95,18 @@
 			this.name = name;
 			this.node = node;
 			this.vm = vm;
+=======
+		function Watcher (vm,node,name) {
+			Dep.target = this;
+			this.vm = vm;
+			this.node = node;
+			this.name = name;
+>>>>>>> 8a33fbaa92b29022ae449604c0c84d762407ee99
 			this.update();
 			Dep.target = null;
 		}
 
+<<<<<<< HEAD
 		Watch.prototype = {
 			update: function () {
 				this.get();
@@ -96,27 +121,86 @@
 		function node2Fragment(node,vm) {
 			var fragment = document.createDocumentFragment();
 			while(child = node.firstChild) {
+=======
+		Watcher.prototype = {
+			update: function () {
+				this.getValue();
+				this.node.nodeValue = this.value;
+			},
+			getValue: function () {
+				this.value = this.vm[this.name];
+			}
+		};
+
+		function node2Fragment (node,vm) {
+			var flag = document.createDocumentFragment();
+			var child = null;
+			while (child = node.firstChild) {
+>>>>>>> 8a33fbaa92b29022ae449604c0c84d762407ee99
 				compile(child,vm);
 				fragment.appendChild(child);
 			}
 			return fragment;
 		}
 
+		function Dep () {
+			this.subs = [];
+		}
+
+		Dep.prototype = {
+			addSub: function (sub) {
+				this.subs.push(sub);
+			},
+			update: function () {
+				this.subs.forEach(function(sub) {
+					sub.update();
+				});
+			}
+		};
+
+		function defineReactive (vm,key,val) {
+			var dep = new Dep();
+			Object.defineProperty(vm,key,{
+				get: function () {
+					if(Dep.target) dep.addSub(Dep.target);
+					return val;
+				},
+				set: function (newVal) {
+					if(val === newVal) return;
+					val = newVal;
+					dep.update();
+				}
+			});
+		}
+
+		function observe (data,vm) {
+			Object.keys(data).forEach(function (key) {
+				defineReactive(vm,key,data[key]);
+			});
+		}
+
 		function Vue (opts) {
 			var dom = document.getElementById(opts.el);
+<<<<<<< HEAD
 			this.data = opts.data;
+=======
+>>>>>>> 8a33fbaa92b29022ae449604c0c84d762407ee99
 			observe(this.data,this);
 			var fragment = node2Fragment(dom,this);
 			dom.appendChild(fragment);
 		}
 
 		var vm = new Vue({
-			el: "app",
+			el: 'app',
 			data: {
+<<<<<<< HEAD
 				text: 'hello vue!',
 				ask: 'why?'
+=======
+				text: 'hello vue'
+>>>>>>> 8a33fbaa92b29022ae449604c0c84d762407ee99
 			}
-		})
+		});
 	</script>
 </body>
 </html>

@@ -14,8 +14,8 @@
 
 	Preload.prototype._load = function () {
 		var self = this;
-		$.each(this.imgs,function (i,src) {
-			if (typeof src !== 'string') return;
+		$.each(this.imgs,function (i,item) {
+			if (typeof item.src !== 'string') return;
 
 			var img = new Image();
 
@@ -34,7 +34,7 @@
 			// 	console.log("..");
 			// };
 			
-			img.src = src;
+			img.src = item.src;
 		});
 	};
 
