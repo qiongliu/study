@@ -17,3 +17,7 @@
 	       browser:"C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"
 	   });
 	});
+
+	## 删除node_module文件夹
+	1.全局安装 npm i -g rimraf
+	2.项目的根目录运行rimraf -rf node_modules

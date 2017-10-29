@@ -1,0 +1,43 @@
+var gulp         = require('gulp');
+var concat       = require('gulp-concat');
+var webpack      = require('webpack');
+var gulpWebpack  = require('webpack-stream');
+var named        = require('vinyl-named'); //该插件保证webpack生成的文件名能够和原文件对上
+var plumber      = require('gulp-plumber'); //一旦pipe中的某一steam报错了，保证下面的steam还继续执行
+var rename       = require('gulp-rename'); 
+var uglify       = require('gulp-uglify'); //js、css压缩
+var filter       = require('gulp-filter');
+var print        = require('gulp-print');
+var gulpif       = require('gulp-if');
+var order        = require('gulp-order');
+var rev          = require('gulp-rev');
+var revCollector = require('gulp-rev-collector');
+var {log,colors} = require('gulp-util');
+var config       = require('./config/config.js');
+
+var f = filter([config.js.src,config.js.filter],{restore: true});
+
+gulp.task('scripts',function () {
+	return gulp.src([config.js.src])
+		.pipe(plumber({
+      errorHandle:function(){}
+    }))
+    .pipe(f)
+    .pipe(order(['nav.js','index.js'])) //用绝对路径会报错
+    .pipe(concat(config.js.newName))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(f.restore)
+    .pipe(rev())  //文件名加MD5后缀
+    // .pipe(print())
+    .pipe(gulp.dest(config.js.dist)) //需要先dest一次，再webpack，不然会报错。。
+    .pipe(named())
+    .pipe(gulpWebpack(config.webpack.js),null,(err,stats)=>{
+      log(`Finished '${colors.cyan('scripts')}'`,stats.toString({
+        chunks:false
+      }))
+    })
+		.pipe(uglify({mangle:false,compress:{properties:false},output:{'quote_keys':true}}))
+		.pipe(gulp.dest(config.js.dist))
+    .pipe(rev.manifest())    //- 生成一个rev-manifest.json
+    .pipe(gulp.dest(config.rev.dir));   //- 将 rev-manifest.json 保存到 rev 目录内
+	})

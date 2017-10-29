@@ -24,6 +24,7 @@
 |QuoteHTML				| HTML转为字符串		 | 暂无	|
 |SideBarEnhancements	| 侧边栏增强			 | 无 |
 |SyncedSideBar			| 选择文件定位到对应目录 | 无 |
+|Alignment | 等号对齐| 如果冲突："keys": ["ctrl+alt+f"], "command": "alignment" |
 
 
 ### 快速开启浏览器
