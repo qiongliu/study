@@ -1,10 +1,11 @@
 var src = 'src',
-		server = 'server',
-		views = '/views',
-		css = '/css',
-		scss = '/scss',
-		js = '/js',
-		images = '/images';
+server  = 'server',
+views   = '/views',
+css     = '/css',
+scss    = '/scss',
+js      = '/js',
+images  = '/images',
+rev     = '/rev';
 
 
 module.exports = {
@@ -30,7 +31,8 @@ module.exports = {
 		images: server + images 
 	},
 	views: {
-
+		src: src + views + '/*.html',
+		dest: server + views
 	},
 	css: {
 		src: src + css + '/*.css',
@@ -42,12 +44,19 @@ module.exports = {
 		src: src + js + '/*.js',
 		filter: '!' + src + js + '/slider.js',
 		newName: 'index.js',
-		dist: server + js
+		dist: server + js,
+		order: ['nav.js','index.js']
 	},
 	rev: {
-		dir: server + '/rev',
 		src: server + '/views/index.html',
-		dist: server + views
+		dist: server + views,
+		dir: {
+			css: server + rev + '/css',
+			js: server + rev + '/js'
+		}
+	},
+	images: {
+
 	},
 	webpack: {
 		js : {

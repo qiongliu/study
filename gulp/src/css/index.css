@@ -25,3 +25,9 @@ html,body {
 	background-color: #F41111;
 	color: #000;
 }
+i {
+	display: inline-block;
+	width: 58px;
+	height: 22px;
+	background: url(../images/index/city.png) center center no-repeat;
+}
