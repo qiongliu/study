@@ -29,5 +29,11 @@ i {
 	display: inline-block;
 	width: 58px;
 	height: 22px;
-	background: url(../images/index/city.png) center center no-repeat;
+	background: url(../images/index/city.png#base) center center no-repeat;
+}
+span {
+	display: inline-block;
+	width: 58px;
+	height: 22px;
+	background: url(../images/index/county.png) center center no-repeat;
 }

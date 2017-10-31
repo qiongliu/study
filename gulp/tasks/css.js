@@ -17,15 +17,15 @@ gulp.task('concat',function () {
 	return gulp.src(config.css.src)
     .pipe(base64({
       baseDir: '',
-      extensions: ['png'],
+      extensions: ['jpg',/#base$/i],
       maxImagesSize: 8 * 1024,
       exclude: [],
-      debug: true
+      debug: false
     }))
-  	.pipe(minifyCss({
-  		keepBreaks: true,//类型：Boolean 默认：false [是否保留换行]
-  		keepSpecialComments: '*'////保留所有特殊前缀 当用autoprefixer生成的浏览器前缀，如果不加这个参数，有可能将会删除你的部分前缀
-  	}))
+  	// .pipe(minifyCss({
+  	// 	keepBreaks: true,//类型：Boolean 默认：false [是否保留换行]
+  	// 	keepSpecialComments: '*'////保留所有特殊前缀 当用autoprefixer生成的浏览器前缀，如果不加这个参数，有可能将会删除你的部分前缀
+  	// }))
     .pipe(f)
     .pipe(concat(config.css.newName))
     .pipe(f.restore)
