@@ -24,21 +24,38 @@ module.exports = {
 		js: src + js + '/*.js',
 		images: src + images + '/**' 
 	},
-	dist: {
+	dest: {
 		views: server + views,
 		css: server + css,
 		js: server + js,
 		images: server + images 
 	},
 	views: {
-		src: src + views + '/*.html',
-		dest: server + views
+		src: src + views + '/**/*.html',
+		dest: server + views,
+		opts: {
+			removeComments: true,//清除HTML注释
+      collapseWhitespace: true,//压缩HTML
+      collapseBooleanAttributes: true,//省略布尔属性的值 <input checked="true"/> ==> <input />
+      removeEmptyAttributes: true,//删除所有空格作属性值 <input id="" /> ==> <input />
+      removeScriptTypeAttributes: true,//删除<script>的type="text/javascript"
+      removeStyleLinkTypeAttributes: true,//删除<style>和<link>的type="text/css"
+      minifyJS: true,//压缩页面JS
+      minifyCSS: true//压缩页面CSS
+		}
 	},
 	css: {
 		src: src + css + '/*.css',
 		filter: '!' + src + css + '/slider.css',
 		newName: 'index.min.css',
 		dist: server + css
+	},
+	sass {
+		src: src + css,
+		dest: src + css,
+		opts: {
+			outputStyle: nested //nested 继承 compact 紧凑 expanded 展开 compressed 压缩
+		}
 	},
 	js: {
 		src: src + js + '/*.js',
@@ -48,6 +65,10 @@ module.exports = {
 		order: ['nav.js','index.js']
 	},
 	images: {
+		src: src + images + '/**/*.{png,jpg}',
+		dest: server + images
+	},
+	sprite: {
 		src: src + images + '/icon/*.png',
 		dest: src,
 		opts: {

@@ -25,6 +25,7 @@
 |SideBarEnhancements	| 侧边栏增强			 | 无 |
 |SyncedSideBar			| 选择文件定位到对应目录 | 无 |
 |Alignment | 等号对齐| 如果冲突："keys": ["ctrl+alt+f"], "command": "alignment" |
+|HTML-CSS-JS Prettify| 代码格式化| ctrl + shift + h|
 
 
 ### 快速开启浏览器

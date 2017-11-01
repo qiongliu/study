@@ -2,7 +2,7 @@
 var yargs = require('yargs');
 
 var args = yargs
-	.option('production',{
+	.option('build',{
 		boolean: true,
 		default: false,
 		describe: '默认开发环境'
