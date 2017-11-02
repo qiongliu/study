@@ -2,7 +2,7 @@ var src = 'src',
 server  = 'server',
 views   = '/views',
 css     = '/css',
-scss    = '/scss',
+sass    = '/sass',
 js      = '/js',
 images  = '/images',
 rev     = '/rev';
@@ -14,7 +14,7 @@ module.exports = {
 		server: server,
 		views: views,
 		css: css,
-		scss: scss,
+		sass: sass,
 		js: js,
 		images: images
 	},
@@ -50,11 +50,11 @@ module.exports = {
 		newName: 'index.min.css',
 		dist: server + css
 	},
-	sass {
-		src: src + css,
+	sass: {
+		src: src + sass + '/**/*.scss',
 		dest: src + css,
 		opts: {
-			outputStyle: nested //nested 继承 compact 紧凑 expanded 展开 compressed 压缩
+			outputStyle: "nested" //nested 继承 compact 紧凑 expanded 展开 compressed 压缩
 		}
 	},
 	js: {
@@ -106,6 +106,11 @@ module.exports = {
 			css: server + rev + '/css',
 			js: server + rev + '/js'
 		}
+	},
+	zip: {
+		src: [server + '/**','!server/rev','!server/rev/**'], //需要同时排除rev目录及其子目录
+		name: 'build',
+		dest: server
 	},
 	webpack: {
 		js : {

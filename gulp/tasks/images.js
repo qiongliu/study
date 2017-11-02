@@ -6,6 +6,7 @@ var gulpif			= require('gulp-if');
 var imagemin		= require('gulp-imagemin');
 var pngquant 		= require('imagemin-pngquant');
 var cache 			= require('gulp-cache');
+var plumber      = require('gulp-plumber');
 var config 			= require('./config/config.js');
 var args 				= require('./config/args.js');
 
@@ -20,13 +21,16 @@ gulp.task('sprite',function () {
 
 gulp.task('imagemin',function () {
 	return gulp.src(config.images.src)
-		.pipe(print())
-		.pipe(cache(imagemin({
-			optimizationLevel: 7,//类型：Number  默认：3  取值范围：0-7（优化等级）
-			progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
-			use: [pngquant()] //使用pngquant深度压缩png图片的imagemin插件
-		})))
-		.pipe(gulp.dest(config.images.dest))
+	.pipe(plumber({
+    errorHandle:function(){}
+  }))
+	.pipe(imagemin({
+		optimizationLevel: 7,//类型：Number  默认：3  取值范围：0-7（优化等级）
+		progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
+		use: [pngquant()] //使用pngquant深度压缩png图片的imagemin插件
+	}))
+	.pipe(print())
+	.pipe(gulp.dest(config.images.dest))
 })
 
 gulp.task('moveImg',function () {
