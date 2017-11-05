@@ -6,7 +6,7 @@ var config = require('./config/config.js')
 
 gulp.task('sass',function () {
 	return gulp.src(config.sass.src)
-		.pipe(print())
+		// .pipe(print())
 		.pipe(sourcemaps.init())
 		.pipe(sass(config.sass.opts).on('error',sass.logError))
 		.pipe(sourcemaps.write('./mpas'))

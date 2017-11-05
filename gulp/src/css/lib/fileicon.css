@@ -1,0 +1,308 @@
+/*文件图标*/
+.file-ico {
+    display: inline-block;
+    width: 34px;
+    height: 34px;
+    background-image: url(../../images/lib/file-small.png);
+    background-position: -245px -900px;
+}
+
+.icon-psd {
+    background-position: -409px -244px;
+}
+
+.icon-mp3 {
+    background-position: 1px -490px;
+}
+
+.icon-flv {
+    background-position: -409px -408px;
+}
+
+.icon-folder {
+    background-position: 1px 2px;
+}
+
+.icon-jpg {
+    background-position: 1px -244px;
+}
+
+.icon-jpeg {
+    background-position: -81px -244px;
+}
+
+.icon-png {
+    background-position: -163px -244px;
+}
+
+.icon-gif {
+    background-position: -245px -244px;
+}
+
+.icon-bmp {
+    background-position: -327px -244px;
+}
+
+.icon-mp4 {
+    background-position: -163px -326px;
+}
+
+.icon-swf {
+    background-position: -327px -408px;
+}
+
+.icon-wma {
+    background-position: -81px -490px;
+}
+
+.icon-doc {
+    background-position: 1px -80px;
+}
+
+.icon-docx {
+    background-position: -81px -80px;
+}
+
+.icon-ppt {
+    background-position: -327px -80px;
+}
+
+.icon-pptx {
+    background-position: -409px -80px;
+}
+
+.icon-rar {
+    background-position: -163px -818px;
+}
+
+.icon-zip {
+    background-position: 1px -818px;
+}
+
+.icon-txt {
+    background-position: -81px -162px;
+}
+
+.icon-xls {
+    background-position: -655px -80px;
+}
+
+.icon-xlsx {
+    background-position: -737px -80px;
+}
+
+.icon-pdf {
+    background-position: 1px -162px;
+}
+
+.icon-wps {
+    background-position: -245px -80px;
+}
+
+.icon-wmv {
+    background-position: -737px -326px;
+}
+
+.icon-wmf {
+    background-position: -819px -326px;
+}
+
+.icon-mkv {
+    background-position: -245px -326px;
+}
+
+.icon-rm {
+    background-position: 1px -408px;
+}
+
+.icon-rmvb {
+    background-position: -655px -326px;
+}
+
+.icon-3gp {
+    background-position: -573px -326px;
+}
+
+.icon-mpg {
+    background-position: -903px -326px;
+}
+
+.icon-avi {
+    background-position: 1px -326px;
+}
+
+.icon-mpeg {
+    background-position: -985px -326px;
+}
+
+.icon-mov {
+    background-position: -327px -326px;
+}
+
+.icon-exe {
+    background-position: -163px -654px;
+}
+
+.icon-apk {
+    background-position: -81px -654px;
+}
+
+.icon-unknow {
+    background-position: -245px -900px;
+}
+
+.file-ico-big {
+    display: inline-block;
+    width: 64px;
+    height: 64px;
+    background-image: url(../../images/lib/file.png);
+    background-position: -345px -1256px;
+}
+
+.icon-folder-big {
+    background-position: 0 0;
+}
+
+.icon-doc-big {
+    background-position: 0 -114px;
+}
+
+.icon-docx-big {
+    background-position: -114px -114px;
+}
+
+.icon-wps-big {
+    background-position: -342px -114px;
+}
+
+.icon-ppt-big {
+    background-position: -455px -114px;
+}
+
+.icon-pptx-big {
+    background-position: -569px -114px;
+}
+
+.icon-xls-big {
+    background-position: -912px -114px;
+}
+
+.icon-xlsx-big {
+    background-position: -1026px -114px;
+}
+
+.icon-pdf-big {
+    background-position: 0 -230px;
+}
+
+.icon-txt-big {
+    background-position: -114px -230px;
+}
+
+.icon-jpg-big {
+    background-position: 0 -342px;
+}
+
+.icon-jpeg-big {
+    background-position: -114px -342px;
+}
+
+.icon-png-big {
+    background-position: -228px -342px;
+}
+
+.icon-gif-big {
+    background-position: -342px -342px;
+}
+
+.icon-bmp-big {
+    background-position: -456px -342px;
+}
+
+.icon-psd-big {
+    background-position: -569px -342px;
+}
+
+.icon-avi-big {
+    background-position: 0 -456px;
+}
+
+.icon-mp4-big {
+    background-position: -228px -456px;
+}
+
+.icon-mkv-big {
+    background-position: -342px -456px;
+}
+
+.icon-mov-big {
+    background-position: -456px -456px;
+}
+
+.icon-3gp-big {
+    background-position: -802px -456px;
+}
+
+.icon-rmvb-big {
+    background-position: -916px -456px;
+}
+
+.icon-wmv-big {
+    background-position: -1026px -456px;
+}
+
+.icon-wmf-big {
+    background-position: -1146px -456px;
+}
+
+.icon-mpg-big {
+    background-position: -1254px -456px;
+}
+
+.icon-mpeg-big {
+    background-position: -1368px -456px;
+}
+
+.icon-rm-big {
+    background-position: 0 -572px;
+}
+
+.icon-swf-big {
+    background-position: -456px -572px;
+}
+
+.icon-flv-big {
+    background-position: -570px -572px;
+}
+
+.icon-mp3-big {
+    background-position: 0 -686px;
+}
+
+.icon-wma-big {
+    background-position: -114px -686px;
+}
+
+.icon-wav-big {
+    background-position: -228px -686px;
+}
+
+.icon-apk-big {
+    background-position: -114px -914px;
+}
+
+.icon-exe-big {
+    background-position: -228px -914px;
+}
+
+.icon-zip-big {
+    background-position: 0 -1142px;
+}
+
+.icon-rar-big {
+    background-position: -228px -1142px;
+}
+
+.icon-unknow-big {
+    background-position: -345px -1256px;
+}

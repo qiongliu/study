@@ -2,34 +2,985 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>gulp</title>
-	<!-- build:css ../css/index.min.css -->
-	<link rel="stylesheet" href="../css/reset.css">
-	<link rel="stylesheet" href="../css/index.css">
-	<!-- /build -->
-	<link rel="stylesheet" href="../css/slider.css">
+	<title>陕西教育人人通综合服务平台</title>
+	<link rel="stylesheet" href="../css/lib/reset.css">
+	<!-- build:css ../css/index/index.css -->
+	<link rel="stylesheet" href="../css/index/index.css">
+	<link rel="stylesheet" href="../css/index/sprite1.css">
+	<link rel="stylesheet" href="../css/index/sprite2.css">
+	<!-- endbuild -->
+	<link rel="stylesheet" href="../css/lib/fileicon.css">
+	<link rel="stylesheet" href="../css/lib/animate.css">
 </head>
 <body>
-	<div class="header">
-		<div class="comWidth">
-			<ul id="nav" class="clearfix">
-				<li><a href="javascript:;">html</a></li>
-				<li><a href="javascript:;">css</a></li>
-				<li><a href="javascript:;">javascript</a></li>
-				<li><a href="javascript:;">nodejs</a></li>
-			</ul>
+	<div class="g_header">
+		<div class="m_top">
+			<div class="f_comWidth clearfix">
+				<div class="logo fl">
+					<img src="../images/index/logo.jpg" alt="陕西教育人人通综合服务平台">
+				</div>
+				<div class="slogan fr">
+					<i class="i-renren"></i>
+				</div>
+			</div>
+		</div>
+		<div class="m_nav">
+			<div class="f_comWidth clearfix">
+				<ul class="fl nav">
+					<li><a href="javascript:;">首页</a></li>
+					<li><a href="javascript:;">新闻<i class="i-arrow"></i></a></li>
+					<li><a href="javascript:;">资源<i class="i-arrow"></i></a></li>
+					<li><a href="javascript:;">应用<i class="i-arrow"></i></a></li>
+					<li><a href="javascript:;">视频</a></li>
+					<li><a href="javascript:;">空间</a></li>
+					<li><a href="javascript:;">协作组</a></li>
+					<li><a href="javascript:;">活动</a></li>
+				</ul>
+				<div class="fr hot-line">
+					<i class="i-phone"></i>
+					<span>400 - 715 - 6688</span>
+				</div>
+			</div>
+		</div>
+		<div class="m_banner">
+			<div class="m_carousel">
+				<!-- <div class="hd btn btn-prev-banner"> -->
+					<a class="prev hd btn" href="javascript:;">
+						<span class="btn-prev-banner"></span>
+					</a>
+				<!-- </div> -->
+				<div class="carousel bd">
+					<ul>
+						<li><a href="javascript:;"><img src="../images/index/banner_01.jpg" alt=""></a></li>
+						<li><a href="javascript:;"><img src="../images/index/banner_02.jpg" alt=""></a></li>
+						<li><a href="javascript:;"><img src="../images/index/banner_03.jpg" alt=""></a></li>
+					</ul>
+				</div>
+				<!-- <div class="hd btn btn-next-banner"> -->
+					<a class="next hd btn" href="javascript:;">
+						<span class="btn-next-banner"></span>
+					</a>
+				<!-- </div> -->
+			</div>
+			<div class="comWidth">
+				<div class="m_login">
+					<form action="">
+						<h4>密码登录</h4>
+						<div class="user-pwd">
+							<div class="username">
+								<input type="text" id="username" name="username">
+								<label for="username">用户名/邮箱</label>							
+							</div>
+							<div class="pwd">
+								<input type="password" id="pwd" name="pwd">						
+								<label for="pwd">密码</label>							
+							</div>
+						</div>
+						<div class="tenday-forget clearfix">
+							<div class="tenday fl">
+								<input type="radio" id="tenday" name="tenday">
+								<label for="tenday">十天内免登录</label>							
+							</div>
+							<a href="javascript:;" class="forget fr">忘记密码？</a>
+						</div>
+						<div class="code">
+							<input type="text" id="code" name="code">
+							<label for="code">验证码</label>
+							<span>4xas</span>
+							<a class="change-code" href="javascript:;">换一张</a>
+						</div>
+						<input type="submit" id="submit" name="submit" class="submit" value="立即登录">
+						<div class="register">
+							<a href="javascript:;">教师激活</a>
+							<a href="javascript:;">学生激活</a>
+							<a href="javascript:;">学校激活</a>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="m_notice">
+				<div class="mask"></div>
+				<div class="f_comWidth">
+					<div class="notice">
+						<span class="i-notice-wrap"><i class="i-notice"></span></i>
+						<div class="slider-notice bd">
+							<ul>
+								<li><a href="javascript:;">1关于举办2017年陕西省农村中小学骨干教师语言能力提升培训班的通知</a></li>
+								<li><a href="javascript:;">2关于举办2017年陕西省农村中小学骨干教师语言能力提升培训班的通知</a></li>
+								<li><a href="javascript:;">3关于举办2017年陕西省农村中小学骨干教师语言能力提升培训班的通知</a></li>
+							</ul>
+						</div>
+						<div class="btn hd">
+							<a href="javascript:;" class="prev"><i class="btn-prev-notice"></i></a>
+							<a href="javascript:;" class="next"><i class="btn-next-notice"></i></a>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-	<div>
-		<i></i>
-		<span></span>
+	<div class="g_content">
+		<div class="m_area clearfix">
+			<div class="f_comWidth">
+				<div class="title fl">
+					<i class="i-area"></i>
+					<span>地市人人通平台</span>
+				</div>
+				<ul class="area fl">
+					<li><a href="javascript:;">咸阳</a></li>
+					<li><a href="javascript:;">宝鸡</a></li>
+					<li><a href="javascript:;">渭南</a></li>
+					<li><a href="javascript:;">安康</a></li>
+					<li><a href="javascript:;">汉中</a></li>
+					<li><a href="javascript:;">铜川</a></li>
+					<li><a href="javascript:;">延安</a></li>
+					<li><a href="javascript:;">榆林</a></li>
+					<li><a href="javascript:;">商洛</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="m_zone">
+			<div class="f_comWidth">
+				<div class="m_title_data m_title_data1">
+					<h2>热门空间</h2>
+					<ul class="data clearfix">
+						<li><span class="num">2000</span><span class="name">随笔</span></li>
+						<li><span class="num">986</span><span class="name">照片</span></li>
+						<li><span class="num">2011</span><span class="name">活动</span></li>
+						<li><span class="num">20011</span><span class="name">投票</span></li>
+						<li><span class="num">3681</span><span class="name">问答</span></li>
+					</ul>
+				</div>
+				<ul class="zone clearfix">
+					<li><a href="javascript:;"><img src="../images/index/zone-two.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-two.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-two.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-two.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-two.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-two.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-two.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-two.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-one.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-one.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-one.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-one.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-one.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-one.png" alt=""></a></li>
+					<li><a href="javascript:;"><img src="../images/index/zone-one.png" alt=""></a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="m_system">
+			<div class="f_comWidth">
+				<ul class="system">
+					<li><a href="javascript:;">
+							<i class="i-bk"></i>
+							<span class="name">备课中心</span>
+							<i class="i-chalk-line"></i>
+							<i class="i-chalk"></i>
+						</a></li>
+					<li><a href="javascript:;">
+							<i class="i-zy"></i>
+							<span class="name">作业</span>
+							<i class="i-chalk-line"></i>
+							<i class="i-chalk"></i>
+						</a></li>
+					<li><a href="javascript:;">
+							<i class="i-ks"></i>
+							<span class="name">考试系统</span>
+							<i class="i-chalk-line"></i>
+							<i class="i-chalk"></i>
+						</a></li>
+					<li><a href="javascript:;">
+							<i class="i-gl"></i>
+							<span class="name">管理系统</span>
+							<i class="i-chalk-line"></i>
+							<i class="i-chalk"></i>
+						</a></li>
+					<li><a href="javascript:;">
+							<i class="i-xz"></i>
+							<span class="name">教研协作组</span>
+							<i class="i-chalk-line"></i>
+							<i class="i-chalk"></i>
+						</a></li>
+					<li><a href="javascript:;">
+							<i class="i-bj"></i>
+							<span class="name">班级</span>
+							<i class="i-chalk-line"></i>
+							<i class="i-chalk"></i>
+						</a></li>
+					<li><a href="javascript:;">
+							<i class="i-zb"></i>
+							<span class="name">直播教室</span>
+							<i class="i-chalk-line"></i>
+							<i class="i-chalk"></i>
+						</a></li>
+					<li><a href="javascript:;">
+							<i class="i-pj"></i>
+							<span class="name">评价系统</span>
+							<i class="i-chalk-line"></i>
+							<i class="i-chalk"></i>
+						</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="group-activity clearfix">
+			<div class="f_comWidth">
+				<div class="m_group fl">
+					<div class="m_title_fn clearfix">
+						<i class="i-bg i-group-bg"></i>
+						<h2>教研协作组</h2>
+						<span class="fr"><a href="javascript:;" class="i-more"></a></span>
+					</div>
+					<ul class="group">
+						<li>
+							<a href="javascript:;">
+								<img src="../images/index/group-two.png" alt="">
+								<span class="name">地理时间讨论</span>
+								<div>
+									<span class="num"><i class="i-friend"></i>1</span><span class="num"><i class="i-praise"></i>1</span><span class="num"><i class="i-message"></i>1</span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<img src="../images/index/group-one.png" alt="">
+								<span class="name">地理时间讨论</span>
+								<div>
+									<span class="num"><i class="i-friend"></i>1</span><span class="num"><i class="i-praise"></i>1</span><span class="num"><i class="i-message"></i>1</span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<img src="../images/index/group-one.png" alt="">
+								<span class="name">地理时间讨论</span>
+								<div>
+									<span class="num"><i class="i-friend"></i>1</span><span class="num"><i class="i-praise"></i>1</span><span class="num"><i class="i-message"></i>1</span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<img src="../images/index/group-one.png" alt="">
+								<span class="name">地理时间讨论</span>
+								<div>
+									<span class="num"><i class="i-friend"></i>1</span><span class="num"><i class="i-praise"></i>1</span><span class="num"><i class="i-message"></i>1</span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<img src="../images/index/group-one.png" alt="">
+								<span class="name">地理时间讨论</span>
+								<div>
+									<span class="num"><i class="i-friend"></i>1</span><span class="num"><i class="i-praise"></i>1</span><span class="num"><i class="i-message"></i>1</span>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<img src="../images/index/group-one.png" alt="">
+								<span class="name">地理时间讨论</span>
+								<div>
+									<span class="num"><i class="i-friend"></i>1</span><span class="num"><i class="i-praise"></i>1</span><span class="num"><i class="i-message"></i>1</span>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="m_activity fr">
+					<div class="m_title_fn clearfix">
+						<i class="i-bg i-activity-bg"></i>
+						<h2>教研协作组</h2>
+						<span class="fr"><a href="javascript:;" class="i-more"></a></span>
+					</div>
+					<ul class="activity">
+						<li><a href="javascript:;"><img src="../images/index/weike.jpg" alt=""></a></li>
+						<li><a href="javascript:;"><img src="../images/index/youke.png" alt=""></a></li>
+						<li><a href="javascript:;"><img src="../images/index/market.png" alt=""></a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="resource-wrap">
+			<div class="m_title_data m_title_data2">
+				<h2>资源中心</h2>
+				<ul class="data">
+					<li><span class="num">20010</span><span class="name">共建资源</span></li>
+					<li><span class="num">9846</span><span class="name">共享资源</span></li>
+					<li><span class="num">20874</span><span class="name">资源下载</span></li>
+				</ul>
+			</div>
+			<div class="resource-rank f_comWidth clearfix">
+				<div class="m_resource fl">
+					<div class="nav clearfix">
+						<ul>
+							<li><a class="active" href="javascript:;">课件</a></li>
+							<li><a href="javascript:;">中考</a></li>
+							<li><a href="javascript:;">说课稿</a></li>
+							<li><a href="javascript:;">学案</a></li>
+						</ul>
+						<a href="javascript:;" class="more fr">+更多资源</a>
+					</div>
+					<ul class="resource f_show clearfix">
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-png-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-ppt-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-ppt-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-pdf-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-jpg-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-rar-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-pdf-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-doc-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul class="resource clearfix">
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-png-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">2我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-ppt-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-ppt-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-pdf-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-jpg-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-rar-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-pdf-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-doc-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul class="resource clearfix">
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-png-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">3我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-ppt-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-ppt-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-pdf-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-jpg-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-rar-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-pdf-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-doc-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+					<ul class="resource clearfix">
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-png-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">4我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-ppt-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-ppt-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-pdf-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-jpg-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-rar-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-pdf-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+						<li>
+							<a href="javascript:;">
+								<i class="fl doc icon-doc-big file-ico-big"></i>
+								<div class="info-wrap fl">
+									<p class="title">我们应该怎样讨论教育问题</p>
+									<p class="info">
+										<span><i class="i-person"></i>张小美</span>
+										<span><i class="i-looker"></i>268</span>
+									</p>
+								</div>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="m_rank fr">
+					<ul class="nav clearfix">
+						<li><a class="active" href="javascript:;">资源月上传排行</a></li>
+						<li><a href="javascript:;">资源月下载排行</a></li>
+					</ul>
+					<ul class="rank f_show">
+						<li><a href="javascript:;">
+								<span class="front one ranking">1</span>
+								<span class="name">张小美</span>
+								<span class="num">548</span>
+							</a></li>
+						<li><a href="javascript:;">
+								<span class="ranking front two">2</span>
+								<span class="name">张中美</span>
+								<span class="num">758</span>
+							</a></li>
+						<li><a href="javascript:;">
+								<span class="ranking front three">3</span>
+								<span class="name">张大美</span>
+								<span class="num">5448</span>
+							</a></li>
+						<li><a href="javascript:;">
+								<span class="ranking">4</span>
+								<span class="name">张美美</span>
+								<span class="num">748</span>
+							</a></li>
+						<li><a href="javascript:;">
+								<span class="ranking">5</span>
+								<span class="name">张美小</span>
+								<span class="num">78</span>
+							</a></li>
+						<li><a href="javascript:;">
+								<span class="ranking">6</span>
+								<span class="name">张美大</span>
+								<span class="num">8</span>
+							</a></li>
+						<li><a href="javascript:;">
+								<span class="ranking">7</span>
+								<span class="name">张美中</span>
+								<span class="num">558</span>
+							</a></li>
+						<li><a href="javascript:;">
+								<span class="ranking">8</span>
+								<span class="name">张美更小</span>
+								<span class="num">84</span>
+							</a></li>
+					</ul>
+					<ul class="rank">
+						<li><a href="javascript:;">
+								<span class="front one ranking">1</span>
+								<span class="name">1张小美</span>
+								<span class="num">548</span>
+							</a></li>
+						<li><a href="javascript:;">
+								<span class="ranking front two">2</span>
+								<span class="name">1张中美</span>
+								<span class="num">758</span>
+							</a></li>
+						<li><a href="javascript:;">
+								<span class="ranking front three">3</span>
+								<span class="name">1张大美</span>
+								<span class="num">5448</span>
+							</a></li>
+						<li><a href="javascript:;">
+								<span class="ranking">4</span>
+								<span class="name">张美美</span>
+								<span class="num">748</span>
+							</a></li>
+						<li><a href="javascript:;">
+								<span class="ranking">5</span>
+								<span class="name">张美小</span>
+								<span class="num">78</span>
+							</a></li>
+						<li><a href="javascript:;">
+								<span class="ranking">6</span>
+								<span class="name">张美大</span>
+								<span class="num">8</span>
+							</a></li>
+					</ul>
+
+					<a href="javascript:;"><img src="../images/index/xinhua.jpg" alt=""></a>
+				</div>
+			</div>
+		</div>
+		<div class="news-video clearfix">
+			<div class="f_comWidth">
+				<div class="m_news fl">
+					<div class="m_title_fn clearfix">
+						<i class="i-bg i-news-bg"></i>
+						<h2>新闻中心</h2>
+						<span class="fr"><a href="javascript:;" class="i-more"></a></span>
+					</div>
+					<div class="news-wrap clearfix">
+						<div class="slider fl">
+							<!-- <div class=""> -->
+							 	<a href="javascript:;" class="hd btn btn-prev-news prev"></a>
+							<!-- </div> -->
+							<div class="bd">
+							 	<ul>
+							 		<li><a href="javascript:;">
+							 				<img src="../images/index/news-one.jpg" alt="">
+							 				<p class="name news-mask">张小美在我校第八届“宋庆龄少年儿童发明奖”比赛中获得了第一名</p>
+							 			</a></li>
+							 		<li><a href="javascript:;">
+							 				<img src="../images/index/news-two.jpg" alt="">
+							 				<p class="name news-mask">张小美在我校第八届“宋庆龄少年儿童发明奖”比赛中获得了第一名</p>
+							 			</a></li>
+							 		<li><a href="javascript:;">
+							 				<img src="../images/index/news-three.jpg" alt="">
+							 				<p class="name news-mask">张小美在我校第八届“宋庆龄少年儿童发明奖”比赛中获得了第一名</p>
+							 			</a></li>
+							 	</ul>
+							</div>
+							<!-- <div class=""> -->
+							 	<a href="javascript:;" class="hd btn btn-next-news prev"></a>
+							<!-- </div> -->
+						</div>
+						<div class="news fr">
+							<div class="headline clearfix">
+								<div class="date fl">
+									<span class="day">12</span>
+									<span class="year">2017-06</span>
+								</div>
+								<div class="info fr">
+									<p class="title">我校在第八届“宋庆龄少年儿童发明奖”</p>
+									<p class="intro">张小美在我校第八届“宋庆龄少年儿童发明奖”比赛中获得了第一名</p>
+								</div>
+							</div>
+							<ul class="news-items">
+								<li><a href="javascript:;">
+										<p>张小美携手西安交大西农科大与河南省政府签署战略合作</p>
+										<span class="date">2017/02/06</span>
+									</a></li>
+								<li><a href="javascript:;">
+										<p>张小美携手西安交大西农科大与河南省政府签署战略合作</p>
+										<span class="date">2017/02/06</span>
+									</a></li>
+								<li><a href="javascript:;">
+										<p>张小美携手西安交大西农科大与河南省政府签署战略合作</p>
+										<span class="date">2017/02/06</span>
+									</a></li>
+								<li><a href="javascript:;">
+										<p>张小美携手西安交大西农科大与河南省政府签署战略合作</p>
+										<span class="date">2017/02/06</span>
+									</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="m_video fr">
+					<div class="m_title_fn clearfix">
+						<i class="i-bg i-video-bg"></i>
+						<h2>视频中心</h2>
+						<span class="fr"><a href="javascript:;" class="i-more"></a></span>
+					</div>
+					<div class="video clearfix">
+						<a href="javascript:;"><img src="../images/index/video-one.png" alt=""><p class="news-mask">【国情教育】第01集 中国的版图</p></a>
+						<a href="javascript:;"><img src="../images/index/video-two.png" alt=""></a>
+						<a href="javascript:;"><img src="../images/index/video-three.png" alt=""></a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="m_app">
+			<div class="m_title_data m_title_data3">
+				<h2>应用中心</h2>
+				<ul class="data">
+					<li><span class="num">20010</span><span class="name">共建资源</span></li>
+					<li><span class="num">9846</span><span class="name">共享资源</span></li>
+					<li><span class="num">20874</span><span class="name">资源下载</span></li>
+				</ul>
+			</div>
+			<div class="f_comWidth">
+				<div class="slider-wrap a_app">
+					<a href="javascript:;" class="prev btn btn-prev"><i class="btn-prev-app"></i></a>
+					<div class="slider bd">
+						<ul class="clearfix">
+							<li><a href="javascript:;">
+									<img src="../images/index/app-one.png" alt="">
+									<span class="name">同步练习</span>
+									<span class="num">20.4万人在使用</span>
+								</a></li>
+							<li><a href="javascript:;">
+									<img src="../images/index/app-one.png" alt="">
+									<span class="name">同步练习</span>
+									<span class="num">20.4万人在使用</span>
+								</a></li>
+							<li><a href="javascript:;">
+									<img src="../images/index/app-one.png" alt="">
+									<span class="name">同步练习</span>
+									<span class="num">20.4万人在使用</span>
+								</a></li>
+							<li><a href="javascript:;">
+									<img src="../images/index/app-one.png" alt="">
+									<span class="name">同步练习</span>
+									<span class="num">20.4万人在使用</span>
+								</a></li>
+							<li><a href="javascript:;">
+									<img src="../images/index/app-one.png" alt="">
+									<span class="name">同步练习</span>
+									<span class="num">20.4万人在使用</span>
+								</a></li>
+							<li><a href="javascript:;">
+									<img src="../images/index/app-one.png" alt="">
+									<span class="name">同步练习</span>
+									<span class="num">20.4万人在使用</span>
+								</a></li>
+							<li><a href="javascript:;">
+									<img src="../images/index/app-one.png" alt="">
+									<span class="name">同步练习</span>
+									<span class="num">20.4万人在使用</span>
+								</a></li>
+							<li><a href="javascript:;">
+									<img src="../images/index/app-one.png" alt="">
+									<span class="name">同步练习</span>
+									<span class="num">20.4万人在使用</span>
+								</a></li>
+						</ul>
+					</div>
+					<a href="javascript:;" class="next btn btn-next"><i class="btn-next-app"></i></a>
+				</div>
+			</div>
+		</div>
+		<div class="m_eke_youe">
+			<div class="f_comWidth clearfix">
+				<div class="eke fl">
+					<i class="i computer fl"></i>
+					<div class="info fl">
+						<span class="name">名师e课</span>
+						<a href="javascript:;" class="download">下载桌面客户端</a>
+					</div>
+				</div>
+				<div class="yext fr">
+					<i class="i phone fl"></i>
+					<div class="info fl">
+						<span class="name">优e学堂</span>
+						<a href="javascript:;" class="download">APP下载请扫一扫</a>
+					</div>
+					<i class="youe"></i>
+				</div>
+			</div>
+		</div>
 	</div>
-	<!-- build:js ../js/index.min.js -->
-	<script src="../js/nav.js"></script>
-	<script src="../js/index.js"></script>
-	<!-- /build -->
-	<!-- build:js ../js/slider.min.js -->
-	<script src="../js/slider.js"></script>
-	<!-- /build -->
+	<div class="g_footer">
+		<div class="f_comWidth clearfix">
+			<div class="m_wechat fl clearfix">
+				<i class="weixin fl"></i>
+				<div class="info">
+					<p class="name">微信客服</p>
+					<p class="intro">微信号：陕西教育人人通</p>
+				</div>
+			</div>
+			<div class="m_server fr">
+				<p>服务电话：400-715-6688   服务时间：08:30-17:30（节假日休息）   邮箱：service@hengqian.com</p>
+				<p>主办：陕西省教育厅   技术支持：西安恒谦教育科技股份有限公司</p>
+				<p>版权所有 陕西省教育厅 保留所有权利，未经允许，不得复制、镜像</p>
+				<p>版本号：V3.0</p>
+			</div>
+		</div>
+	</div>
 </body>
+<script src="../js/lib/jquery-1.8.3.min.js"></script>
+<script src="../js/lib/jquery.SuperSlide.2.1.1.js"></script>
+<!-- build:js ../js/index/index.js -->
+<script src="../js/index/index.js"></script>
+<script src="../js/index/index1.js"></script>
+<!-- endbuild -->
 </html>

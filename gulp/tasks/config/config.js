@@ -1,10 +1,21 @@
 var src = 'src',
 server  = 'server',
+project = '/index',
+srcViews = src + '/views',
+srcCss  = src + '/css',
+srcSass = src + '/sass',
+srcJs		= src + '/js',
+srcImages  = src + '/images',
+destViews = server + '/views',
+destCss  = server + '/css',
+destJs		= server + '/js',
+destImages  = server + '/images',
 views   = '/views',
 css     = '/css',
 sass    = '/sass',
 js      = '/js',
 images  = '/images',
+lib     = '/lib',
 rev     = '/rev';
 
 
@@ -30,9 +41,15 @@ module.exports = {
 		js: server + js,
 		images: server + images 
 	},
+	clean: {
+		views: destViews,
+		css: destCss,
+		js: destJs,
+		images: destImages
+	},
 	views: {
-		src: src + views + '/**/*.html',
-		dest: server + views,
+		src: srcViews + '/**/*.html',
+		dest: destViews,
 		opts: {
 			removeComments: true,//清除HTML注释
       collapseWhitespace: true,//压缩HTML
@@ -45,35 +62,35 @@ module.exports = {
 		}
 	},
 	css: {
-		src: src + css + '/*.css',
-		filter: '!' + src + css + '/slider.css',
+		src: destCss + project + '/*.css',
+		filter: '!' + srcCss + project + '/*',
 		newName: 'index.min.css',
-		dist: server + css
+		dest: destCss + project
 	},
 	sass: {
-		src: src + sass + '/**/*.scss',
-		dest: src + css,
+		src: srcSass + project + '/*.scss',
+		dest: srcCss + project,
 		opts: {
 			outputStyle: "nested" //nested 继承 compact 紧凑 expanded 展开 compressed 压缩
 		}
 	},
 	js: {
-		src: src + js + '/*.js',
-		filter: '!' + src + js + '/slider.js',
+		src: destJs + project + '/*.js',
+		filter: '!' + srcJs + '/slider.js',
 		newName: 'index.js',
-		dist: server + js,
+		dest: destJs + project,
 		order: ['nav.js','index.js']
 	},
 	images: {
-		src: src + images + '/**/*.{png,jpg}',
-		dest: server + images
+		src: srcImages + project + '/*.{png,jpg}',
+		dest: destImages + project
 	},
 	sprite: {
-		src: src + images + '/icon/*.png',
+		src: srcImages + project + '/icon2/*',
 		dest: src,
 		opts: {
-			imgName:'images/sprite.png', 
-	    cssName:'css/sprite.css',
+			imgName: 'images' + project + '/sprite2.png', 
+	    cssName: 'sass' + project + '/sprite2.scss',
 	    padding:2,// 默认为0
 	    cssTemplate: function (data) {
 	    // data为对象，保存合成前小图和合成打大图的信息包括小图在大图之中的信息
@@ -83,28 +100,45 @@ module.exports = {
 	      url =  data.spritesheet.image;
 	      data.sprites.forEach(function(sprite) {
           arr.push(
-            ".i-" + sprite.name + 
+            "." + sprite.name + 
             "{" + 
                 "background: url('" + url + "') " + 
                 "no-repeat " + 
                 sprite.px.offset_x + " " + sprite.px.offset_y + ";" + 
-                "background-size: " +  width + " " + height + ";" + 
                 "width: " + sprite.px.width + ";" +                        
                 "height: " + sprite.px.height + ";" + 
             "}\n"
           ) 
 	      })
-	      // return "@fs:108rem;\n"+arr.join("")
 	      return arr.join("")
 	    }
 	  }
 	},
 	rev: {
-		src: server + '/views/index.html',
-		dist: server + views,
+		src: destViews + '/*',
+		dest: destViews,
 		dir: {
-			css: server + rev + '/css',
-			js: server + rev + '/js'
+			css: srcCss + project + rev,
+			js: srcJs + project + rev
+		},
+		images: {
+			dir: srcImages + project + rev,
+			src: destCss + project + '*',
+			dest: destCss + project
+		}
+	},
+	lib: {
+		css: {
+			src: srcCss + lib + '/*',
+			dest: destCss + lib
+		},
+		js: {
+			src: srcJs + lib + '/*',
+			dest: destJs + lib
+		},
+		images: {
+			src: srcImages + lib + '/*',
+			dest: destImages + lib
 		}
 	},
 	zip: {
@@ -130,5 +164,12 @@ module.exports = {
 			port: 7788,
 			files: [src + views,src + css,src + js,src + images]  //以gulpfile文件目录为根目录
 		}
+	},
+	calculateDiff: function (data) {
+		var difference = (data.savings > 0) ? ' smaller.' : ' larger.';
+    return data.fileName + ' from ' +
+    (data.startSize / 1000).toFixed(2) + ' kB to ' +
+    (data.endSize / 1000).toFixed(2) + ' kB and is ' +
+    data.percent.toFixed(2) + '%' + difference;
 	}
 }

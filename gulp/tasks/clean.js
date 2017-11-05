@@ -3,5 +3,5 @@ var del  = require('del');
 var config = require('./config/config');
 
 gulp.task('clean',function () {
-	return del([config.dest.views,config.dest.css,config.dest.js,config.dest.images])
+	return del([config.clean.views,config.clean.css,config.clean.js,config.clean.images])
 })

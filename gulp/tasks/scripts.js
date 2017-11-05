@@ -18,28 +18,33 @@ var config       = require('./config/config.js');
 
 var f = filter([config.js.src,config.js.filter],{restore: true});
 
-gulp.task('scripts',gulpSequence('js','rev'));
+gulp.task('scripts',gulpSequence('_libJs','js','rev'));
+
+gulp.task('_libJs',function () {
+  return gulp.src(config.lib.js.src)
+   .pipe(gulp.dest(config.lib.js.dest))
+})
 
 gulp.task('js',function () {
-	return gulp.src([config.js.src])
+	return gulp.src(config.js.src)
 		.pipe(plumber({
       errorHandle:function(){}
     }))
-    .pipe(f)
-    .pipe(order(config.js.order)) //用绝对路径会报错
-    .pipe(concat(config.js.newName))
-    .pipe(f.restore)
-    .pipe(gulp.dest(config.js.dist)) //需要先dest一次，再webpack，不然会报错。。
-    .pipe(named())
-    .pipe(gulpWebpack(config.webpack.js),null,(err,stats)=>{
-      log(`Finished '${colors.cyan('scripts')}'`,stats.toString({
-        chunks:false
-      }))
-    })
+    // .pipe(f)
+    // .pipe(order(config.js.order)) //用绝对路径会报错
+    // .pipe(concat(config.js.newName))
+    // .pipe(f.restore)
+    // .pipe(gulp.dest(config.js.dist)) //需要先dest一次，再webpack，不然会报错。。
+    // .pipe(named())
+    // .pipe(gulpWebpack(config.webpack.js),null,(err,stats)=>{
+    //   log(`Finished '${colors.cyan('scripts')}'`,stats.toString({
+    //     chunks:false
+    //   }))
+    // })
     .pipe(uglify({mangle:false,compress:{properties:false},output:{'quote_keys':true}}))
     .pipe(rename({suffix: '.min'}))
     .pipe(rev())  //文件名加MD5后缀
-    .pipe(gulp.dest(config.js.dist))
+    .pipe(gulp.dest(config.js.dest))
     .pipe(rev.manifest())    //- 生成一个rev-manifest.json
     .pipe(gulp.dest(config.rev.dir.js));   //- 将 rev-manifest.json 保存到 rev 目录内
   });
@@ -48,5 +53,5 @@ gulp.task('rev',function () {
   return gulp.src([config.rev.dir.js + '/*.json',config.rev.src])
     // .pipe(print())
     .pipe(revCollector()) //执行文件内css名的替换
-    .pipe(gulp.dest(config.rev.dist));
+    .pipe(gulp.dest(config.rev.dest));
 });

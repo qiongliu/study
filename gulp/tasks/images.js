@@ -6,34 +6,46 @@ var gulpif			= require('gulp-if');
 var imagemin		= require('gulp-imagemin');
 var pngquant 		= require('imagemin-pngquant');
 var cache 			= require('gulp-cache');
-var plumber      = require('gulp-plumber');
+var plumber     = require('gulp-plumber');
+var bytediff    = require('gulp-bytediff');
+var rev          = require('gulp-rev');
+var revCollector = require('gulp-rev-collector');
 var config 			= require('./config/config.js');
 var args 				= require('./config/args.js');
 
-gulp.task('images',gulpif(!args.build,gulpSequence('imagemin'),gulpSequence('imagemin,moveImg')));
+gulp.task('images',gulpSequence('_libImages','_imagemin','_moveImg','_revImg'));
 
-gulp.task('sprite',function () {
-	return gulp.src(config.sprite.src)
-		// .pipe(print())
-		.pipe(spritesmith(config.sprite.opts))
-		.pipe(gulp.dest(config.sprite.dest))
+gulp.task('_libImages',function () {
+	return gulp.src(config.lib.images.src)
+		.pipe(gulp.dest(config.lib.images.dest))
 })
 
-gulp.task('imagemin',function () {
+gulp.task('_imagemin',function () {
 	return gulp.src(config.images.src)
 	.pipe(plumber({
     errorHandle:function(){}
   }))
 	.pipe(imagemin({
-		optimizationLevel: 7,//类型：Number  默认：3  取值范围：0-7（优化等级）
-		progressive: true, //类型：Boolean 默认：false 无损压缩jpg图片
+		optimizationLevel: 3,//类型：Number  默认：3  取值范围：0-7（优化等级）
+		progressive: false, //类型：Boolean 默认：false 无损压缩jpg图片
 		use: [pngquant()] //使用pngquant深度压缩png图片的imagemin插件
 	}))
-	.pipe(print())
+	// .pipe(print())
 	.pipe(gulp.dest(config.images.dest))
 })
 
-gulp.task('moveImg',function () {
+gulp.task('_moveImg',function () {
 	return gulp.src(config.images.src)
+		// .pipe(print())
+		.pipe(rev())
 		.pipe(gulp.dest(config.images.dest))
+		.pipe(rev.manifest())    //- 生成一个rev-manifest.json
+    .pipe(gulp.dest(config.rev.images.dir));    //- 将 rev-manifest.json 保存到 rev 目录内
 })
+
+gulp.task('_revImg',function () {  
+  return gulp.src([config.rev.images.dir + '/*.json',config.rev.images.src])
+    // .pipe(print())
+    .pipe(revCollector()) //执行文件内css名的替换
+    .pipe(gulp.dest(config.rev.images.dest));
+});
