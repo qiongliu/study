@@ -1,6 +1,6 @@
 var src = 'src',
 server  = 'server',
-project = '/index',
+project = '/topic',
 srcViews = src + '/views',
 srcCss  = src + '/css',
 srcSass = src + '/sass',
@@ -20,36 +20,20 @@ rev     = '/rev';
 
 
 module.exports = {
-	dir: {
-		src: src,
-		server: server,
-		views: views,
-		css: css,
-		sass: sass,
-		js: js,
-		images: images
-	},
-	srcFile: {
-		views: src + views + '/*.html',
-		css: src + css + '/*.css',
-		js: src + js + '/*.js',
-		images: src + images + '/**' 
-	},
-	dest: {
-		views: server + views,
-		css: server + css,
-		js: server + js,
-		images: server + images 
-	},
 	clean: {
+		src: server,
 		views: destViews,
 		css: destCss,
 		js: destJs,
 		images: destImages
 	},
 	views: {
-		src: srcViews + '/**/*.html',
-		dest: destViews,
+		src: (function(){
+			return srcViews + (project === '/index' ? '' : project) + '/*.*'; 
+		})(),
+		dest: (function(){
+			return destViews + (project === '/index' ? '' : project);
+		})(),
 		opts: {
 			removeComments: true,//清除HTML注释
       collapseWhitespace: true,//压缩HTML
@@ -100,7 +84,7 @@ module.exports = {
 	      url =  data.spritesheet.image;
 	      data.sprites.forEach(function(sprite) {
           arr.push(
-            "." + sprite.name + 
+            ".icon-" + sprite.name + 
             "{" + 
                 "background: url('" + url + "') " + 
                 "no-repeat " + 
@@ -110,13 +94,17 @@ module.exports = {
             "}\n"
           ) 
 	      })
-	      return arr.join("")
+	      return arr.join("");
 	    }
 	  }
 	},
 	rev: {
-		src: destViews + '/*',
-		dest: destViews,
+		src: (function(){
+			return destViews + (project === '/index' ? '' : project) + '/*.*';
+		})(),
+		dest: (function(){
+			return destViews + (project === '/index' ? '' : project);
+		})(),
 		dir: {
 			css: srcCss + project + rev,
 			js: srcJs + project + rev
@@ -159,10 +147,10 @@ module.exports = {
 	browsersync: {
 		development: {
 			server: {
-				baseDir: 'src' //配置服务根目录
+				baseDir: src //配置服务根目录
 			},
 			port: 7788,
-			files: [src + views,src + css,src + js,src + images]  //以gulpfile文件目录为根目录
+			files: [srcViews,srcCss,srcJs,srcImages]  //以gulpfile文件目录为根目录
 		}
 	},
 	calculateDiff: function (data) {
@@ -172,4 +160,4 @@ module.exports = {
     (data.endSize / 1000).toFixed(2) + ' kB and is ' +
     data.percent.toFixed(2) + '%' + difference;
 	}
-}
+};

@@ -13,12 +13,12 @@ var revCollector = require('gulp-rev-collector');
 var config 			= require('./config/config.js');
 var args 				= require('./config/args.js');
 
-gulp.task('images',gulpSequence('_libImages','_imagemin','_moveImg','_revImg'));
+gulp.task('images',gulpSequence('_libImages','_imagemin','_revImg'));
 
 gulp.task('_libImages',function () {
 	return gulp.src(config.lib.images.src)
-		.pipe(gulp.dest(config.lib.images.dest))
-})
+		.pipe(gulp.dest(config.lib.images.dest));
+});
 
 gulp.task('_imagemin',function () {
 	return gulp.src(config.images.src)
@@ -31,17 +31,11 @@ gulp.task('_imagemin',function () {
 		use: [pngquant()] //使用pngquant深度压缩png图片的imagemin插件
 	}))
 	// .pipe(print())
+	// .pipe(rev())
 	.pipe(gulp.dest(config.images.dest))
-})
-
-gulp.task('_moveImg',function () {
-	return gulp.src(config.images.src)
-		// .pipe(print())
-		.pipe(rev())
-		.pipe(gulp.dest(config.images.dest))
-		.pipe(rev.manifest())    //- 生成一个rev-manifest.json
-    .pipe(gulp.dest(config.rev.images.dir));    //- 将 rev-manifest.json 保存到 rev 目录内
-})
+	.pipe(rev.manifest())    //- 生成一个rev-manifest.json
+  .pipe(gulp.dest(config.rev.images.dir));    //- 将 rev-manifest.json 保存到 rev 目录内
+});
 
 gulp.task('_revImg',function () {  
   return gulp.src([config.rev.images.dir + '/*.json',config.rev.images.src])

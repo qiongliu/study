@@ -23,7 +23,13 @@ gulp.task('scripts',gulpSequence('_libJs','js','rev'));
 gulp.task('_libJs',function () {
   return gulp.src(config.lib.js.src)
    .pipe(gulp.dest(config.lib.js.dest))
-})
+   .pipe(uglify({
+        mangle:false, //默认：true 是否修改变量名
+        // preserveComments: 'all', //保留注释
+        compress:{properties:false},
+        output:{'quote_keys':true}
+    }));
+});
 
 gulp.task('js',function () {
 	return gulp.src(config.js.src)
@@ -41,8 +47,8 @@ gulp.task('js',function () {
     //     chunks:false
     //   }))
     // })
-    .pipe(uglify({mangle:false,compress:{properties:false},output:{'quote_keys':true}}))
-    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify({mangle:true,compress:{properties:false},output:{'quote_keys':true}}))
+    // .pipe(rename({suffix: '.min'}))
     .pipe(rev())  //文件名加MD5后缀
     .pipe(gulp.dest(config.js.dest))
     .pipe(rev.manifest())    //- 生成一个rev-manifest.json

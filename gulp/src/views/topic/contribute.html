@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>精选专题</title>
+	<link rel="stylesheet" href="../../css/lib/reset.css">
+	<!-- build:css ../../css/topic/index.css -->
+	<link rel="stylesheet" href="../../css/topic/index.css">
+	<link rel="stylesheet" href="../../css/topic/sprite.css">
+	<link rel="stylesheet" href="../../css/topic/sprite2.css">
+	<!-- endbuild -->
+	<link rel="stylesheet" href="../../css/lib/fileicon.css">
+</head>
+<body>
+	<div class="g_hd contribute">
+		<div class="comWidth">
+			<div class="m_login">
+				<a class="icon-nologin" href="./index.html"></a>
+				<!-- <div class="login clearfix">
+					<img src="../../images/topic/expert.jpg" alt="" class="fl">
+					<span class="fl">张小美</span>
+				</div> -->
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<div class="comWidth">
+			<ul class="m_crumbs clearfix">
+				<li><a href="javascript:;">首页</a></li>
+				<li><a href="javascript:;">精选专题</a></li>
+				<li><a href="javascript:;">文件投稿</a></li>
+			</ul>
+			<div class="content">
+				<form action="" id="form-contribute" name="form-contribute">
+					<div class="f_border_two article-title">
+						<h2 class="m_title_three">1.文章标题</h2>
+						<div class="m_input">
+							<span class="u_dot"></span>
+							<input type="text" id="title" name="title">
+							<label for="title">请输入作品名称</label>
+							<span class="u_fontNum">50</span>
+						</div>
+					</div>
+					<div class="f_border_two article-attr">
+						<h2 class="m_title_three">2.文章属性</h2>
+						<div class="m_input">
+							<span class="u_dot"></span>
+							<input type="text" id="attr" value="" name="attr">
+							<label for="attr">请选择年级/学科/版本</label>
+						</div>
+					</div>
+					<div class="f_border_two article-author">
+						<h2 class="m_title_three">3.作者信息</h2>
+						<div class="m_input">
+							<span class="u_dot"></span>
+							<input type="text" id="author" value="" name="author">
+							<label for="">姓名</label>
+						</div>
+						<div class="m_input">
+							<span class="u_dot"></span>
+							<input type="text" id="phone" value="" name="phone">
+							<label for="phone">联系方式</label>
+						</div>
+						<div class="m_input">
+							<span class="u_dot"></span>
+							<input type="text" id="school" value="" name="school">
+							<label for="school">所属学校</label>
+						</div>
+					</div>
+					<div class="f_border_two article-upload">
+						<h2 class="m_title_three">4.上传附件</h2>
+						<div class="m_input">
+							<div class="upload-before">
+								<span class="u_dot"></span>
+								<a href="javascript:;" class="upload">点击添加文件</a>
+								<div class="preview clearfix">
+									<i class="file-icon file-ico-big icon-jpg-big"></i>
+									<div class="info">
+										<p class="name">张小美的投稿</p>
+										<p class="size">大小：18.54KB</p>
+									</div>
+									<i class="delete"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="f_border_two article-intro">
+						<h2 class="m_title_three">5.作品简介</h2>
+						<div class="m_input">
+							<span class="u_dot"></span>
+							<textarea value="" name="intro" id="intro"></textarea>
+						</div>
+					</div>
+					<div class="f_border_two article-title">
+						<h2 class="m_title_three">6.建议与意见</h2>
+						<div class="m_input">
+							<span class="u_dot"></span>
+							<input type="text" id="recommend" name="recommend">
+							<label for="recommend">在此留下您对此次活动的建议与意见</label>
+						</div>
+					</div>
+					<div class="m_submit">
+						<input type="submit" id="submit" name="submit" value="提交文章">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="g_ft"></div>
+	<script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+	<script>
+		$(function () {
+			//去掉input label 提示
+	   	$(".f_border_two input").on({
+	   		'focus': function () {
+	   			var self = $(this);
+	   			if(self.val() == '') {
+	   				self.next().hide();
+	   			}
+	   		},
+	   		'blur': function () {
+	   			var self = $(this);
+	   			if(self.val() == '') {
+	   				self.next().show();
+	   			}
+	   		}
+	   	});
+
+	   	//标题字数统计
+	   	var u_fontNum = $('.u_fontNum');
+	   	var FONT_NUM = 50;
+	   	$(".article-title input").on('input propertychange',function () {
+	   		var self = $(this),
+	   		val = self.val(),
+	   		len = val.length;
+	   		if(len > FONT_NUM) {
+	   			val = val.slice(0,FONT_NUM);
+	   			self.val(val);
+	   			return;
+	   		}
+	   		u_fontNum.text(FONT_NUM - len);
+	   	});
+
+	   	//表单验证
+	   	var form = document.forms['form-contribute'],
+	   	form$ = $("[name=form-contribute]"),
+	   	formElements = form.elements,
+	   	formTitle = formElements['title'],
+	   	formAttr = formElements['attr'],
+	   	formAuthor = formElements['author'],
+	   	formPhone = formElements['phone'],
+	   	formSchool = formElements['school'],
+	   	formIntro = formElements['intro'],
+	   	formRecommend = formElements['recommend'];
+	   	form$.on('submit',function (event) {
+	   		for (var i = 0, len = formElements.length; i < len; i++) {
+	   			var ele = formElements[i];
+	   			if(ele.value == '') {
+	   				ele.focus();
+	   				ele.style.cssText = ';border-color: #f00;';
+	   				setTimeout(function () {
+	   					ele.style.cssText = ';border-color: #ddd;';
+	   				},2000);
+	   				event.preventDefault();
+	   				break;
+	   			}
+	   		}
+	   	});
+		});
+	</script>
+</body>
+</html>

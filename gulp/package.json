@@ -41,11 +41,13 @@
     "gulp-uglify": "^3.0.0",
     "gulp-useref": "^3.1.2",
     "gulp-util": "^3.0.8",
+    "gulp-watch": "^4.3.11",
     "gulp-zip": "^4.0.0",
     "gulp.spritesmith": "^6.5.1",
     "imagemin-pngquant": "^5.0.1",
     "require-dir": "^0.3.2",
     "vinyl-named": "^1.1.0",
+    "vinyl-paths": "^2.1.0",
     "webpack": "^3.8.1",
     "webpack-stream": "^4.0.0"
   }

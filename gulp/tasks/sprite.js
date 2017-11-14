@@ -23,5 +23,5 @@ gulp.task('sprite',function () {
 		}))
 		// .pipe(bytediff.stop(config.calculateDiff))
 		.pipe(spritesmith(config.sprite.opts))
-		.pipe(gulp.dest(config.sprite.dest))
-	})
+		.pipe(gulp.dest(config.sprite.dest));
+	});

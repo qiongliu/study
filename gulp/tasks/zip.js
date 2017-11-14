@@ -17,7 +17,7 @@ Date.prototype.Format = function (fmt) {
   for (var k in o)
   if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
   return fmt;
-}
+};
 
 var time = new Date().Format("yyyyMMddhhmm");  
 
@@ -25,5 +25,5 @@ gulp.task('zip',function () {
 	return gulp.src(config.zip.src)
 		// .pipe(print())
 		.pipe(zip(config.zip.name + time + '.zip'))
-		.pipe(gulp.dest(config.zip.dest))
+		.pipe(gulp.dest(config.zip.dest));
 });

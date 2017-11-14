@@ -14,5 +14,5 @@ gulp.task('concat',function () {
     //   }))
     .pipe(useref())
     // .pipe(print())
-    .pipe(gulp.dest(config.views.dest))
-})
+    .pipe(gulp.dest(config.views.dest));
+});

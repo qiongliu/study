@@ -4,4 +4,4 @@ var server = require('./config/config').browsersync.development;
 
 gulp.task('browsersync',function() {
 	browsersync(server);
-})
+});
