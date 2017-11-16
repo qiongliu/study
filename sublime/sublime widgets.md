@@ -26,6 +26,7 @@
 |SyncedSideBar			| 选择文件定位到对应目录 | 无 |
 |Alignment | 等号对齐| 如果冲突："keys": ["ctrl+alt+f"], "command": "alignment" |
 |HTML-CSS-JS Prettify| 代码格式化| ctrl + shift + h|
+|sublimelinter |代码检测 | 需要再安装 SublimeLinter-jshint 、SublimeLinter-csslint，然后再 node 环境下全局安装 jshint 、 csslint|
 
 
 ### 快速开启浏览器
