@@ -8,3 +8,4 @@ let p1 = new Person('linyi',30);
 p1.getInfo();
 
 console.log(demo3.name);
+console.log(__dirname,__filename);
