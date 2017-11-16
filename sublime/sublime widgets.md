@@ -33,3 +33,8 @@
 > Tools->Build System->New Build System,添加{"cmd":["C:/Program Files (x86)/Google/Chrome/Application/chrome.exe","$file"]}，可以任意名保存；
 
 > 快捷键：ctrl+b
+
+### 语法检查
+> 安装sublimeLinter 、 sublimeLinter-jshint 、 SublimeLinter-csslint
+
+> node下，全局安装 jslint 、csslint
