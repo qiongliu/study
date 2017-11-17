@@ -6,13 +6,14 @@
 </head>
 <body>
 	<h3>post</h3>
-	<form action="postMethod" method="post">
+	<form action="postMethod" method="post" enctype="multipart/form-data">
 		<input type="text" name="user">
 		<input type="radio" name="sex" value="男">男
 		<input type="radio" name="sex" value="女">女
 		<input type="checkbox" name="like" value="篮球">篮球
 		<input type="checkbox" name="like" value="漫画">漫画
 		<input type="checkbox" name="like" value="电影">电影
+		<input type="file" name="tupian">
 		<input type="submit" value="submit">
 	</form>
 	<h3>get</h3>
