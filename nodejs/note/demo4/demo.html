@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ejs</title>
+</head>
+<body>
+	<ul>
+		<% for (let i = 0,len = infos.length; i < len; i++) { %>
+			<li><%= infos[i].name %>:<%= infos[i].age %></li>
+		<% } %>
+	</ul>
+</body>
+</html>
