@@ -8,7 +8,10 @@ app.set('view engine', 'ejs');
 app.set('upload','./upload');
 
 app.use('/public',express.static(path.join(__dirname,'public')));
+app.use('/upload',express.static(path.join(__dirname,'upload')));
 
-app.use('/',require('./routers/index.js'));
+app.use('/favicon.ico',()=>{return;});
+
+app.use('/',require('./routers/index'));
 
 app.listen(7787);

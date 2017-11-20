@@ -18,25 +18,15 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="#">全部 <span class="sr-only">(current)</span></a></li>
+		        <li class="active"><a href="/">全部</span></a></li>
 		        <li><a href="#">上传</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 		<div class="container">
-			<div class="row">
-				<% if (info.code) { %>
-					<h2><%= info.message %></h2>
-				<% } else { for (let i = 0,len = info.albums.length; i < len; i++) { %>
-			  <div class="col-xs-6 col-md-3">
-			    <a href="/<%= info.albums[i] %>" class="thumbnail">
-			      <img src="../public/images/album.png" alt="...">
-			      <h4><%= info.albums[i] %></h4>
-			    </a>
-			  </div>
-			  <% } } %>
-			</div>
+			<h2><%= info.message%></h2>
+			<img src="../public/images/404.png" alt="">
 		</div>
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

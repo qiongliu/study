@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>album</title>
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  </head>
+  <body>
+		<ol class="breadcrumb">
+		  <li><a href="/">相册</a></li>
+		  <li class="active"><%= info.albumName%></li>
+		</ol>
+		<div class="container">
+			<div class="row">
+				<% if (info.images.length === 0) { %>
+					<h2>相册为空！</h2>
+				<% } else { for (let i = 0,len = info.images.length; i < len; i++) { %>
+			  <div class="col-xs-6 col-md-3">
+			    <a href="#" class="thumbnail">
+			      <img src="/upload/<%= info.albumName + '/' + info.images[i] %>" alt="...">
+			      <h4><%= info.images[i] %></h4>
+			    </a>
+			  </div>
+			  <% } } %>
+			</div>
+		</div>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  </body>
+</html>
