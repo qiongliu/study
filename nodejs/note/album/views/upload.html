@@ -18,25 +18,33 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li class="active"><a href="#">全部 <span class="sr-only">(current)</span></a></li>
-		        <li><a href="#">上传</a></li>
+		        <li><a href="/">相册</span></a></li>
+		        <li class="active"><a href="#">上传</a></li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
 		<div class="container">
-			<div class="row">
-				<% if (info.code) { %>
-					<h2><%= info.message %></h2>
-				<% } else { for (let i = 0,len = info.albums.length; i < len; i++) { %>
-			  <div class="col-xs-6 col-md-3">
-			    <a href="/<%= info.albums[i] %>" class="thumbnail">
-			      <img src="../public/images/album.png" alt="...">
-			      <h4><%= info.albums[i] %></h4>
-			    </a>
+			<form method="post" action="/up" enctype="multipart/form-data" style="width: 40%;">
+			  <div class="form-group">
+			    <label for="exampleInputEmail1">请选择相册</label>
+			    <select class="form-control" name="albumName">
+			    	<% if (info.code) { %>
+					  <option><%= info.message %></option>
+			    	<% } else { for (let i = 0,len = info.albums.length; i < len; i++) { %>
+					  <option><%= info.albums[i]%></option>
+					  <% } } %>
+					</select>
 			  </div>
-			  <% } } %>
-			</div>
+			  <div class="form-group">
+			    <label for="uplaod">选择文件</label>
+			    <input type="file" id="uplaod" name="tupian">
+			    <% if (!info.code) { %>
+			    <span><%= info.message %></span>
+			    <% } %>
+			  </div>
+			  <button type="submit" class="btn btn-default">上传</button>
+			</form>
 		</div>
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

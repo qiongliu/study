@@ -1,10 +1,12 @@
 const express = require('express');
+var ejs = require('ejs');
 const path = require('path');
 
 const app = express();
 
 app.set('views', path.join(__dirname,'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'html');
+app.engine('html',ejs.renderFile);
 app.set('upload','./upload');
 
 app.use('/public',express.static(path.join(__dirname,'public')));

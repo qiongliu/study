@@ -2,7 +2,43 @@ const express = require('express');
 const router = express.Router();
 const index = require('../models/index');
 
-router.use('/:albumName',(req,res) => {
+router.get('/up',(req,res) => {
+	index.getAlbums().then((albums) => {
+		res.render('upload',{
+			info: {
+				code: 0,
+				albums
+			}
+		});
+	},(err) => {
+		res.render('upload', {
+			info: {
+				code: 1,
+				message: '请先创建相册！'
+			}
+		});
+	});
+});
+
+router.post('/up',(req,res) => {
+	index.upload(req,res).then(() => {
+		res.render('upload',{
+			info: {
+				code: 0,
+				message: '上传成功！'
+			}
+		});
+	},(err) => {
+		res.render('upload',{
+			info: {
+				code: 1,
+				message: err
+			}
+		});
+	});
+});
+
+router.get('/:albumName',(req,res) => {
 	let albumName = req.params.albumName;
 	index.getImages(albumName).then((images) => {
 		res.render('album',{
