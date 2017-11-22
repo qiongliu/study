@@ -57,7 +57,7 @@ exports.upload = (req,res) => {
 			newPath = `${uploadPath}/${albumName}/${date}${random}${ext}`;
 			fs.rename(file.path,newPath,(err) => {
 				if (err) return reject(err);
-				resolve();
+				resolve(albumName);
 			});
 		});
 	})

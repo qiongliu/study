@@ -4,6 +4,8 @@ ehthumbs.db
 
 # git 
 node_modules
+upload/
+temp/
 
 # Folder config file
 Desktop.ini

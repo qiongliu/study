@@ -21,13 +21,8 @@ router.get('/up',(req,res) => {
 });
 
 router.post('/up',(req,res) => {
-	index.upload(req,res).then(() => {
-		res.render('upload',{
-			info: {
-				code: 0,
-				message: '上传成功！'
-			}
-		});
+	index.upload(req,res).then((albumName) => {
+		res.redirect(`/${albumName}`);
 	},(err) => {
 		res.render('upload',{
 			info: {
