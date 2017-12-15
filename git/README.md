@@ -90,7 +90,9 @@
 > 在github上新建个仓库`giDemo`，与本地仓库关联，并将本地文件push到github上。
 
 > `git remote add origin https://github.com/qiongliu/gitDemo`
+
 > add、commit之后
+
 > `git push -u origin master`
 
 #### 克隆远程仓库
