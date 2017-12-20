@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>bootstrap</title>
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<style>
+		body {
+			margin-bottom: 500px;
+		}
+		.block {
+			background-color: #ccc;
+			height: 50px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h1>bootstrap</h1>
+		<table class="table table-hover table-bordered">
+			<thead>
+				<tr>
+					<th>姓名</th>
+					<th>性别</th>
+					<th>年龄</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="success">
+					<td>林一</td>
+					<td>男</td>
+					<td>20</td>
+				</tr>
+				<tr class="warning">
+					<td>林二</td>
+					<td>女</td>
+					<td>24</td>
+				</tr>
+				<tr class="danger">
+					<td>林三</td>
+					<td>女</td>
+					<td>22</td>
+				</tr>
+				<tr class="text-center info">
+					<td>林四</td>
+					<td>女</td>
+					<td>20</td>
+				</tr>
+			</tbody>
+		</table>
+		<form action="" class="form-inline">
+			<div class="form-group form">
+				<label for="username" class="">用户名：</label>
+				<input type="text" class="form-control" id="username" placeholder="用户名">
+			</div>
+			<div class="form-group">
+				<label for="password" class="">密码：</label>
+				<input type="password" class="form-control" id="password" placeholder="密码">
+			</div>
+		</form>
+		<form action="" class="form-horizontal">
+			<div class="form-group form">
+				<label for="username" class="control-label col-sm-2">用户名：</label>
+				<div class="col-sm-4">
+					<input type="text" class="form-control" id="username" placeholder="用户名">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="password" class="col-sm-2 control-label">密码：</label>
+				<div class="col-sm-4">
+					<input type="password" class="form-control" id="password" placeholder="密码">
+				</div>
+			</div>
+			<div class="input-group">
+				<span class="input-group-addon">@</span>
+				<input type="text" class="form-control" placeholder="爱好">
+			</div>
+			<div class="checkbox disabled">
+				<label>
+					<input type="checkbox" disabled>体育
+				</label>
+				<label>
+					<input type="checkbox" disabled>语文
+				</label>			
+			</div>
+			<div class="form-group">
+				<select name="" id="" class="form-control">
+					<option value="">1</option>
+					<option value="">2</option>
+					<option value="">3</option>
+					<option value="">4</option>
+				</select>
+			</div>
+			<div class="form-group has-feedback">
+				<label for="" class="col-sm-2 control-label">电子邮件:</label>
+				<div class="col-sm-4">
+					<input type="email" class="form-control">
+					<span class="glyphicon glyphicon-ok form-control-feedback"></span>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="container">
+			<i class="block glyphicon glyphicon-ok-circle"></i>
+			<span class="glyphicon glyphicon-book"></span>
+			<div class="dropdown">
+				<button class="btn btn-default" data-toggle="dropdown">下拉框<span class="caret"></span></button>
+				<ul class="dropdown-menu">
+					<li class="dropdown-header">年级</li>
+			  	<li><a href="javascript:;">一年级</a></li>
+			  	<li><a href="javascript:;">二年级</a></li>
+			  	<li><a href="javascript:;">三年级</a></li>
+					<li class="divider"></li>
+			  	<li><a href="javascript:;">四年级</a></li>
+			  </ul>  
+			</div>
+			<div class="btn-group">
+				<button class="btn btn-success">成功</button>
+				<button class="btn btn-warning">警告</button>
+				<div class="btn-group">
+					<button class="btn btn-default">dropdown</button>
+					<button class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+					<ul class="dropdown-menu">
+						<li><a href="javascript:;">首页</a></li>
+						<li><a href="javascript:;">资源</a></li>
+						<li><a href="javascript:;">空间</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="input-group input-group-lg col-lg-4">
+				<span class="input-group-addon">@</span>
+				<input type="text" class="form-control" placeholder="姓名">
+			</div>
+			<div class="input-group">
+				<input type="text" class="form-control">
+				<div class="input-group-btn">
+					<botton class="btn btn-default">提交</botton>
+				</div>
+			</div>
+			<ul class="nav nav-pills">
+				<li class="active"><a href="javascript:;">导航1</a></li>
+				<li><a href="javascript:;">导航2</a></li>
+				<li class="dropdown"><a href="javascript:;" data-toggle="dropdown">导航3 <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="javascript:;">sub1</a></li>
+						<li><a href="javascript:;">sub2</a></li>
+						<li><a href="javascript:;">sub3</a></li>
+					</ul>
+				</li>
+				<li><a href="javascript:;">导航4</a></li>
+			</ul>
+			<div class="navbar navbar-inverse navbar-fixed-top">
+				<div class="container">
+					<div class="navbar-header">
+						<a href="javascript:;" class="navbar-brand">NOTE</a>
+					</div>
+					<ul class="nav navbar-nav">
+						<li class="active"><a href="">HTML</a></li>
+						<li><a href="">CSS</a></li>
+						<li><a href="">JS</a></li>
+						<li><a href="">BOOTSTRAP</a></li>
+					</ul>
+					<form action="" class="navbar-form navbar-right">
+						<div class="input-group">
+							<input type="text" class="form-control">
+							<div class="input-group-btn">
+								<button class="btn btn-default">提交</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<ol class="breadcrumb">
+				<li><a href="javascript:;">HTML</a></li>
+				<li><a href="javascript:;">crumb</a></li>
+				<li class="active">breadcrumb</li>
+			</ol>
+			<ol class="pagination pagination-lg">
+				<li><a href="javascript:;">&laquo;</a></li>
+				<li class="active"><a href="javascript:;">1</a></li>
+				<li><a href="javascript:;">2</a></li>
+				<li class="disabled"><a href="javascript:;">3</a></li>
+				<li><a href="javascript:;">&raquo;</a></li>
+			</ol>
+			<span class="label label-danger">1</span>
+			<button class="btn btn-success">
+				Message
+				<span class="badge">22</span>
+			</button>
+			<div class="jumbotron">
+				<h2>hello</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi pariatur, totam itaque! Illo ratione soluta doloribus accusamus pariatur quam, culpa dolores impedit voluptas! Non dignissimos culpa alias ratione eaque. Aperiam.</p>
+				<button class="btn btn-primary">more</button>
+			</div>
+			<div class="page-header">
+				<h2>标题！</h2>
+			</div>
+			<div class="row">
+				<div class="col-lg-3 col-md-4 col-sm-6">
+					<div class="thumbnail">
+						<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTYwNDA4ZTY1YTAgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNjA0MDhlNjVhMCI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NTQ2ODc1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="">
+						<div class="caption">
+							<h3>缩略图</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime nam repellat magni odit ex. Praesentium recusandae consectetur nostrum reprehenderit, ullam culpa sit aliquid odit quos dolor, animi, reiciendis molestias, obcaecati.</p>
+							<a href="#" class="btn btn-primary">进入</a>
+						</div>
+					</div>
+				</div>
+					<div class="col-lg-3 col-md-4 col-sm-6">
+					<div class="thumbnail">
+						<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTYwNDA4ZTY1YTAgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNjA0MDhlNjVhMCI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NTQ2ODc1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="">
+						<div class="caption">
+							<h3>缩略图</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime nam repellat magni odit ex. Praesentium recusandae consectetur nostrum reprehenderit, ullam culpa sit aliquid odit quos dolor, animi, reiciendis molestias, obcaecati.</p>
+							<a href="#" class="btn btn-primary">进入</a>
+						</div>
+					</div>
+				</div>
+					<div class="col-lg-3 col-md-4 col-sm-6">
+					<div class="thumbnail">
+						<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTYwNDA4ZTY1YTAgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNjA0MDhlNjVhMCI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NTQ2ODc1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="">
+						<div class="caption">
+							<h3>缩略图</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime nam repellat magni odit ex. Praesentium recusandae consectetur nostrum reprehenderit, ullam culpa sit aliquid odit quos dolor, animi, reiciendis molestias, obcaecati.</p>
+							<a href="#" class="btn btn-primary">进入</a>
+						</div>
+					</div>
+				</div>
+					<div class="col-lg-3 col-md-4 col-sm-6">
+					<div class="thumbnail">
+						<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTcxIiBoZWlnaHQ9IjE4MCIgdmlld0JveD0iMCAwIDE3MSAxODAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzEwMCV4MTgwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi42LjAuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcz48c3R5bGUgdHlwZT0idGV4dC9jc3MiPjwhW0NEQVRBWyNob2xkZXJfMTYwNDA4ZTY1YTAgdGV4dCB7IGZpbGw6I0FBQUFBQTtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMHB0IH0gXV0+PC9zdHlsZT48L2RlZnM+PGcgaWQ9ImhvbGRlcl8xNjA0MDhlNjVhMCI+PHJlY3Qgd2lkdGg9IjE3MSIgaGVpZ2h0PSIxODAiIGZpbGw9IiNFRUVFRUUiLz48Zz48dGV4dCB4PSI1OS41NTQ2ODc1IiB5PSI5NC41Ij4xNzF4MTgwPC90ZXh0PjwvZz48L2c+PC9zdmc+" alt="">
+						<div class="caption">
+							<h3>缩略图</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime nam repellat magni odit ex. Praesentium recusandae consectetur nostrum reprehenderit, ullam culpa sit aliquid odit quos dolor, animi, reiciendis molestias, obcaecati.</p>
+							<a href="#" class="btn btn-primary">进入</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="alert alert-info">
+				你好！
+				<button class="close" data-dismiss="alert"><span>&times;</span></button>
+			</div>
+	</div>
+	<div class="modal fade" id="myModal">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button class="close" data-dismiss="modal">
+						<span>&times;</span>
+					</button>
+					<h3 class="modal-title">登录</h3>
+				</div>
+				<div class="modal-body">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-lg-4 block">1</div>
+							<div class="col-lg-4 block">2</div>
+							<div class="col-lg-4 block">3</div>
+						</div>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-default">登录</button>
+					<button class="btn btn-primary">注册</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container">
+		<button class="btn btn-info" data-toggle="modal" data-target="#myModal">dialog</button>
+	</div>
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

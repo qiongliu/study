@@ -2,11 +2,14 @@
 Thumbs.db
 ehthumbs.db
 
+# git 
+node_modules
+upload/
+temp/
+db/
+
 # Folder config file
 Desktop.ini
-
-#
-node_modules
 
 # Recycle Bin used on file shares
 $RECYCLE.BIN/
