@@ -8,7 +8,7 @@ app.get('/find',(req,res) => {
 	conut = 5;
 	db.setUrl("mongodb://127.0.0.1/demo2");
 	db.find('info',{
-		'$or': [{'age':94},{'age': 4}]
+		'$or': [{'age':44},{'age': 64}]
 	},{
 		'page': page,
 		'count': conut
@@ -32,6 +32,7 @@ app.get('/insert',(req,res) => {
 });
 
 app.get('/delete',(req,res) => {
+	db.setUrl("mongodb://127.0.0.1/demo2");
 	let age = parseInt(req.query.age);
 	db.delete('info',{
 		'age': age
@@ -40,6 +41,12 @@ app.get('/delete',(req,res) => {
 	},(message) => {
 		res.send(message);
 	});
+});
+
+app.
+
+app.get('/',(req,res) => {
+	res.send('mongodb!');
 });
 
 app.listen(7787);

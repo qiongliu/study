@@ -8,7 +8,6 @@ function _connect () {
 			if (err) {
 				return reject("数据库连接失败!");
 			}
-			console.log(11);
 			resolve(db);
 		});
 	});
@@ -44,6 +43,7 @@ exports.find = (collectionName,data,opts) => {
 		skip = (opts.page - 1) * opts.count;
 		_connect().then((db) => {
 			db.collection(collectionName).find(data).limit(limit).skip(skip).toArray((err,result) => {
+				db.close();
 				if (err) return reject(err);
 				resolve(result);
 			})
@@ -53,11 +53,11 @@ exports.find = (collectionName,data,opts) => {
 	});
 };
 
-exports.delete = (collectionName,data) => {
+exports.deleteMany = (collectionName,data) => {
 	return new Promise((resolve,reject) => {
 		_connect().then((db) => {
-			console.log(1);
 			db.collection(collectionName).deleteMany(data,(err,result) => {
+				db.close();
 				if (err) return reject("删除失败！");
 				resolve(result);
 			});
@@ -67,4 +67,17 @@ exports.delete = (collectionName,data) => {
 	});
 };
 
+exports.updataMany = (collectionName,filter,updata) => {
+	new Promise((resolve,reject) => {
+		_content().then((db) => {
+			db.collection(collectionName).updataMany(filter,updata,(err,result) => {
+				db.close();
+				if (err) return reject(err);
+				resolve(result);
+			});
+		},(message) => {
+			reject(message);
+		});
+	});
+};
 
