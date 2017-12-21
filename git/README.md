@@ -91,6 +91,8 @@
 
 > `git remote add origin https://github.com/qiongliu/gitDemo`
 
+> add、commit之后
+
 > `git push -u origin master`
 
 #### 克隆远程仓库

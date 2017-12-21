@@ -1,0 +1,28 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+a {
+	text-decoration: none;
+}
+html,body {
+	height: 100%;
+}
+#app {
+	height: 100%;
+}
+.nav {
+	list-style: none;
+	background-color: #ccc;
+}
+.nav li {
+	display: inline-block;
+}
+.nav a {
+	display: inline-block;
+	padding: 10px 20px;
+	color: #000;
+}
+.nav a:hover,.nav .active {
+	background-color: #bbb;
+}
