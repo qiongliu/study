@@ -1,14 +1,10 @@
 const express = require('express');
-const Student = require('./models/Student');
 const app = express();
+const Student = require('./models/Student');
 
 app.get('/',(req,res) => {
-	let s1 = new Student({
-		name: 'linyi',
-		age: '22'
-	});
-	s1.save();
-	res.send('hehe');
+	let random = parseInt(Math.random() * (14 -2 + 1) + 2);
+	res.send(random+'');
 });
 
 app.listen(7787);
