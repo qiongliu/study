@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vuex</title>
+</head>
+<body>
+	<script>
+		new Vuex.Store({
+			state: {
+				totle: 0   //this.$store.state.totle
+			},
+			getters: {
+				getTotle (state) {  //this.$store.getters.getTotle
+					return state.totle  
+				}
+			},
+			mutations: {
+				add (state, n) {  //this.$store.commit('add', n)
+					state.totle += n  
+				}
+			},
+			actions: {
+				asyncAdd (context, n) {  //this.$store.dispatch('asyncAdd', n)
+					axios.get('/api/setTotle',{
+						
+					}).then((result) => {
+						context.commit('add', n) 
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>
