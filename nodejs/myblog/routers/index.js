@@ -70,8 +70,8 @@ router.get('/',function(req,res,next){
 			userInfo: req.userInfo,
 			session: {
 				success: req.flash('success').toString(),
-	    		error: req.flash('error').toString(),
-	    		userInfo: req.session.userInfo
+    		error: req.flash('error').toString(),
+    		userInfo: req.session.userInfo
 			}
 		});
 	});

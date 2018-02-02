@@ -1,0 +1,19 @@
+body {
+	background-color: #81A165;
+}
+img {
+	width: 500px;
+	height: 300px;
+}
+.purify-css {
+	color: #ff0;
+	transform: translate3d(100px,50px);
+}
+.img {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1;
+	width: 100px;
+	height: 100px;
+	background: url(../images/banner-larger.jpg) center center no-repeat;
+}

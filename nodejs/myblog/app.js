@@ -24,7 +24,7 @@ app.engine('html',ejs.renderFile);
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use('/public',express.static(__dirname + "/public"));
-app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.urlencoded({extended:true}));
 app.use(flash());
 
 app.use(function(req,res,next){
@@ -50,6 +50,8 @@ app.use(session({
   	secret: config.cookieSecret,
   	key: config.db,//cookie name
   	cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30 days
+  	resave: false,
+	  saveUninitialized: true,
   	store: new MongoStore({
   	  	url: 'mongodb://' + config.host + ':' + config.port + '/' + config.db
   	})

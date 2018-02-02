@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>echarts</title>
+</head>
+<body>
+	<div id="demo" style="width: 800px; height: 500px;"></div>
+	<script src="https://cdn.bootcss.com/echarts/4.0.2/echarts.js"></script>
+	<script>
+		var myChart = echarts.init(document.getElementById('demo'));
+		// var option = {
+		// 	title: {
+		// 		text: '水果销售情况'
+		// 	},
+		// 	tooltip: {},
+		// 	legend: {
+		// 		data: ['销量','喜欢人数']
+		// 	},
+		// 	xAxis: {
+		// 		data: ['苹果','香蕉','西瓜','梨']
+		// 	},
+		// 	yAxis: {},
+		// 	dataZoom: [
+		// 		{
+		// 			type: 'slider'
+		// 		},
+		// 		{
+		// 			type: 'slider',
+		// 			yAxisIndex: 0
+		// 		}
+		// 	],
+		// 	visualMap: [
+		// 		{
+		// 			// type: 'continuous',
+		// 			min: 0,
+		// 			max: 100,
+		// 			splitNumber: 5,
+		// 			color: ['#3cb2ef','#ffd85c']
+		// 		}
+		// 	],
+		// 	series: [
+		// 		{
+		// 			name: '销量',
+		// 			type: 'bar',
+		// 			data: [12,18,3,10]
+		// 		},
+		// 		{
+		// 			name: '喜欢人数',
+		// 			type: 'bar',
+		// 			data: [50,40,5,35]
+		// 		}
+		// 	]
+		// }
+		var option = {
+			dataset: {
+				source: [
+					['水果','销量','人数','个数','少数'],
+					['苹果',40,24,75,16],
+					['香蕉',25,36,12,24],
+					['梨',33,20,18,16]
+				]
+			},
+			legend: {},
+			tooltip: {},
+			grid: [
+				{bottom: '55%'},
+				{top: '55%'}
+			],
+			xAxis: [
+				{type: 'category',gridIndex: 0},
+				{type: 'category',gridIndex: 1}
+			],
+			yAxis: [
+				{gridIndex: 0},
+				{gridIndex: 1}
+			],
+			series: [
+				{type: 'bar'},
+				{type: 'bar'},
+				{type: 'bar'},
+				{type: 'bar'},
+				{type: 'bar', seriesLayoutBy: 'row', xAxisIndex: 1, yAxisIndex: 1},
+				{type: 'bar', seriesLayoutBy: 'row', xAxisIndex: 1, yAxisIndex: 1},
+				{type: 'bar', seriesLayoutBy: 'row', xAxisIndex: 1, yAxisIndex: 1},
+			]
+		}
+
+		myChart.setOption(option);
+		myChart.on('click', function (params) {
+			console.log(params);
+		});
+	</script>
+</body>
+</html>
