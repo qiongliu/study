@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin  = require('html-webpack-plugin');
 const extractTextPlugin = require('extract-text-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
@@ -8,9 +9,12 @@ const purifycssPlugin = require('purifycss-webpack');
 const webSite = {};
 
 if (process.env.type === 'dev') {
-	webSite.publicPath = 'http://192.168.1.86:9000/';
+	webSite.publicPath = 'http://192.168.1.109:9000/';
+	webSite.clean = () => {
+		return new CleanWebpackPlugin(['dist']) ;
+	};
 } else {
-	webSite.publicPath = 'http://192.168.1.86:9000/';
+	webSite.publicPath = 'http://192.168.1.109:9000/';
 }
 
 function resolve (dir) {
@@ -23,16 +27,21 @@ module.exports = {
 	},
 	output: {
 		path: resolve('dist'),
-		filename: '[name].js',
+		filename: '[name]1.js',
 		publicPath: webSite.publicPath
 	},
 	devServer: {
 		contentBase: resolve('dist'),
-		host: '192.168.1.86',
+		host: '192.168.1.109',
 		compress: true,
 		port: 9000
 	},
 	devtool: 'eval-source-map',
+	watchOptions: {
+		poll: 1000,
+		aggregateTimeout: 500,
+		ignored: /node_modules/
+	},
 	module: {
 		rules: [
 			{
@@ -73,7 +82,11 @@ module.exports = {
 		]
 	},
 	plugins: [
-		// new CleanWebpackPlugin(['dist']),
+		// webSite.clean(),
+		new webpack.BannerPlugin('study webpack'),
+		new webpack.ProvidePlugin({
+			$: 'jquery'
+		}),
 		new HtmlWebpackPlugin ({
 			hash: true,
 			template: './src/index.html'
