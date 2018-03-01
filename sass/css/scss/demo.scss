@@ -178,3 +178,21 @@ a{
 .movie{
 	@extend .logo;
 }
+
+.h11 {
+	color: #000;
+	.h111 {
+		font-size: 20px;
+	}
+}
+
+.h1 {
+	@extend .h11;
+}
+
+@function bg ($url) {
+	@return url($url) center center no-repeat;
+}
+.p {
+	background: bg('../images/hah.png')
+}
