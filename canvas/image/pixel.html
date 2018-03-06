@@ -47,23 +47,23 @@
 					var srcData = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height);
 					ctxDest.putImageData(srcData, 0, 0);
 				};
-				// grey.onclick = function() {
-				// 	var srcData = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height);
-				// 	pixelData = srcData.data;
-				// 	for (var i = 0,len = pixelData.length; i < len; i++) {
-				// 		var r = pixelData[4 * i + 0];
-				// 		var g = pixelData[4 * i + 1];
-				// 		var b = pixelData[4 * i + 2];
+				grey.onclick = function() {
+					var srcData = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height);
+					pixelData = srcData.data;
+					for (var i = 0,len = pixelData.length; i < len; i++) {
+						var r = pixelData[4 * i + 0];
+						var g = pixelData[4 * i + 1];
+						var b = pixelData[4 * i + 2];
 
-				// 		var grey = r * 0.3 + g * 0.59 + b * 0.11;
+						var grey = r * 0.3 + g * 0.59 + b * 0.11;
 
-				// 		pixelData[4 * i + 0] = grey;
-				// 		pixelData[4 * i + 1] = grey;
-				// 		pixelData[4 * i + 2] = grey;
+						pixelData[4 * i + 0] = grey;
+						pixelData[4 * i + 1] = grey;
+						pixelData[4 * i + 2] = grey;
 
-				// 	}
-				// 	ctxDest.putImageData(srcData, 0, 0);
-				// };
+					}
+					ctxDest.putImageData(srcData, 0, 0);
+				};
 				// blackWhite.onclick = function() {
 				// 	var srcData = ctxSrc.getImageData(0, 0, canvasSrc.width, canvasSrc.height);
 				// 	pixelData = srcData.data;
