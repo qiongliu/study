@@ -10,3 +10,7 @@
 ### 2.获取事件目标
 > `var  ev  =  window.event  ||  arguments.callee.caller.arguments[ 0 ]`
 
+### 账号
+> 小程序 l040603112@163.com qQ123456
+
+> 公众号 l040603112 q123456

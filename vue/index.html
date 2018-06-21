@@ -7,13 +7,17 @@
 </head>
 <body>
 	<div id="app">
-		<h1>{{title}}</h1>
-		<m-nav :nav='nav'></m-nav>
-		<m-select :slt='slt' @aa='sltChange'></m-select>
+		<h2>{{slogan}}</h2>
 	</div>
 	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-	<script src="src/nav.js"></script>
-	<script src="src/select.js"></script>
-	<script src="src/main.js"></script>
+	<script>
+		new Vue({
+			data () {
+				return {
+					slogan: 'hehe'
+				}
+			}
+		}).$mount('#app');
+	</script>
 </body>
 </html>

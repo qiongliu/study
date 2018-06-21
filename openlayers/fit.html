@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>fit</title>
+	<link href="./css/ol.css" rel="stylesheet" type="text/css" />
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/ol-debug.js" charset="utf-8"></script>
+    <style>
+      .mapcontainer {
+        position: relative;
+        margin-bottom: 20px;
+      }
+      .map {
+        width: 1000px;
+        height: 600px;
+      }
+      div.ol-zoom {
+        top: 178px;
+        left: 158px;
+      }
+      div.ol-attribution {
+        bottom: 30px;
+        right: 50px;
+      }
+      .padding-top {
+        position: absolute;
+        top: 0;
+        left: 0px;
+        width: 1000px;
+        height: 170px;
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .padding-left {
+        position: absolute;
+        top: 170px;
+        left: 0;
+        width: 150px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .padding-right {
+        position: absolute;
+        top: 170px;
+        left: 950px;
+        width: 50px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .padding-bottom {
+        position: absolute;
+        top: 570px;
+        left: 0px;
+        width: 1000px;
+        height: 30px;
+        background: rgba(255, 255, 255, 0.5);
+      }
+      .center {
+        /*position: absolute;*/
+        border: solid 1px black;
+/*        top: 490px;
+        left: 560px;
+*/        width: 20px;
+        height: 20px;
+      }
+    </style>
+</head>
+<body>
+	<div class="mapcontainer">
+      <div id="map" class="map"></div>
+      <div class="padding-top"></div>
+      <div class="padding-left"></div>
+      <div class="padding-right"></div>
+      <div class="padding-bottom"></div>
+      <div id="overlay" class="center"></div>
+    </div>
+    <button id="zoomtoswitzerlandbest">Zoom to Switzerland</button> (best fit),<br/>
+    <button onclick="moveWithAnim()">moveWithAnim</button>
+	<script>
+		var source = new ol.source.Vector({
+			url: 'http://openlayers.org/en/v3.13.1/examples/data/geojson/switzerland.geojson',
+			format: new ol.format.GeoJSON()
+		})
+		var style = new ol.style.Style({
+			fill: new ol.style.Fill({
+				color: 'rgba(255, 255, 255, 0.6)'
+			}),
+			stroke: new ol.style.Stroke({
+				width: 1,
+				color: '#000'
+			}),
+			image: new ol.style.Circle({
+				radius: 5,
+				fill: new ol.style.Fill({
+					color: 'rgba(255, 255, 255, 0.6)'
+				}),
+				stroke: new ol.style.Stroke({
+					width: 1,
+					color: '#f00'
+				})
+			})
+		});
+		var vectorLayer = new ol.layer.Vector({
+			source: source,
+			style: style
+		});
+		var view = new ol.View({
+			center: ol.proj.fromLonLat([-72.980624870461128, 48.161307640513321]),
+      // projection: 'EPSG:4326',
+      // center: ol.proj.transform([108.952, 34.233], 'EPSG:4326', 'EPSG:3857'),
+			zoom: 10
+		});
+		var map = new ol.Map({
+      interactions: ol.interaction.defaults(),
+			layers: [
+				new ol.layer.Tile({
+					source: new ol.source.OSM()
+				}),
+				vectorLayer
+			],
+			target: 'map',
+			controls: ol.control.defaults({
+				attributionOptions: {
+					collapsible: false
+				}
+			}),
+			view: view
+		});
+
+		var z1 = document.getElementById('zoomtoswitzerlandbest');
+		z1.addEventListener('click', function () {
+			var feature = source.getFeatures()[0];
+      feature.set('type','ruishi');
+			var polygon = feature.getGeometry();
+			var size = map.getSize();
+			view.fit(polygon, size);
+      feature.on('myEvent', function (event) {
+        console.log(event);
+      });
+		});
+
+		(function addGeoJSON (data) {
+			$.ajax({
+        url: 'http://anzhihun.coding.me/ol3-primer/data/geojson/line-samples.geojson',
+        success: function (res) {
+          var layer = new ol.layer.Vector({
+            source: new ol.source.Vector({
+              features: (new ol.format.GeoJSON()).readFeatures(res, {
+                // dataProjection: 'EPSG:4326',
+                featureProjection: 'EPSG:3857'
+              })
+            }),
+            style: new ol.style.Style({
+              stroke: new ol.style.Stroke({
+                width: 2,
+                color: '#f00'
+              })
+            })
+          })
+          map.addLayer(layer);
+          setTimeout(function () {
+            layer.setVisible(false);
+          },3000);
+        }
+      })
+		})();
+
+    var overlay = new ol.Overlay({
+      element: document.getElementById('overlay')
+    });
+    overlay.setPosition(new ol.proj.fromLonLat([-72.980624870461128, 48.161307640513321]));
+    map.addOverlay(overlay);
+
+    map.getView().on('change:resolution', function () {
+      var feature = source.getFeatures()[0];
+      feature.setStyle(new ol.style.Style({
+        stroke: new ol.style.Stroke({
+          width: 1,
+          color: '#ff0'
+        })
+      }));
+
+      var feature1 = source.getFeatures()[1];
+      feature1.setStyle(style);
+    });
+
+    var featureCircle = new ol.Feature({
+      geometry: new ol.geom.Point(ol.proj.fromLonLat([-72.980624870461128, 48.161307640513321]))
+    });
+
+    // featureCircle.setStyle(function () {
+    //   return [
+    //     new ol.style.Style({
+    //       image: new ol.style.Circle({
+    //         radius: 100,
+    //         fill: new ol.style.Fill({
+    //           color: '#ccc'
+    //         })
+    //       })
+    //     })
+    //   ];
+    // });
+
+    source.addFeature(featureCircle);
+
+    var selectInteraction = new ol.interaction.Select({
+      condition: ol.events.condition.pointerMove,
+      filter: function (feature, layer) {
+        return feature === featureCircle;
+      },
+      style: function () {
+        return [
+          new ol.style.Style({
+            image: new ol.style.Circle({
+              radius: 100,
+              fill: new ol.style.Fill({
+                color: '#f00'
+              }),
+              stroke: new ol.style.Stroke({
+                width: 2,
+                color: '#000'
+              })
+            }),
+          })
+        ];
+      }
+    });
+    
+    map.addInteraction(selectInteraction);
+
+    var drawInteraction = new ol.interaction.Draw({
+      type: 'LineString',
+      source: map.getLayers().getArray()[1].getSource(),
+      style: new ol.style.Style({
+        stroke: new ol.style.Stroke({
+          color: '#f00',
+          width: 2
+        })
+      })
+    });
+
+    drawInteraction.on('drawend', function (event) {
+      console.log(event.feature.getGeometry().getCoordinates());
+    });
+
+    map.addInteraction(drawInteraction);
+
+    map.on('click',function (event) {
+      // console.log(ol.proj.transform(event.coordinate,'EPSG:3857','EPSG:4326'));
+      // console.log(ol.proj.transform(map.getEventCoordinate(event), 'EPSG:3857', 'EPSG:4326'));
+      var feature = map.forEachFeatureAtPixel(event.pixel, function (feature) {
+        return feature;
+      });
+      if (!feature) return;
+      if (feature.get('type') === "ruishi") {
+        feature.dispatchEvent('myEvent');
+        feature.setStyle(new ol.style.Style({
+          stroke: new ol.style.Stroke({
+            width: 4
+          })
+        })); 
+      } 
+    });
+
+    function moveWithAnim () {
+      var pan = ol.animation.pan({
+        duration: 2000,
+        source: map.getView().getCenter()
+      });
+
+      map.beforeRender(pan);
+
+      map.getView().setCenter(ol.proj.transform([-71.980624870461128, 42.161307640513321],'EPSG:4326','EPSG:3857'));
+    }
+	</script>
+</body>
+</html>

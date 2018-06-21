@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8" />
+    <title>html转换成图片</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div id="render">
+        <table class="my-forecast">
+            <thead>
+                <tr>
+                    <th>日期</th>
+                    <th>AQI</th>
+                    <th>首要污染物</th>
+                    <th>空气质量等级</th>
+                    <th>温度（℃）</th>
+                    <th>湿度（%）</th>
+                    <th>风向（风速）</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background-color:#ff7e00">
+                    <td data-time="20180526">05-26</td>
+                    <td>
+                        <input type="text" class="my-aqi-lower" value="77"> -
+                        <input type="text" class="my-aqi-upper" value="107">
+                    </td>
+                    <td>
+                        <select name="my-pm0" id="my-pm0">
+                            <option value="pm10" selected="">PM10</option>
+                            <option value="pm2.5">PM2.5</option>
+                            <option value="so2">SO2</option>
+                            <option value="no2">NO2</option>
+                            <option value="co">CO</option>
+                            <option value="o3">O3</option>
+                        </select>
+                    </td>
+                    <td><span class="my-level">轻度</span>-<span class="my-level2">良</span></td>
+                    <td>18-28</td>
+                    <td>79.2</td>
+                    <td>偏南风(微风)</td>
+                </tr>
+                <tr style="background-color:#fffe02">
+                    <td data-time="20180527">05-27</td>
+                    <td>
+                        <input type="text" class="my-aqi-lower" value="84"> -
+                        <input type="text" class="my-aqi-upper" value="94">
+                    </td>
+                    <td>
+                        <select name="my-pm1" id="my-pm1">
+                            <option value="pm10">PM10</option>
+                            <option value="pm2.5">PM2.5</option>
+                            <option value="so2">SO2</option>
+                            <option value="no2">NO2</option>
+                            <option value="co">CO</option>
+                            <option value="o3" selected="">O3</option>
+                        </select>
+                    </td>
+                    <td><span class="my-level">良</span>-<span class="my-level2">良</span></td>
+                    <td>19-30</td>
+                    <td>51.35</td>
+                    <td>偏北风(微风)</td>
+                </tr>
+                <tr style="background-color:#ff7e00">
+                    <td data-time="20180528">05-28</td>
+                    <td>
+                        <input type="text" class="my-aqi-lower" value="97"> -
+                        <input type="text" class="my-aqi-upper" value="139">
+                    </td>
+                    <td>
+                        <select name="my-pm2" id="my-pm2">
+                            <option value="pm10" selected="">PM10</option>
+                            <option value="pm2.5">PM2.5</option>
+                            <option value="so2">SO2</option>
+                            <option value="no2">NO2</option>
+                            <option value="co">CO</option>
+                            <option value="o3">O3</option>
+                        </select>
+                    </td>
+                    <td><span class="my-level">轻度</span>-<span class="my-level2">良</span></td>
+                    <td>21-28</td>
+                    <td>44.73</td>
+                    <td>西南风(微风)</td>
+                </tr>
+                <tr style="background-color:#ff7e00">
+                    <td data-time="20180529">05-29</td>
+                    <td>
+                        <input type="text" class="my-aqi-lower" value="92"> -
+                        <input type="text" class="my-aqi-upper" value="123">
+                    </td>
+                    <td>
+                        <select name="my-pm3" id="my-pm3">
+                            <option value="pm10">PM10</option>
+                            <option value="pm2.5">PM2.5</option>
+                            <option value="so2">SO2</option>
+                            <option value="no2">NO2</option>
+                            <option value="co">CO</option>
+                            <option value="o3" selected="">O3</option>
+                        </select>
+                    </td>
+                    <td><span class="my-level">轻度</span>-<span class="my-level2">良</span></td>
+                    <td>16-27</td>
+                    <td>45.36</td>
+                    <td>西北风(微风)</td>
+                </tr>
+                <tr style="background-color:#ff7e00">
+                    <td data-time="20180530">05-30</td>
+                    <td>
+                        <input type="text" class="my-aqi-lower" value="61"> -
+                        <input type="text" class="my-aqi-upper" value="103">
+                    </td>
+                    <td>
+                        <select name="my-pm4" id="my-pm4">
+                            <option value="pm10">PM10</option>
+                            <option value="pm2.5">PM2.5</option>
+                            <option value="so2">SO2</option>
+                            <option value="no2">NO2</option>
+                            <option value="co">CO</option>
+                            <option value="o3" selected="">O3</option>
+                        </select>
+                    </td>
+                    <td><span class="my-level">轻度</span>-<span class="my-level2">良</span></td>
+                    <td>17-31</td>
+                    <td>49.84</td>
+                    <td>西风(微风)</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <br />
+    <input type="button" onclick="renderHTMLAndSave()" value="html转换成图片" />
+    <br />
+    <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script>
+    <script type="text/javascript">
+    var currentCanvas = null;
+
+    function renderHTMLAndSave() {
+        var render = document.getElementById('render');
+        console.log(render)
+
+        if (currentCanvas) document.body.removeChild(currentCanvas); //删除上一次生成的canvas对象
+
+        html2canvas(render).then(function(canvas) {
+
+            document.body.appendChild(canvas); //插入到页面，看看效果
+            currentCanvas = canvas;
+
+            src = canvas.toDataURL("image/png");
+            console.log(src); //base64格式
+
+            var saveImg = document.createElement("a"); //下载到本地
+            saveImg.href = src;
+            saveImg.download = 'demo.png';
+            saveImg.click();
+
+        });
+    }
+    </script>
+</body>
+
+</html>

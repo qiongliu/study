@@ -1,0 +1,28 @@
+.my-forecast th {
+	width: 14%;
+	border: 1px solid #ccc;
+	height: 50px;
+	font-weight: 400;
+	font-size: 16px;
+	background-color: #ddf0ff;
+}
+.my-forecast td {
+	border: 1px solid #ccc;
+	height: 50px;
+	color: #000;
+	font-size: 14px;
+}
+.my-forecast input,.my-ai input {
+	border: none;
+    width: 44px;
+    background: #fff;
+    font-size: 14px;
+    padding: 4px;
+    text-align: center;
+    border: 1px solid #ccc;
+}
+.my-forecast select {
+	height: 30px;
+    width: 100px;
+    background-color: #fff;
+}

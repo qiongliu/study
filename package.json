@@ -1,8 +1,26 @@
-{
-  "dependencies": {
-    "gulp": "^3.9.1"
+ {
+  "name": "study",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "test"
   },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qiongliu/study.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qiongliu/study/issues"
+  },
+  "homepage": "https://github.com/qiongliu/study#readme",
   "devDependencies": {
-    "browser-sync": "^2.18.13",
+    "browser-sync": "^2.23.6",
+    "gulp": "^3.9.1"
   }
 }

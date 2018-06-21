@@ -7,7 +7,6 @@
 		#canvas {
 			display: block;
 			margin: 50px auto;
-			/*border: 1px solid #ccc;*/
 		}
 	</style>
 </head>
@@ -107,13 +106,22 @@
 				ctx.fill();
 			}
 
+			function drawDate(year,month,day) {
+				
+			}
+
 			function draw(){
 				ctx.clearRect(0,0,canvas.width,canvas.height);
 				var date = new Date(),
+				year = date.getFullYear(),
+				month = date.getMonth() + 1,
+				day = date.getDate(),
 				hour = date.getHours(),
 				minute = date.getMinutes(),
 				second = date.getSeconds();
+				console.log(year,month,day)
 				drawBackground();
+				drawDate(year,month,day)
 				drawHour(hour,minute);
 				drawMinute(minute);
 				drawSecond(second);
